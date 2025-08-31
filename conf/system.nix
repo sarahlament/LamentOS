@@ -59,6 +59,19 @@
 		waybar.enable = true;
 
 		zsh.enable = true;
+		firefox.enable = true;
 	};
+
+	# Let's install the nerdfonts
+	fonts.packages = with pkgs; [
+		noto-fonts-cjk-sans
+		noto-fonts-emoji
+		nerd-fonts.ubuntu
+		nerd-fonts.ubuntu-mono
+		nerd-fonts.fira-code
+		nerd-fonts.fira-mono
+		nerd-fonts.hack
+		nerd-fonts.noto
+	];
 }
 
