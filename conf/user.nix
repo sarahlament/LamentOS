@@ -24,7 +24,6 @@
 			# a few extras
 			discord
 			matugen
-			catppuccin-cursors
 			fastfetch
 			eza
 
