@@ -72,6 +72,7 @@
 		nerd-fonts.fira-mono
 		nerd-fonts.hack
 		nerd-fonts.noto
+		nerd-fonts.jetbrains-mono
 	];
 }
 
