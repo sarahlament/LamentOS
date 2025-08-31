@@ -1,6 +1,9 @@
 { conf, pkgs, lib, ... }:
 
 {
+	# Let's allow 'unfree' software
+	nixpkgs.config.allowUnfree = true;
+
 	# Let's handle networking
 	networking.networkmanager.enable = true;
 	networking.hostName = "LamentOS";
