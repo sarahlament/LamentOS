@@ -12,7 +12,6 @@
 	# Enable the X11 windowing system.
 	hardware.graphics.enable = true;
 	services.xserver = {
-		displayManager.lightdm.enable = lib.mkForce false;
 		enable = true;
 		videoDrivers = [ "nvidia" ];
 	};
@@ -27,6 +26,9 @@
 	# Enable system services
 	security.rtkit.enable = true;
 	services = {
+		greetd = {
+			enable = true;
+		};
 		pipewire = {
 			enable = true;
 			pulse.enable = true;
@@ -38,6 +40,7 @@
 
 	# Let's define some system-wide programs and such
 	programs = {
+		regreet.enable = true;
 		command-not-found.enable = true;
 
 		nano.enable = false;
@@ -60,10 +63,11 @@
 		firefox.enable = true;
 	};
 
-	# let's try out autoLogin
-	services.displayManager.autoLogin = { enable = true; user = "lament"; };
+	# Now let's fix a few regreet things
+	environment.variables = { GSK_RENDERER = "ngl"; };
+	services.displayManager.sessionPackages = [ pkgs.sway ];
 
-	# Let's install the nerdfonts
+	# Let's install some fonts
 	fonts.packages = with pkgs; [
 		font-awesome
 		noto-fonts-cjk-sans
