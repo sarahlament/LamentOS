@@ -29,28 +29,6 @@
 		greetd = {
 			enable = true;
 			package = pkgs.regreet;
-			programs.regreet = {
-  				enable = true;
-
-  				settings = {
-    				background = {
-      					path = null; # or you can set a wallpaper
-     					color = "#303446"; # frappe base
-    				};
-
-					interface = {
-						font = "Sans 12";
-						font_color = "#c6d0f5"; # text (frappe text)
-						accent = "#ca9ee6";     # lavender accent
-					};
-					greeter = {
-   			 			border_radius = 16;
-   						button_color = "#303446";
-   			 			button_text_color = "#c6d0f5";
-   				 		highlight_color = "#babbf1"; # subtle accent for hover/focus
-   			 		};
-				};
-			};
 		};
 
 		pipewire = {
@@ -65,6 +43,29 @@
 	# Let's define some system-wide programs and such
 	programs = {
 		command-not-found.enable = true;
+
+		programs.regreet = {
+  			enable = true;
+
+  			settings = {
+    			background = {
+      				path = null; # or you can set a wallpaper
+     				color = "#303446"; # frappe base
+    			};
+
+				interface = {
+					font = "Sans 12";
+					font_color = "#c6d0f5"; # text (frappe text)
+					accent = "#ca9ee6";     # lavender accent
+				};
+				greeter = {
+		 			border_radius = 16;
+					button_color = "#303446";
+		 			button_text_color = "#c6d0f5";
+			 		highlight_color = "#babbf1"; # subtle accent for hover/focus
+		 		};
+			};
+		};
 
 		nano.enable = false;
 		neovim = {
