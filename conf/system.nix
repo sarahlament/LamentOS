@@ -44,7 +44,7 @@
 	programs = {
 		command-not-found.enable = true;
 
-		programs.regreet = {
+		regreet = {
   			enable = true;
 
   			settings = {
