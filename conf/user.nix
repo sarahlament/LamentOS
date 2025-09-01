@@ -1,6 +1,38 @@
 { config, pkgs, ... }:
 
 {
+	# Let's move some user-level settings here instead of in system.nix
+	services = {
+		flatpak.emable = true;
+		pipewire = {
+			enable = true;
+			pulse.enable = true;
+			alsa.enable = true;
+			wireplumber.enable = true;
+		};
+	};
+
+	programs = {
+		command-not-found.enable = true;
+		nano.enable = false;
+		neovim = {
+			enable = true;
+			defaultEditor = true;
+			vimAlias = true;
+		};
+		bat.enable = true;
+		fzf.keybindings = true;
+
+		hyprland = {
+			enable = true;
+			withUWSM = true;
+			xwayland.enable = true;
+		};
+		waybar.enable = true;
+
+		zsh.enable = true;
+	};
+
 	# Set my user config
 	users.users.lament = {
 		isNormalUser = true;

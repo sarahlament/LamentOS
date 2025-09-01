@@ -27,67 +27,28 @@
 	security.rtkit.enable = true;
 	services = {
 		greetd.enable = true;
-
-		flatpak.enable = true;
-
-		pipewire = {
-			enable = true;
-			pulse.enable = true;
-			alsa.enable = true;
-			wireplumber.enable = true;
-		};
 		openssh.enable = true;
 	};
 
 	# Let's define some system-wide programs and such
-	programs = {
-		command-not-found.enable = true;
+	programs.regreet = {
+  		enable = true;
 
-		regreet = {
-  			enable = true;
-
-  			settings = {
-    			background = {
-					path = "/xetc/wallpaper.png";
-    			};
-
-				interface = {
-					font = "Sans 12";
-					font_color = "#c6d0f5"; # text (frappe text)
-					accent = "#ca9ee6";     # lavender accent
-				};
-				greeter = {
-		 			border_radius = 16;
-					button_color = "#303446";
-		 			button_text_color = "#c6d0f5";
-			 		highlight_color = "#babbf1"; # subtle accent for hover/focus
-		 		};
+  		settings = {
+    		background.path = "/xetc/wallpaper.png";
+			interface = {
+				font = "Sans 12";
+				font_color = "#c6d0f5"; # text (frappe text)
+				accent = "#ca9ee6";     # lavender accent
 			};
+			greeter = {
+	 			border_radius = 16;
+				button_color = "#303446";
+	 			button_text_color = "#c6d0f5";
+		 		highlight_color = "#babbf1"; # subtle accent for hover/focus
+	 		};
 		};
-
-		nano.enable = false;
-		neovim = {
-			enable = true;
-			defaultEditor = true;
-			vimAlias = true;
-		};
-		bat.enable = true;
-		fzf.keybindings = true;
-
-		hyprland = {
-			enable = true;
-			withUWSM = true;
-			xwayland.enable = true;
-		};
-		waybar.enable = true;
-
-		zsh.enable = true;
-		firefox.enable = true;
 	};
-
-	# Now let's fix a few regreet things
-	environment.variables = { GSK_RENDERER = "ngl"; };
-	services.displayManager.sessionPackages = [ pkgs.sway ];
 
 	# Let's install some fonts
 	fonts.packages = with pkgs; [
