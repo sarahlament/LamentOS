@@ -26,10 +26,7 @@
 	# Enable system services
 	security.rtkit.enable = true;
 	services = {
-		greetd = {
-			enable = true;
-			package = pkgs.regreet;
-		};
+		greetd.enable = true;
 
 		pipewire = {
 			enable = true;
@@ -49,8 +46,7 @@
 
   			settings = {
     			background = {
-      				path = null; # or you can set a wallpaper
-     				color = "#303446"; # frappe base
+					path = "/xetc/wallpaper.png";
     			};
 
 				interface = {
