@@ -3,7 +3,7 @@
 {
 	# Let's move some user-level settings here instead of in system.nix
 	services = {
-		flatpak.emable = true;
+		flatpak.enable = true;
 		pipewire = {
 			enable = true;
 			pulse.enable = true;
