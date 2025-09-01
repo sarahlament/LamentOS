@@ -28,6 +28,8 @@
 	services = {
 		greetd.enable = true;
 
+		flatpak.enable = true;
+
 		pipewire = {
 			enable = true;
 			pulse.enable = true;
