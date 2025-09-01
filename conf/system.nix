@@ -12,7 +12,7 @@
 	# Enable the X11 windowing system.
 	hardware.graphics.enable = true;
 	services.xserver = {
-		displayManager.lightdm.enable = false;
+		displayManager.lightdm.enable = lib.mkForce false;
 		enable = true;
 		videoDrivers = [ "nvidia" ];
 	};
@@ -33,13 +33,11 @@
 			alsa.enable = true;
 			wireplumber.enable = true;
 		};
-		greetd.enable = true;
 		openssh.enable = true;
 	};
 
 	# Let's define some system-wide programs and such
 	programs = {
-		regreet.enable = true;
 		command-not-found.enable = true;
 
 		nano.enable = false;
@@ -61,6 +59,9 @@
 		zsh.enable = true;
 		firefox.enable = true;
 	};
+
+	# let's try out autoLogin
+	services.displayManager.autoLogin = { enable = true; user = "lament"; };
 
 	# Let's install the nerdfonts
 	fonts.packages = with pkgs; [
