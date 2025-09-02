@@ -23,7 +23,7 @@
 
 					# and now let's use modularized nix configs
 					./conf/boot.nix
-					./conf/system.nix
+					./conf/core.nix
 					./conf/user.nix
           
 					# and a few extras that feel more 'critical' and thus should be 'seen'
