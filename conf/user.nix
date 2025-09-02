@@ -32,6 +32,16 @@
 
 		zsh.enable = true;
 	};
+	
+	# Let's enable the xdg-portal so things work correctly
+	xdg.portal = {
+		enable = true;
+
+		extraPortals = with pkgs; [
+			xdg-desktop-portal-gtk # allows GTK based apps to work correctly
+			xdg-desktop-portal-hyprland # specific portal for hyprland
+		];
+	};
 
 	# Set my user config
 	users.users.lament = {
