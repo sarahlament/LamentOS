@@ -27,6 +27,7 @@
 		kdePackages.dolphin
 		playerctl
 		pwvucontrol
+		glib
 	];
 
 	# now let's define some of my programs
@@ -46,7 +47,7 @@
 			enable = true;
 			enableCompletion = true;
 			autosuggestion.enable = true;
-			autosuggestion.strategy = [ "history" "completion" ];
+			autosuggestion.strategy = [ "completion" "history" ];
 			history.ignoreAllDups = true;
 			history.append = true;
 			syntaxHighlighting.enable = true;
