@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
+	home.stateVersion = "25.11"; # DO NOT CHANGE THIS!
+
 	# We need to allow 'unfree' software here as well
 	nixpkgs.config.allowUnfree = true;
 
@@ -8,8 +10,6 @@
 	home.username = "lament";
 	home.homeDirectory = "/home/lament";
 
-	home.stateVersion = "25.05"; # Same as flake.nix, DO NOT CHANGE THIS
-	
 	home.packages = with pkgs; [
 		curl
 
@@ -66,8 +66,8 @@
 
 			# Some extra variables I want set upon opening a terminal
 			envExtra = ''
-				MAKEFLAGS = "-j16";
-				ZSH_COMPDUMP = "~/.cache/zsh/.zcompdump";
+				MAKEFLAGS="-j16";
+				ZSH_COMPDUMP="~/.cache/zsh/.zcompdump";
 			'';
 
 			#  My main shell variables
@@ -122,30 +122,31 @@
 
 		# let's enable and define part of the hypr ecosystem (hpyrland will be added once I have it more finalized)
 		hyprlock.enable = true;
-		hyprpanel = {
-			enable = true;
-			systemd.enable = true;
-			settings = {
-				layout = {
-					bar.layouts."0" = {
-						left = [ "dashboard" "media" ];
-						middle = [ "workspaces" ];
-						right = [ "volume" "systray" "notifications" ];
-					};
-				};
-				bar.launcher.autoDetection = true;
-				bar.workspaces.show_icons = true;
-
-				menus.clock.time.military = true;
-				menus.clock.weather.unit = "imperial";
-
-				theme.bar.transparent = true;
-				theme.font = {
-					name = "Jetbrains NF";
-					size = "16px";
-				};
-			};
-		};
+		waybar.enable = true;
+#		hyprpanel = {
+#			enable = true;
+#			systemd.enable = true;
+#			settings = {
+#				layout = {
+#					bar.layouts."0" = {
+#						left = [ "dashboard" "media" ];
+#						middle = [ "workspaces" ];
+#						right = [ "volume" "systray" "notifications" ];
+#					};
+#				};
+#				bar.launcher.autoDetection = true;
+#				bar.workspaces.show_icons = true;
+#
+#				menus.clock.time.military = true;
+#				menus.clock.weather.unit = "imperial";
+#
+#				theme.bar.transparent = true;
+#				theme.font = {
+#					name = "Jetbrains NF";
+#					size = "16px";
+#				};
+#			};
+#		};
 	};
 
 	xdg.portal = {
