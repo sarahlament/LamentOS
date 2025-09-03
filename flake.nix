@@ -2,14 +2,18 @@
 	description = "LamentOS";
 
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; # let;s use nix-unstable
 		lanzaboote = {
-			url = "github:nix-community/lanzaboote/v0.4.2";
+			url = "github:nix-community/lanzaboote/v0.4.2"; # because this is for secureboot, let's keep it at a specific version
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		home-manager = {
+			url = "github:nix-community/home-manager"; # let's use the most recent commit
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
 
-	outputs = { self, nixpkgs, lanzaboote, ... }:
+	outputs = { self, nixpkgs, lanzaboote, home-manager, ... }:
 	let
 		system = "x86_64-linux";
 	in
@@ -18,18 +22,19 @@
 			lamentOS = nixpkgs.lib.nixosSystem {
 				inherit system;
 				modules = [
-					# let's load our external modules here
-					lanzaboote.nixosModules.lanzaboote
+					lanzaboote.nixosModules.lanzaboote # lanzaboote for secure boot
+					home-manager.nixosModules.home-manager # home manager for, well, home manager
 
-					# and now let's use modularized nix configs
-					./conf/boot.nix
-					./conf/core.nix
-					./conf/user.nix
+					./conf/boot.nix	# config related to boot: encryption, boot, mounts, kernel
+					./conf/core.nix	# system-level config: graphics, network, display manager
+					./conf/user.nix	# user-level config: audio, users, window managers
           
-					# and a few extras that feel more 'critical' and thus should be 'seen'
 					{
-						nix.settings.experimental-features = [ "nix-command" "flakes" ];
-						system.stateVersion = "25.11"; # DO NOT CHANGE THIS! THIS SHOULD STAY WHERE THE SYSTEM WAS INITIALLY INSTALLED
+						home-manager.useGlobalPkgs = true; # let's have home manager inherit the system pkgs
+						home-manager.useUserPackages = true; # better intergration with the system ??? dunno, but it's here lol
+						home-manager.users."lament" = import ./conf/home.nix;	# let's reference our home.nix
+						nix.settings.experimental-features = [ "nix-command" "flakes" ];	# we obviously want flakes
+						system.stateVersion = "25.11";	# DO NOT CHANGE THIS!
 					}
 				];
 			};

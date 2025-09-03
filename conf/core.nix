@@ -42,19 +42,5 @@
 	services = {
 		openssh.enable = true;
 	};
-
-	# Let's install some fonts
-	fonts.packages = with pkgs; [
-		font-awesome
-		noto-fonts-cjk-sans
-		noto-fonts-emoji
-		nerd-fonts.ubuntu
-		nerd-fonts.ubuntu-mono
-		nerd-fonts.fira-code
-		nerd-fonts.fira-mono
-		nerd-fonts.hack
-		nerd-fonts.noto
-		nerd-fonts.jetbrains-mono
-	];
 }
 
