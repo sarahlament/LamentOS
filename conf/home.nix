@@ -23,6 +23,10 @@
 
 		wl-clipboard
 		wl-clip-persist
+
+		kdePackages.dolphin
+		playerctl
+		pwvucontrol
 	];
 
 	# now let's define some of my programs
@@ -66,12 +70,13 @@
 				shutdown = "systemctl shutdown";
 				reboot = "systemctl reboot";
 
-				gs = "git status";
-				gl = "git log";
-				ga = "git add";
+				g = "git";
+				gs = "g status";
+				gl = "g log";
+				ga = "g add";
 				"ga." = "ga .";
-				gcm = "git commit -am";
-				gp = "git push";
+				gcm = "g commit -am";
+				gp = "g push";
 
 				cat = "bat";
 			};
