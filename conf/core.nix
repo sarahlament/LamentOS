@@ -1,46 +1,42 @@
 { conf, pkgs, lib, ... }:
 
 {
-	# Let's allow 'unfree' software
-	nixpkgs.config.allowUnfree = true;
+	nixpkgs.config.allowUnfree = true; # allow 'unfree' software
 
-	# Let's handle networking
-	networking.networkmanager.enable = true;
-	networking.hostName = "LamentOS";
-	time.timeZone = "America/Chicago";
+	networking.networkmanager.enable = true; # network-manager just kinda works from my experience
+	networking.hostName = "LamentOS"; # let's set our hostname
+	time.timeZone = "America/Chicago"; # let's set our timezone
 
-	# Enable the X11 windowing system.
-	hardware.graphics.enable = true;
+	hardware.graphics.enable = true; # graphics are wanted
 	services = {
 		xserver = {
-			enable = true;
-			videoDrivers = [ "nvidia" ];
+			enable = true; # needed for compatibility reasons even though wayland is used
+			videoDrivers = [ "nvidia" ]; # since we have nvidia, we need to care ONLY for that driver
 		};
 
-		# Let's auto login using GDM
 		displayManager = {
 			autoLogin = {
-				enable = true;
-				user = "lament";
+				enable = true; # auto login
+				user = "lament"; # as this user
 			};
 			gdm = {
-				enable = true;
-				wayland = true;
+				enable = true; # gdm is reported to work with hyprland, so let's use it since I won't have to configure it
+				wayland = true; # let's prefer using wayland over x11
 			};
 		};
 	};
 
-	# And make sure nvidia works correctly
+	programs.ccache.enable = true; # let's use ccache to help with builds on the system itself
+
 	hardware.nvidia = {
-		modesetting.enable = true;
-		open = true;
-		nvidiaSettings = true;
+		modesetting.enable = true; # we need to allow nvidia modesetting for it to work
+		open = true; # let's use the nvidia-open drivers
+		nvidiaSettings = true; # and include the nvidia-settings application
 	};
 
-	# Enable system services
-	security.rtkit.enable = true;
+	security.rtkit.enable = true; # let's use the realtime kit
 	services = {
-		openssh.enable = true;
+		openssh.enable = true; # let's use a simple ssh server ( to be configured properly later)
 	};
 }
 

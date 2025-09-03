@@ -127,6 +127,7 @@
 		extraPortals = with pkgs; [
 			xdg-desktop-portal-gtk # allows GTK based apps to work correctly
 		];
+		configPackages = [ pkgs.hyprland ];
 	};
 
 	services = {
