@@ -3,9 +3,6 @@
 {
 	home.stateVersion = "25.11"; # DO NOT CHANGE THIS!
 
-	# We need to allow 'unfree' software here as well
-	nixpkgs.config.allowUnfree = true;
-
 	# We obviously need basic user information
 	home.username = "lament";
 	home.homeDirectory = "/home/lament";
@@ -60,7 +57,7 @@
 			};
 
 			# Some extra variables I want set upon opening a terminal
-			envExtra = "MAKEFLAGS='-j16'";
+			envExtra = "MAKEFLAGS=\"-j16\"";
 
 			#  My main shell variables
 			shellAliases = {
