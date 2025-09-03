@@ -122,31 +122,10 @@
 
 		# let's enable and define part of the hypr ecosystem (hpyrland will be added once I have it more finalized)
 		hyprlock.enable = true;
-		waybar.enable = true;
-#		hyprpanel = {
-#			enable = true;
-#			systemd.enable = true;
-#			settings = {
-#				layout = {
-#					bar.layouts."0" = {
-#						left = [ "dashboard" "media" ];
-#						middle = [ "workspaces" ];
-#						right = [ "volume" "systray" "notifications" ];
-#					};
-#				};
-#				bar.launcher.autoDetection = true;
-#				bar.workspaces.show_icons = true;
-#
-#				menus.clock.time.military = true;
-#				menus.clock.weather.unit = "imperial";
-#
-#				theme.bar.transparent = true;
-#				theme.font = {
-#					name = "Jetbrains NF";
-#					size = "16px";
-#				};
-#			};
-#		};
+		waybar = {
+			enable = true;
+			systemd.enable = true;
+		};
 	};
 
 	xdg.portal = {
@@ -179,7 +158,7 @@
 	# if this works the way I think it does, I can use this instead of uwsm config
 	home.sessionVariables = {
 		LIBVA_DRIVER_NAME = "nvidia";
-		__GKX_VENDOR_LIBRARY_NAME = "nvidia";
+		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
 		ELECTRON_OZON_PLATFORM_HINT = "auto";
 	};
 }
