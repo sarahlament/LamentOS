@@ -53,22 +53,14 @@
 			oh-my-zsh = {
 				enable = true;
 
-				extraConfig = ''
-					zstyle ':omz:update' mode auto
-					zstyle ':omz:update' verbosity minimal
-					zstyle ':omz:update' frequency 5
-					unsetopt autopushd
-				'';
+				extraConfig = "unsetopt autopushd";
 
 				# The main plugins I use
-				plugins = [ "sudo" "eza" "fancy-ctrl-z" "fzf" "gitfast" "zsh-interactive-cd" ];
+				plugins = [ "sudo" "eza" "fancy-ctrl-z" "gitfast" "zsh-interactive-cd" ];
 			};
 
 			# Some extra variables I want set upon opening a terminal
-			envExtra = ''
-				MAKEFLAGS="-j16";
-				ZSH_COMPDUMP="~/.cache/zsh/.zcompdump";
-			'';
+			envExtra = "MAKEFLAGS='-j16'";
 
 			#  My main shell variables
 			shellAliases = {
