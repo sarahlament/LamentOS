@@ -1,77 +1,41 @@
 { config, pkgs, ... }:
 
 {
-	# Let's move some user-level settings here instead of in system.nix
 	services = {
-		flatpak.enable = true;
+		flatpak.enable = true;	# flatpak is useful for some things
 		pipewire = {
-			enable = true;
-			pulse.enable = true;
-			alsa.enable = true;
-			wireplumber.enable = true;
+			enable = true;	# audio is wanted, I hope...
+			pulse.enable = true;	# pulse backend for pipewire
+			alsa.enable = true;	# alsa backend for pipewire
+			wireplumber.enable = true;	# wireplumber session manager for pipewire
 		};
 	};
 
-	programs = {
-		command-not-found.enable = true;
-		nano.enable = false;
-		neovim = {
-			enable = true;
-			defaultEditor = true;
-			vimAlias = true;
-		};
-		bat.enable = true;
-		fzf.keybindings = true;
+	programs.zsh.enable = true;	# let's enable my prefered shell
 
-		hyprland = {
-			enable = true;
-			withUWSM = true;
-			xwayland.enable = true;
-		};
-		waybar.enable = true;
-
-		zsh.enable = true;
-	};
-	
-	# Let's enable the xdg-portal so things work correctly
-	xdg.portal = {
-		enable = true;
-
-		extraPortals = with pkgs; [
-			xdg-desktop-portal-gtk # allows GTK based apps to work correctly
-			xdg-desktop-portal-hyprland # specific portal for hyprland
-		];
-	};
-
-	# Set my user config
 	users.users.lament = {
-		isNormalUser = true;
-		shell = pkgs.zsh;
-		extraGroups = [ "wheel" "systemd-journal" ];
-		packages = with pkgs; [
-			# basic things I use
-			git
-			curl
-
-			# and let's include the hypr ecosystem
-			hyprpaper
-			hyprcursor
-			hyprlock
-			hypridle
-			hyprsysteminfo
-			hyprpolkitagent
-			hyprland-qt-support
-			kitty
-      
-			# a few extras
-			discord
-			matugen
-			fastfetch
-			eza
-
-			# wl-clip things
-			wl-clipboard
-			wl-clip-persist
-		];
+		isNormalUser = true;	# I am not a system user
+		shell = pkgs.zsh;	# actually set zsh as my shell
+		extraGroups = [ "wheel" "systemd-journal" ];	# sudo and journals
 	};
+	programs.hyprland = {
+		enable = true;	# enable the hyprland window manager
+		withUWSM = true;	# let's use better integration with systemd
+		xwayland.enable = true;	# and let's use the xwayland backend for things that need it
+	};
+
+	# Let's install some fonts
+	fonts.packages = with pkgs; [
+		font-awesome
+		noto-fonts-cjk-sans
+		noto-fonts-emoji
+		nerd-fonts.ubuntu
+		nerd-fonts.ubuntu-mono
+		nerd-fonts.fira-code
+		nerd-fonts.fira-mono
+		nerd-fonts.hack
+		nerd-fonts.noto
+		nerd-fonts.jetbrains-mono
+	];
+
 }
