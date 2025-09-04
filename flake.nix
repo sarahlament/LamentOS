@@ -30,17 +30,11 @@
           
 				{
 					nix.settings.experimental-features = [ "nix-command" "flakes" ]; # we obviously want flakes
-					home-manager.users."lament" = import ./conf/home.nix; # let's update the user along with the system
+					home-manager.useGlobalPkgs = true; # since I want this integrated with the system, let's use the system packages as well
+					home-manager.useUserPackages = true; # and let's treat packages here as user packages, not 'home manager' packages
+					home-manager.users.lament = ./conf/home.nix; # let's update the user along with the system
 					system.stateVersion = "25.11"; # DO NOT CHANGE THIS
 				}
-			];
-		};
-
-
-		homeConfigurations.lament = home-manager.lib.homeManagerConfiguration { # create our home config, with our username as the name
-			pkgs = nixpkgs.legacyPackages.x86_64-linux;
-			modules = [
-				./conf/home.nix # reference our home.nix
 			];
 		};
 	};

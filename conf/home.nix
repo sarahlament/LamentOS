@@ -16,7 +16,6 @@
 		matugen
 		fastfetch
 		eza
-		pwvucontrol
 
 		wl-clipboard
 		wl-clip-persist
@@ -40,21 +39,8 @@
 				pull.rebase = true;
 			};
 			aliases = {
-				st = "status -s";
-				get = "clone";
-				p = "pull";
-				put = "push";
-				a = "add";
-				A = "add .";
-				c = "commit --verbose";
-				d = "diff";
-				ds = "diff --stat";
-				dc = "diff --cached";
 				sreset = "reset HEAD~1 --soft";
 				hreset = "reset HEAD~1 --hard";
-				lg = "log --oneline --decorate --all --graph";
-				ammend = "commit --ammend --verbose";
-				cput = "!git c && git P";
 			};
 		};
 		zsh = {
@@ -69,10 +55,8 @@
 			oh-my-zsh = {
 				enable = true;
 
-				extraConfig = "unsetopt autopushd";
-
 				# The main plugins I use
-				plugins = [ "sudo" "eza" "fancy-ctrl-z" "gitfast" "zsh-interactive-cd" ];
+				plugins = [ "sudo" "eza" "fancy-ctrl-z" "gitfast" ];
 			};
 
 			# Some extra variables I want set upon opening a terminal
@@ -86,6 +70,19 @@
 				reboot = "systemctl reboot";
 
 				g = "git";
+				gs = "g status -s";
+				gp = "g pull";
+				gput = "g push";
+				ga = "g add";
+				"ga." = "ga .";
+				gc = "g commit --verbose";
+				gd = "g diff";
+				gds = "gd --stat";
+				gdc = "gd --cached";
+				gl = "g log --oneline --decorate --all --graph";
+				gammend = "gc --ammend";
+				gcput = "gc && gput";
+				
 				cat = "bat";
 			};
 
@@ -106,7 +103,7 @@
 		oh-my-posh = {
 			enable = true;
 			enableZshIntegration = true;
-			useTheme = "catppuccin_mocha";
+			useTheme = "illusi0n";
 		};
 
 		# let's use neovim by default
@@ -166,6 +163,4 @@
 		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
 		ELECTRON_OZON_PLATFORM_HINT = "auto";
 	};
-
-	nixpkgs.config.allowUnfree = true; # allow 'unfree' software
 }
