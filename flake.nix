@@ -31,6 +31,7 @@
 				{
 					nix.settings.experimental-features = [ "nix-command" "flakes" ]; # we obviously want flakes
 					home-manager.users."lament" = import ./conf/home.nix; # let's update the user along with the system
+					system.stateVersion = "25.11"; # DO NOT CHANGE THIS
 				}
 			];
 		};
