@@ -1,12 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
+	home.username = "lament"; # let's give it our username
+	home.homeDirectory = "/home/lament"; # and the home directory
 	home.stateVersion = "25.11"; # DO NOT CHANGE THIS!
-
-	# We obviously need basic user information
-	home.username = "lament";
-	home.homeDirectory = "/home/lament";
-
 	home.packages = with pkgs; [
 		curl
 
@@ -42,6 +39,23 @@
 				fetch.prune = true;
 				pull.rebase = true;
 			};
+			aliases = {
+				st = "status -s";
+				get = "clone";
+				p = "pull";
+				put = "push";
+				a = "add";
+				A = "add .";
+				c = "commit --verbose";
+				d = "diff";
+				ds = "diff --stat";
+				dc = "diff --cached";
+				sreset = "reset HEAD~1 --soft";
+				hreset = "reset HEAD~1 --hard";
+				lg = "log --oneline --decorate --all --graph";
+				ammend = "commit --ammend --verbose";
+				cput = "!git c && git P";
+			};
 		};
 		zsh = {
 			enable = true;
@@ -72,13 +86,6 @@
 				reboot = "systemctl reboot";
 
 				g = "git";
-				gs = "g status";
-				gl = "g log";
-				ga = "g add";
-				"ga." = "ga .";
-				gcm = "g commit -am";
-				gp = "g push";
-
 				cat = "bat";
 			};
 
@@ -91,7 +98,7 @@
 				if [[ $(tty) == *"pts"* ]]; then
 					ff
 				fi
-			'';
+				'';
 		};
 
 		# let's make my terminal a little more posh
@@ -157,4 +164,6 @@
 		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
 		ELECTRON_OZON_PLATFORM_HINT = "auto";
 	};
+
+	nixpkgs.config.allowUnfree = true; # allow 'unfree' software
 }

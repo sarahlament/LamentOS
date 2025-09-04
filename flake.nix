@@ -2,7 +2,7 @@
 	description = "LamentOS";
 
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; # let;s use nix-unstable
+		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; # let's use nix-unstable
 		lanzaboote = {
 			url = "github:nix-community/lanzaboote/v0.4.2"; # because this is for secureboot, let's keep it at a specific version
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -15,29 +15,32 @@
 
 	outputs = { self, nixpkgs, lanzaboote, home-manager, ... }:
 	let
-		system = "x86_64-linux";
+		system = "x86_64-linux"; # define the system type here
 	in
 	{
-		nixosConfigurations = {
-			lamentOS = nixpkgs.lib.nixosSystem {
-				inherit system;
-				modules = [
-					lanzaboote.nixosModules.lanzaboote # lanzaboote for secure boot
-					home-manager.nixosModules.home-manager # home manager for, well, home manager
+		nixosConfigurations.lamentOS = nixpkgs.lib.nixosSystem { # create our system config, named lamentOS
+			inherit system;
+			modules = [
+				lanzaboote.nixosModules.lanzaboote # lanzaboote for secure boot
+				home-manager.nixosModules.home-manager # home manager for, well, home manager
 
-					./conf/boot.nix	# config related to boot: encryption, boot, mounts, kernel
-					./conf/core.nix	# system-level config: graphics, network, display manager
-					./conf/user.nix	# user-level config: audio, users, window managers
+				./conf/boot.nix # config related to boot: encryption, boot, mounts, kernel
+				./conf/core.nix # system-level config: graphics, network, display manager
+				./conf/user.nix # user-level config: audio, users, window managers
           
-					{
-						home-manager.useGlobalPkgs = true; # let's have home manager inherit the system pkgs
-						home-manager.useUserPackages = true; # better intergration with the system ??? dunno, but it's here lol
-						home-manager.users."lament" = import ./conf/home.nix;	# let's reference our home.nix
-						nix.settings.experimental-features = [ "nix-command" "flakes" ];	# we obviously want flakes
-						system.stateVersion = "25.11";	# DO NOT CHANGE THIS!
-					}
-				];
-			};
+				{
+					nix.settings.experimental-features = [ "nix-command" "flakes" ]; # we obviously want flakes
+					home-manager.users."lament" = import ./conf/home.nix; # let's update the user along with the system
+				}
+			];
+		};
+
+
+		homeConfigurations.lament = home-manager.lib.homeManagerConfiguration { # create our home config, with our username as the name
+			pkgs = nixpkgs.legacyPackages.x86_64-linux;
+			modules = [
+				./conf/home.nix # reference our home.nix
+			];
 		};
 	};
 }
