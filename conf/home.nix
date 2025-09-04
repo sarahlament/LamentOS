@@ -130,6 +130,7 @@
 		};
 	};
 
+	xdg.systemDirs.data = [ "~/.nix-profile/share" ];
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [
