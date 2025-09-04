@@ -90,7 +90,8 @@
 			};
 
 			# let's do some extra things and add some extra aliases(things I've added but not yet put into home manager)
-			initContent = lib.mkOrder 9999 ''
+			initContent = lib.mkOrder 2000 ''
+				unsetopt autopushd
 				if [[ -f ~/.config/zsh/moreAliases.zsh ]]; then
 					source ~/.config/zsh/moreAliases.zsh
 				fi
@@ -98,7 +99,7 @@
 				if [[ $(tty) == *"pts"* ]]; then
 					ff
 				fi
-				'';
+			'';
 		};
 
 		# let's make my terminal a little more posh
