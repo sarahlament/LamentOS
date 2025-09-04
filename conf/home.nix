@@ -28,7 +28,6 @@
 
 	# now let's define some of my programs
 	programs = {
-		home-manager.enable = true;
 		git = {
 			enable = true;
 			userName = "Sarah Lament";
@@ -56,7 +55,7 @@
 				enable = true;
 
 				# The main plugins I use
-				plugins = [ "sudo" "eza" "fancy-ctrl-z" "gitfast" ];
+				plugins = [ "sudo" "eza" "fancy-ctrl-z" "gitfast" "fzf" ];
 			};
 
 			# Some extra variables I want set upon opening a terminal
@@ -76,14 +75,19 @@
 				ga = "g add";
 				"ga." = "ga .";
 				gc = "g commit --verbose";
+				gca = "gc -a";
+				gcam = "gca -m";
+				gcat = "gcam tmp";
 				gd = "g diff";
 				gds = "gd --stat";
 				gdc = "gd --cached";
-				gl = "g log --oneline --decorate --all --graph";
-				gammend = "gc --ammend";
+				glog = "g log --oneline --decorate --all --graph";
+				gamend = "gc --amend";
 				gcput = "gc && gput";
 				
 				cat = "bat";
+
+				sys-update = "sudo nixos-rebuild --flake /etc/nixos/#lamentOS";
 			};
 
 			# let's do some extra things and add some extra aliases(things I've added but not yet put into home manager)
@@ -128,7 +132,6 @@
 		};
 	};
 
-	xdg.systemDirs.data = [ "~/.nix-profile/share" ];
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [
@@ -143,19 +146,7 @@
 		hypridle.enable = true;	# idle after an ammount of time
 	};
 
-	home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-	# let's move my uwsm config here
-#	".config/uwsm/env-hyprland".text = ''
-#		export LIBVA_DRIVER_NAME=nvidia
-#		export __GKX_VENDOR_LIBRARY_NAME=nvidia
-#		export ELECTRON_OZONE_PLATFORM_HINT=auto
-#	'';
-	};
+	home.file = { };
 
 	# if this works the way I think it does, I can use this instead of uwsm config
 	home.sessionVariables = {
