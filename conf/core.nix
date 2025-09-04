@@ -2,7 +2,6 @@
 
 {
 	nixpkgs.config.allowUnfree = true; # allow 'unfree' software
-
 	networking.networkmanager.enable = true; # network-manager just kinda works from my experience
 	networking.hostName = "LamentOS"; # let's set our hostname
 	time.timeZone = "America/Chicago"; # let's set our timezone
