@@ -10,7 +10,6 @@
 		hyprcursor
 		hyprsysteminfo
 		hyprland-qt-support
-		kitty
 
 		discord
 		matugen
@@ -28,6 +27,37 @@
 
 	# now let's define some of my programs
 	programs = {
+		kitty = {
+			enable = true;
+			themeFile = "Dracula";
+			shellIntegration.enableZshIntegration = true;
+			actionAliases = {
+				"launch_tab" = "launch --cwd=current --type=tab";
+				"launch_window" = "laumch --cwd=current --type=os-window";
+			};
+			font = {
+				name = "JetBrainsMono Nerd Font";
+				size = 14;
+			};
+			settings = {
+				enable_audio_bell = false;
+				remember_window_size = false;
+				background_opacity = 0.8;
+				dynamic_background_opacity = true;
+				hide_window_decorations = true;
+				cursor_blink_interval = 0.5;
+				cursor_stop_blinking_after = 2;
+				scrollback_lines = 5000;
+				window_padding_width = 5;
+				cursor_trail = 5;
+				cursor_trail_decay = "0.2 0.6";
+				scrollback_indicator_opacity = 0.3;
+				mouse_hide_wait = 2;
+				show_hyperlink_targets = true;
+				underline_hyperlinks = "always";
+				focus_follows_mouse = true;
+			};
+		};
 		git = {
 			enable = true;
 			userName = "Sarah Lament";
@@ -132,6 +162,7 @@
 		};
 	};
 
+	home.preferXdgDirectories = true;
 	xdg.portal = {
 		enable = true;
 		extraPortals = with pkgs; [

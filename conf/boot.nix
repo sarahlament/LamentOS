@@ -38,7 +38,7 @@
 	boot.loader.systemd-boot.enable = lib.mkForce false;
 	boot.lanzaboote = {
 		enable = true;
-		pkiBundle = "/etc/secureboot";
+		pkiBundle = "/var/lib/sbctl";
 	};
 	boot.loader.efi.canTouchEfiVariables = true;
 	boot.loader.efi.efiSysMountPoint = "/efi";
@@ -51,6 +51,6 @@
 	boot.initrd.systemd.tpm2.enable = true;
 	security.tpm2.enable = true;
 
-	# Since these are for TPM2, let's include them here
-	environment.systemPackages = with pkgs; [ tpm2-tss tpm2-tools ];
+	# Since these are for secure boot, let's have these here
+	environment.systemPackages = with pkgs; [ tpm2-tss tpm2-tools sbctl ];
 }
