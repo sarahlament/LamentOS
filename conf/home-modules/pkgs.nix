@@ -1,24 +1,24 @@
 { config, pkgs, lib, ... }:
 
 {
-    home.packages = with pkgs; [
-        curl
-        glib
+	home.packages = with pkgs; [
+		curl
+		glib
 
-        hyprcursor
-        hyprsysteminfo
-        hyprland-qt-support
-        pyprland
+		hyprcursor
+		hyprsysteminfo
+		hyprland-qt-support
+		pyprland
 
-        discord
-        matugen
+		discord
+		matugen
 
-        wl-clipboard
-        wl-clip-persist
+		wl-clipboard
+		wl-clip-persist
 
-        kdePackages.dolphin
-        playerctl
-        pwvucontrol
-        preload
-    ];
-}	
+		kdePackages.dolphin
+		playerctl
+		pwvucontrol
+		preload
+	];
+}
