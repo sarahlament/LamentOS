@@ -8,7 +8,7 @@
 			shellIntegration.enableZshIntegration = true;
 			actionAliases = {
 				"launch_tab" = "launch --cwd=current --type=tab";
-				"launch_window" = "laumch --cwd=current --type=os-window";
+				"launch_window" = "launch --cwd=current --type=os-window";
 			};
 			font = {
 				name = "JetBrainsMono Nerd Font";
