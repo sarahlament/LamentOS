@@ -90,7 +90,7 @@
 				cat = "bat";
 
 				sys-update = "sudo nixos-rebuild --flake /etc/nixos/#lamentOS switch";
-				sys-clean-gens = "sudo nix-collect-garbage -d; sys-update switch";
+				sys-clean-gens = "sudo nix-collect-garbage -d; sys-update";
 			};
 
 			# let's do some extra things and add some extra aliases(things I've added but not yet put into home manager)
