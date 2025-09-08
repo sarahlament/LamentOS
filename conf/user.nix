@@ -15,6 +15,7 @@
 
 	users.users.lament = {
 		isNormalUser = true; # I am not a system user
+		name = "Sarah Lament"; # full name for the user
 		shell = pkgs.zsh; # actually set zsh as my shell
 		extraGroups = [ "wheel" "systemd-journal" ]; # sudo and journals
 	};

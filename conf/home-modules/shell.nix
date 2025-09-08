@@ -8,7 +8,7 @@
 			shellIntegration.enableZshIntegration = true;
 			actionAliases = {
 				"launch_tab" = "launch --cwd=current --type=tab";
-				"launch_window" = "launch --cwd=current --type=os-window";
+				"launch_window" = "laumch --cwd=current --type=os-window";
 			};
 			font = {
 				name = "JetBrainsMono Nerd Font";
@@ -55,12 +55,6 @@
 				# The main plugins I use
 				plugins = [ "sudo" "fancy-ctrl-z" "gitfast" "per-directory-history" ];
 			};
-
-			# Some extra variables I want set upon opening a terminal
-			envExtra = ''
-				MAKEFLAGS="-j16"
-				ZSH_COMPDUMP=~/.cache/.zcompdump-${pkgs.zsh.version}
-			'';
 
 			# My main shell variables
 			shellAliases = {
