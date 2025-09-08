@@ -7,18 +7,12 @@
 	boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" "nvidia" ];
 	boot.kernelModules = [ "kvm-amd" ];
 	boot.extraModulePackages = [ ];
-	boot.kernelPackages = pkgs.linuxPackages;
+	boot.kernelPackages = pkgs.linuxPackages_zen;
 
 	# Add some default params to the kernel cmdline
-	boot.kernelParams = [ "quiet" "bgrt_disable" "systemd.show_status" ];
+	boot.kernelParams = [ "quiet" ];
 
-	# Let's inform it about my cryptdevice
-	boot.initrd.luks.devices.cryptroot = {
-		device = "/dev/disk/by-uuid/bdddba9f-4c5c-4476-9404-8fb74d69cde6";
-		preLVM = true;
-	};
-  
-	# Now let's set our drives
+	# let's set our drives
 	fileSystems."/" = {
 		device = "/dev/worksys/sys";
 		fsType = "ext4";
@@ -52,5 +46,5 @@
 	security.tpm2.enable = true;
 
 	# Since these are for secure boot, let's have these here
-	environment.systemPackages = with pkgs; [ tpm2-tss tpm2-tools sbctl ];
+	environment.systemPackages = with pkgs; [ tpm2-tss tpm2-tools sbctl modprobed-db ];
 }
