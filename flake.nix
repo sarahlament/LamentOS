@@ -2,7 +2,7 @@
 	description = "LamentOS";
 
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable"; # let's use nix-unstable
+		nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable"; # let's use nixpkgs-unstable
 		lanzaboote = {
 			url = "github:nix-community/lanzaboote/v0.4.2"; # because this is for secureboot, let's keep it at a specific version
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -34,10 +34,12 @@
 					home-manager.useGlobalPkgs = true; # since I want this integrated with the system, let's use the system packages as well
 					home-manager.useUserPackages = true; # and let's treat packages here as user packages, not 'home manager' packages
 					home-manager.users.lament = {
+						home.stateVersion = "25.11"; # DO NOT CHANGE THIS!
+						home.username = "lament"; # let's give it our username
+						home.homeDirectory = "/home/lament"; # and the home directory
 						imports = [
-							./conf/home-modules/user.nix # main user config
-							./conf/home-modules/shell.nix # shell config: zsh and terminal
 							./conf/home-modules/env.nix # env config: tools and such within the terminal
+							./conf/home-modules/shell.nix # shell config: zsh and terminal
 							./conf/home-modules/hypr.nix # hypr config: hyprland configuration
 							./conf/home-modules/pkgs.nix # extra packages to install
 							./conf/home-modules/gemini.nix # let's try out gemini-cli

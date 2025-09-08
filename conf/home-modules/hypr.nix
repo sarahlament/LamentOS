@@ -2,10 +2,10 @@
 
 {
 	programs = {
-        # widget system
-		eww = {
+		# widget system
+		waybar = {
 			enable = true;
-			enableZshIntegration = true;
+			systemd.enable = true;
 		};
 
 		# lock screen for idle (NYI)
