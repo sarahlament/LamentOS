@@ -42,8 +42,8 @@
 			syntaxHighlighting.enable = true;
 
 			dirHashes = {
-				conf = "${config.home.homeDirectory}/.config";
-				nix = "/etc/nixos";
+				conf = "${config.home.homeDirectory}/.nix-conf/conf/home-modules/dotfiles.d";
+				nix = "${config.home.homeDirectory}/.nix-conf";
 			};
 
 			setOptions = [ "NO_AUTOPUSHD" ];
