@@ -43,6 +43,7 @@
 							./conf/home-modules/hypr.nix # hypr config: hyprland configuration
 							./conf/home-modules/pkgs.nix # extra packages to install
 							./conf/home-modules/gemini.nix # let's try out gemini-cli
+							./conf/home-modules/dotfiles.nix # and let's symlink my non-nixified configs
 						];
 					};
 				}
