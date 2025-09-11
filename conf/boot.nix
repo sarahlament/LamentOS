@@ -6,11 +6,10 @@
 	boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
 	boot.initrd.kernelModules = [ "dm-snapshot" "cryptd" "nvidia" ];
 	boot.kernelModules = [ "kvm-amd" ];
-	boot.extraModulePackages = [ ];
 	boot.kernelPackages = pkgs.linuxPackages_zen;
 
 	# Add some default params to the kernel cmdline
-	boot.kernelParams = [ "quiet" ];
+	boot.kernelParams = [ "quiet" "systemd.show_status" "nowatchdog" ];
 
 	# let's set our drives
 	fileSystems."/" = {
@@ -40,11 +39,6 @@
 	# Let's not load a few modules
 	boot.blacklistedKernelModules = [ "pcspkr" "nouveau" ];
 
-	# And to unlock it with TPM2
-	boot.initrd.systemd.enable = true;
-	boot.initrd.systemd.tpm2.enable = true;
-	security.tpm2.enable = true;
-
-	# Since these are for secure boot, let's have these here
-	environment.systemPackages = with pkgs; [ tpm2-tss tpm2-tools sbctl modprobed-db ];
+	# Let's include sbctl for key managment and modprobed-db so I can whittle down the kernel modules I uese
+	environment.systemPackages = with pkgs; [ sbctl modprobed-db ];
 }

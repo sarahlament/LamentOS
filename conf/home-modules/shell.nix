@@ -8,7 +8,7 @@
 			shellIntegration.enableZshIntegration = true;
 			actionAliases = {
 				"launch_tab" = "launch --cwd=current --type=tab";
-				"launch_window" = "laumch --cwd=current --type=os-window";
+				"launch_window" = "launch --cwd=current --type=os-window";
 			};
 			font = {
 				name = "JetBrainsMono Nerd Font";
@@ -42,7 +42,7 @@
 			syntaxHighlighting.enable = true;
 
 			dirHashes = {
-				conf = "${config.home.homeDirectory}/.nix-conf/conf/home-modules/dotfiles.d";
+				conf = "${config.home.homeDirectory}/.nix-conf/conf/home-modules";
 				nix = "${config.home.homeDirectory}/.nix-conf";
 			};
 
@@ -83,7 +83,7 @@
 
 				cat = "bat";
 
-				sys-update = "sudo nixos-rebuild --flake /etc/nixos/#lamentOS switch";
+				sys-update = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nix-conf/#LamentOS switch";
 				sys-clean-gens = "sudo nix-collect-garbage -d; sys-update";
 			};
 
