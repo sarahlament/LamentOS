@@ -1,3 +1,0 @@
-[submodule "conf/home-modules/dotfiles.d"]
-	path = conf/home-modules/dotfiles.d
-	url = git@github.com:sarahlament/dotfiles

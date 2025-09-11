@@ -11,25 +11,32 @@
 			url = "github:nix-community/home-manager"; # let's use the most recent commit
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		nixvim = {
+			url = "github:nix-community/nixvim";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
-	outputs = { self, nixpkgs, lanzaboote, home-manager, ... }:
+	outputs = { self, nixpkgs, ... }@inputs :
 	let
 		system = "x86_64-linux"; # define the system type here
+		pkgs = nixpkgs.legacyPackages.${system};
 	in
 	{
-		nixosConfigurations.lamentOS = nixpkgs.lib.nixosSystem { # create our system config, named lamentOS
-			inherit system;
+		nixosConfigurations.LamentOS = nixpkgs.lib.nixosSystem { # create our system config, named lamentOS
+			specialArgs = { inherit inputs; };
 			modules = [
-				lanzaboote.nixosModules.lanzaboote # lanzaboote for secureboot
-				home-manager.nixosModules.home-manager # home manager for, well, home manager
+				inputs.lanzaboote.nixosModules.lanzaboote # lanzaboote for secureboot
+				inputs.home-manager.nixosModules.home-manager # home manager for, well, home manager
+				inputs.nixvim.nixosModules.nixvim # nixvim for neovim config
 
-				./conf/boot.nix # config related to boot: encryption, boot, mounts, kernel
+				./conf/boot.nix # config related to boot: lanzaboote, mounts, kernel options
 				./conf/core.nix # system-level config: graphics, network, display manager
 				./conf/user.nix # user-level config: audio, users, window managers
-				
+
 				{
-					system.stateVersion = "25.11"; # DO NOT CHANGE THIS
+					system.stateVersion = "25.11"; # DO NOT CHANGE THIS!
+					nixpkgs.hostPlatform = "${system}";
 					nix.settings.experimental-features = [ "nix-command" "flakes" ]; # we obviously want flakes
 					home-manager.useGlobalPkgs = true; # since I want this integrated with the system, let's use the system packages as well
 					home-manager.useUserPackages = true; # and let's treat packages here as user packages, not 'home manager' packages
@@ -43,7 +50,7 @@
 							./conf/home-modules/hypr.nix # hypr config: hyprland configuration
 							./conf/home-modules/pkgs.nix # extra packages to install
 							./conf/home-modules/gemini.nix # let's try out gemini-cli
-							./conf/home-modules/dotfiles.nix # and let's symlink my non-nixified configs
+							./conf/home-modules/nixvim.nix # and let's configure nixvim
 						];
 					};
 				}

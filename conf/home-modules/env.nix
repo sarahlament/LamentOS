@@ -42,13 +42,6 @@
 		# fancy system info parser thingy
 		fastfetch.enable = true;
 
-		# let's use neovim by default
-		neovim = {
-			enable = true;
-			defaultEditor = true;
-			vimAlias = true;
-		};
-
 		command-not-found.enable = true; # yes, I know what I *want* to do
 		bat.enable = true; # better cat
 	};
