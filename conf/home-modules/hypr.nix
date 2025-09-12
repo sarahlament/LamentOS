@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   # Define variables for keybinds for consistency and readability
@@ -7,7 +12,6 @@ let
   browser = "flatpak run app.zen_browser.zen";
   fileManager = "dolphin";
   menu = "wofi --show drum";
-  wallpaperPath = "${config.home.homeDirectory}/Pictures/wallpaper.png";
 in
 {
   # Use the modern, preferred module for Hyprland on unstable
@@ -55,13 +59,14 @@ in
       # Decoration
       decoration = {
         rounding = 10;
-        rounding_power = 2;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
-        "shadow.enabled" = true;
-        "shadow.range" = 4;
-        "shadow.render_power" = 3;
-        "shadow.color" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
         blur = {
           enabled = true;
           size = 3;
@@ -171,17 +176,18 @@ in
       ];
     };
 
-    # extraConfig is for things that don't fit the structured model, like submaps
-    extraConfig = ''
-      # Resize submap definition
-      submap = resize
-      binde = , right, resizeactive, 20 0
-      binde = , left, resizeactive, -20 0
-      binde = , up, resizeactive, 0 -20
-      binde = , down, resizeactive, 0 20
-      bind = , escape, submap, reset
-      submap = reset
-    '';
+    # Submaps for modal keybindings
+    submaps.resize.settings = {
+      binde = [
+        ", right, resizeactive, 20 0"
+        ", left, resizeactive, -20 0"
+        ", up, resizeactive, 0 -20"
+        ", down, resizeactive, 0 20"
+      ];
+      bind = [
+        ", escape, submap, reset"
+      ];
+    };
   };
 
   # XDG portal configuration
@@ -200,25 +206,32 @@ in
     hyprpaper = {
       enable = true;
       settings = {
-        preload = [ wallpaperPath ];
-        wallpaper = [ ",${wallpaperPath}" ];
+        preload = [ "${config.home.homeDirectory}/Pictures/wallpaper.png" ];
+        wallpaper = [ ",${config.home.homeDirectory}/Pictures/wallpaper.png" ];
       };
     };
-    hypridle.enable = true;
+    hypridle = {
+      enable = true;
+    };
+  };
+
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
   };
 
   # Declaratively manage the pyprland config
   home.file.".config/pyprland/pyprland.toml" = {
     text = ''
-      [pyprland]
-      plugins = [ "scratchpads" ]
+      			[pyprland]
+      			plugins = [ "scratchpads" ]
 
-      [scratchpads.term]
-      command = "kitty --class kitty-dropterm"
-      class = "kitty-dropterm"
-      animation = "fromBottom"
-      size = "75% 60%"
-      margin = 50
-    '';
+      			[scratchpads.term]
+      			command = "kitty --class kitty-dropterm"
+      			class = "kitty-dropterm"
+      			animation = "fromBottom"
+      			size = "75% 60%"
+      			margin = 50
+      		'';
   };
 }
