@@ -6,10 +6,10 @@
 }: {
 	# default environment variables I want set at session start
 	home.sessionVariables = {
-		# these are helpers for nvidia based cards
+		# nvidia-specific environment variables
 		LIBVA_DRIVER_NAME = "nvidia";
 		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-		ELECTRON_OZON_PLATFORM_HINT = "auto";
+		ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
 		# maybe if I set some extra things here they're just 'set' when I need them?
 		MAKEFLAGS = "-j16";

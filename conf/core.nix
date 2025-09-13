@@ -1,5 +1,5 @@
 {
-	inputs,
+	config,
 	pkgs,
 	lib,
 	...
@@ -7,13 +7,13 @@
 	nixpkgs.config.allowUnfree = true; # allow 'unfree' software
 	networking.networkmanager.enable = true; # network-manager just kinda works from my experience
 	networking.hostName = "LamentOS"; # let's set our hostname
+	networking.firewall.enable = true; # enable firewall for security
 	time.timeZone = "America/Chicago"; # let's set our timezone
 
 	hardware.graphics.enable = true; # graphics are wanted
 	services = {
 		xserver = {
 			enable = true; # needed for compatibility reasons even though wayland is used
-			videoDrivers = ["nvidia"]; # since we have nvidia, we need to care ONLY for that driver
 		};
 
 		displayManager = {
@@ -26,16 +26,17 @@
 				wayland = true; # let's prefer using wayland over x11
 			};
 		};
-		openssh.enable = true; # let's use a simple ssh server (to be configured properly later)
+		openssh = {
+			enable = true;
+			settings = {
+				PasswordAuthentication = false;
+				PermitRootLogin = "no";
+			};
+		};
+		fwupd.enable = true; # firmware update service
 	};
 
 	programs.ccache.enable = true; # let's use ccache to help with builds on the system itself
-
-	hardware.nvidia = {
-		modesetting.enable = true; # we need to allow nvidia modesetting for it to work
-		open = true; # let's use the nvidia-open drivers
-		nvidiaSettings = true; # and include the nvidia-settings application
-	};
 
 	security.rtkit.enable = true; # let's use the realtime kit
 }

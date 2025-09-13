@@ -1,5 +1,5 @@
 {
-	inputs,
+	config,
 	pkgs,
 	lib,
 	modulesPath,
@@ -65,7 +65,7 @@
 		"nouveau"
 	];
 
-	# Let's include sbctl for key managment and modprobed-db so I can whittle down the kernel modules I uese
+	# Let's include sbctl for key managment and modprobed-db so I can whittle down the kernel modules I use
 	environment.systemPackages = with pkgs; [
 		sbctl
 		modprobed-db

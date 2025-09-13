@@ -22,6 +22,5 @@
 		kdePackages.dolphin
 		playerctl
 		pwvucontrol
-		preload
 	];
 }

@@ -2,17 +2,17 @@
 	description = "LamentOS";
 
 	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable"; # let's use nixpkgs-unstable
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # let's use nixos-unstable
 		lanzaboote = {
 			url = "github:nix-community/lanzaboote/v0.4.2"; # because this is for secureboot, let's keep it at a specific version
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		home-manager = {
-			url = "github:nix-community/home-manager"; # let's use the most recent commit
+			url = "github:nix-community/home-manager/master"; # let's use the most recent commit
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nixvim = {
-			url = "github:nix-community/nixvim";
+			url = "github:nix-community/nixvim/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
@@ -23,21 +23,23 @@
 		...
 	} @ inputs: let
 		system = "x86_64-linux"; # define the system type here
+		stateVersion = "25.11"; # globally define this here, so *if* they change, it's together
 	in {
 		nixosConfigurations.LamentOS =
 			nixpkgs.lib.nixosSystem {
 				# create our system config, named lamentOS
-				specialArgs = {inherit inputs;};
+				specialArgs = {inherit inputs;}; # we want to see our inputs
 				modules = [
 					inputs.lanzaboote.nixosModules.lanzaboote # lanzaboote for secureboot
 					inputs.home-manager.nixosModules.home-manager # home manager for, well, home manager
 
 					./conf/boot.nix # config related to boot: lanzaboote, mounts, kernel options
 					./conf/core.nix # system-level config: graphics, network, display manager
+					./conf/nvidia.nix # nvidia-specific configuration
 					./conf/user.nix # user-level config: audio, users, window managers
 
 					{
-						system.stateVersion = "25.11"; # DO NOT CHANGE THIS!
+						system.stateVersion = "${stateVersion}"; # DO NOT CHANGE THIS!
 						nixpkgs.hostPlatform = "${system}";
 						nix.settings.experimental-features = [
 							"nix-command" # we need the 'nix' command for a few things
@@ -46,7 +48,7 @@
 						home-manager.useGlobalPkgs = true; # since I want this integrated with the system, let's use the system packages as well
 						home-manager.useUserPackages = true; # and let's treat packages here as user packages, not 'home manager' packages
 						home-manager.users.lament = {
-							home.stateVersion = "25.11"; # DO NOT CHANGE THIS!
+							home.stateVersion = "${stateVersion}"; # DO NOT CHANGE THIS!
 							home.username = "lament"; # let's give it our username
 							home.homeDirectory = "/home/lament"; # and the home directory
 							imports = [

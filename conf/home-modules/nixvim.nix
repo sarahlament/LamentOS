@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+	config,
+	pkgs,
+	lib,
+	...
+}: {
 	programs.nixvim = {
 		enable = true;
 		defaultEditor = true;
@@ -11,13 +16,13 @@
 		#================================================================
 		# Base Editor Settings
 		#================================================================
-		# Set tab options
+		# Set some default opts
 		opts = {
 			tabstop = 2;
 			expandtab = false;
 			shiftwidth = 2;
 			number = true; # Show line numbers
-			relativenumber = true; # Show relative line numbers
+			relativenumber = false; # Show relative line numbers
 			scrolloff = 8; # Keep 8 lines of context around the cursor
 			mouse = "a"; # Enable mouse support
 		};
