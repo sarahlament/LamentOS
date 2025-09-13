@@ -23,7 +23,6 @@
 		...
 	} @ inputs: let
 		system = "x86_64-linux"; # define the system type here
-		pkgs = nixpkgs.legacyPackages.${system};
 	in {
 		nixosConfigurations.LamentOS =
 			nixpkgs.lib.nixosSystem {
@@ -56,7 +55,7 @@
 								./conf/home-modules/shell.nix # shell config: zsh and terminal
 								./conf/home-modules/hypr.nix # hypr config: hyprland configuration
 								./conf/home-modules/pkgs.nix # extra packages to install
-								./conf/home-modules/gemini.nix # let's try out gemini-cli
+								./conf/home-modules/ai-cli.nix # let's try out gemini-cli
 								./conf/home-modules/nixvim.nix # and let's configure nixvim
 							];
 						};
