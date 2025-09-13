@@ -1,12 +1,10 @@
 {
-  conf,
-  pkgs,
-  lib,
-  ...
-}:
-
-{
-  programs.gemini-cli = {
-    enable = true;
-  };
+	conf,
+	pkgs,
+	lib,
+	...
+}: {
+	programs.gemini-cli = {
+		enable = true;
+	};
 }
