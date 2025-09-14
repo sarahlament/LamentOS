@@ -7,7 +7,7 @@
 	programs = {
 		kitty = {
 			enable = true;
-			themeFile = "Dracula";
+			themeFile = "Catppuccin-Macchiato";
 			shellIntegration.enableZshIntegration = true;
 			actionAliases = {
 				"launch_tab" = "launch --cwd=current --type=tab";
@@ -36,7 +36,6 @@
 			};
 		};
 		zsh = {
-			enable = true;
 			enableCompletion = true;
 			autosuggestion.enable = true;
 			autosuggestion.strategy = [
@@ -116,14 +115,10 @@
 		# let's make my terminal a little more posh
 		oh-my-posh = {
 			enable = true;
-			enableZshIntegration = true;
 			useTheme = "illusi0n";
 		};
 
 		# not quite sure what this is, but I've found it helpful
-		fzf = {
-			enable = true;
-			enableZshIntegration = true;
-		};
+		fzf.enable = true;
 	};
 }

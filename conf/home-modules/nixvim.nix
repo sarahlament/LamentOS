@@ -18,9 +18,9 @@
 		#================================================================
 		# Set some default opts
 		opts = {
-			tabstop = 2;
+			tabstop = 4;
 			expandtab = false;
-			shiftwidth = 2;
+			shiftwidth = 4;
 			number = true; # Show line numbers
 			relativenumber = false; # Show relative line numbers
 			scrolloff = 8; # Keep 8 lines of context around the cursor
@@ -104,13 +104,36 @@
 		# Catppuccin theme
 		colorschemes.catppuccin = {
 			enable = true;
-			settings.flavour = "macchiato";
-			settings.transparent_background = true;
+			settings = {
+				flavour = "macchiato";
+				transparent_background = true;
+				float = {
+					transparent = false;
+					solid = true;
+				};
+				integrations = {
+					gitsigns = {
+						enabled = true;
+						transparent = true;
+					};
+					which_key = true;
+					noice = true;
+					indent_blankline = {
+						enabled = true;
+						scope_color = "lavender";
+						colored_indent_levels = false;
+					};
+					dap = true;
+				};
+			};
 		};
 
 		plugins = {
 			# Lualine: A fast and customizable status line
-			lualine.enable = true;
+			lualine = {
+				enable = true;
+				settings.options.theme = "catppuccin";
+			};
 
 			# Which-key: Displays a popup of possible keybindings
 			which-key.enable = true;
@@ -119,6 +142,7 @@
 			noice.enable = true;
 
 			# Indent-blankline: Adds indentation guides
+			# needs extra config for catppuccin coloring
 			indent-blankline.enable = true;
 
 			# Bufferline: VS Code-style tabs

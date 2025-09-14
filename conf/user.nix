@@ -4,6 +4,12 @@
 	pkgs,
 	...
 }: {
+	userConf = {
+		name = "lament";
+		fullName = "Sarah Lament";
+		shell = pkgs.zsh;
+	};
+
 	services = {
 		flatpak.enable = true; # flatpak is useful for some things
 		pipewire = {
@@ -14,17 +20,6 @@
 		};
 	};
 
-	programs.zsh.enable = true; # let's enable my prefered shell
-
-	users.users.lament = {
-		isNormalUser = true; # I am not a system user
-		description = "Sarah Lament"; # full name for the user
-		shell = pkgs.zsh; # actually set zsh as my shell
-		extraGroups = [
-			"wheel"
-			"systemd-journal"
-		]; # sudo and journals
-	};
 	programs.hyprland = {
 		enable = true; # enable the hyprland window manager
 		withUWSM = true; # let's use better integration with systemd

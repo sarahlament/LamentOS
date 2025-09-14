@@ -218,7 +218,7 @@ in {
 	};
 
 	# Declaratively manage the pyprland config
-	home.file.".config/pyprland/pyprland.toml" = {
+	home.file.".config/hypr/pyprland.toml" = {
 		text = ''
 			[pyprland]
 			plugins = [ "scratchpads" ]
