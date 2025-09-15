@@ -10,8 +10,8 @@
 	browser = "flatpak run app.zen_browser.zen";
 	fileManager = "nautilus";
 	menu = "wofi --show drum";
-	
-	# Import Catppuccin palette
+
+	# Catppuccin sources (still needed for waybar palette references)
 	inherit (config.catppuccin) sources;
 	palette = (lib.importJSON "${sources.palette}/palette.json").mocha.colors;
 in {
@@ -19,7 +19,9 @@ in {
 	catppuccin = {
 		enable = true;
 		flavor = "mocha";
-		waybar.enable = false;  # We have our own waybar config
+		hyprland.enable = true; # Enable catppuccin hyprland theming
+		waybar.enable = true; # Enable catppuccin waybar theming
+		swaync.enable = false; # We have our own swaync config
 	};
 
 	# let's have a nice catppuccin cursor
@@ -65,8 +67,8 @@ in {
 				gaps_in = 5;
 				gaps_out = 20;
 				border_size = 2;
-				"col.active_border" = "rgba(${palette.mauve.hex}ee) rgba(${palette.lavender.hex}ee) 45deg";
-				"col.inactive_border" = "rgba(${palette.surface0.hex}aa)";
+				"col.active_border" = "$mauve $lavender 45deg";
+				"col.inactive_border" = "$surface0";
 				resize_on_border = false;
 				allow_tearing = false;
 				layout = "dwindle";
@@ -81,7 +83,7 @@ in {
 					enabled = true;
 					range = 4;
 					render_power = 3;
-					color = "rgba(${palette.base.hex}ee)";
+					color = "$base";
 				};
 				blur = {
 					enabled = true;
@@ -428,8 +430,8 @@ in {
 
 			window#waybar {
 				background: rgba(30, 30, 46, 0.95);
-				color: #${palette.text.hex};
-				border-bottom: 3px solid #${palette.mauve.hex};
+				color: @text;
+				border-bottom: 3px solid @mauve;
 			}
 
 			/* Workspaces */
@@ -438,7 +440,7 @@ in {
 				margin: 5px;
 				padding: 0px 1px;
 				border-radius: 10px;
-				border: 2px solid #${palette.surface0.hex};
+				border: 2px solid @surface0;
 			}
 
 			#workspaces button {
@@ -446,18 +448,18 @@ in {
 				margin: 0px 3px;
 				border-radius: 10px;
 				border: 0px;
-				color: #${palette.subtext1.hex};
+				color: @subtext1;
 				background: transparent;
 				transition: all 0.3s ease;
 			}
 
 			#workspaces button.active {
-				color: #${palette.base.hex};
-				background: linear-gradient(45deg, #${palette.mauve.hex}, #${palette.lavender.hex});
+				color: @base;
+				background: linear-gradient(45deg, @mauve, @lavender);
 			}
 
 			#workspaces button:hover {
-				color: #${palette.text.hex};
+				color: @text;
 				background: rgba(116, 199, 236, 0.2);
 			}
 
@@ -467,8 +469,8 @@ in {
 				margin: 5px;
 				padding: 2px 15px;
 				border-radius: 10px;
-				border: 2px solid #${palette.surface0.hex};
-				color: #${palette.text.hex};
+				border: 2px solid @surface0;
+				color: @text;
 			}
 
 			/* Center modules */
@@ -478,8 +480,8 @@ in {
 				margin: 5px;
 				padding: 2px 15px;
 				border-radius: 10px;
-				border: 2px solid #${palette.mauve.hex};
-				color: #${palette.text.hex};
+				border: 2px solid @mauve;
+				color: @text;
 				font-weight: bold;
 			}
 
@@ -493,24 +495,24 @@ in {
 				margin: 5px;
 				padding: 2px 15px;
 				border-radius: 10px;
-				border: 2px solid #${palette.surface0.hex};
-				color: #${palette.text.hex};
+				border: 2px solid @surface0;
+				color: @text;
 			}
 
 			#wireplumber {
-				color: #${palette.green.hex};
+				color: @green;
 			}
 
 			#network {
-				color: #${palette.blue.hex};
+				color: @blue;
 			}
 
 			#cpu {
-				color: #${palette.peach.hex};
+				color: @peach;
 			}
 
 			#memory {
-				color: #${palette.red.hex};
+				color: @red;
 			}
 
 			#tray > .passive {
@@ -519,7 +521,7 @@ in {
 
 			#tray > .needs-attention {
 				-gtk-icon-effect: highlight;
-				background-color: #${palette.red.hex};
+				background-color: @red;
 			}
 		'';
 	};

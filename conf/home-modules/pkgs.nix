@@ -20,7 +20,10 @@
 		wl-clip-persist
 
 		kdePackages.dolphin
+		kdePackages.discover
 		playerctl
 		pwvucontrol
+		headsetcontrol
+		wofi
 	];
 }
