@@ -37,6 +37,7 @@
 		fwupd.enable = true; # firmware update service
 	};
 
+	security.sudo.wheelNeedsPassword = false; # honestly, I'm tired of typing my password everytime
 	programs.ccache.enable = true; # let's use ccache to help with builds on the system itself
 
 	security.rtkit.enable = true; # let's use the realtime kit
