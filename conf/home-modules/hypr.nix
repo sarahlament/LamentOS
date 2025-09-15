@@ -1,300 +1,541 @@
 {
-  config,
-  pkgs,
-  lib,
-  ...
+	config,
+	pkgs,
+	lib,
+	...
 }: let
-  # Define variables for keybinds for consistency and readability
-  mainMod = "SUPER";
-  terminal = "kitty";
-  browser = "flatpak run app.zen_browser.zen";
-  fileManager = "nautilus";
-  menu = "wofi --show drum";
+	# Define variables for keybinds for consistency and readability
+	mainMod = "SUPER";
+	terminal = "kitty";
+	browser = "flatpak run app.zen_browser.zen";
+	fileManager = "nautilus";
+	menu = "wofi --show drum";
+	
+	# Import Catppuccin palette
+	inherit (config.catppuccin) sources;
+	palette = (lib.importJSON "${sources.palette}/palette.json").mocha.colors;
 in {
-  gtk.enable = true;
-  home.pointerCursor = {
-    enable = true;
-    gtk.enable = true;
-    hyprcursor.enable = true;
-    package = pkgs.catppuccin-cursors.mochaMauve;
-    name = "Catppuccin Mocha Mauve";
-  };
-  # Use the modern, preferred module for Hyprland on unstable
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+	# Enable Catppuccin theming
+	catppuccin = {
+		enable = true;
+		flavor = "mocha";
+		waybar.enable = false;  # We have our own waybar config
+	};
 
-    # All settings are placed here
-    settings = {
-      # Monitors
-      monitor = ",highres,auto,auto";
+	# let's have a nice catppuccin cursor
+	gtk.enable = true;
+	home.pointerCursor = {
+		enable = true;
+		gtk.enable = true;
+		hyprcursor.enable = true;
+		package = pkgs.catppuccin-cursors.mochaTeal;
+		name = "Catppuccin Mocha Teal";
+	};
+	# Use the modern, preferred module for Hyprland on unstable
+	wayland.windowManager.hyprland = {
+		enable = true;
+		xwayland.enable = true;
 
-      # Autostart (exec-once)
-      "exec-once" = [
-        "wl-clip-persist --type text --watch cliphist store"
-        "wl-clip-persist --type image --watch cliphist store"
-        "discord --no-sandbox --start-minimized"
-        "headsetcontrol -s128"
-        "pypr" # For scratchpads
-        "hyprctl dispatch workspace 1" # Move to workspace 1 on start
-      ];
+		# All settings are placed here
+		settings = {
+			# Monitors
+			monitor = ",highres,auto,auto";
 
-      # Input
-      input = {
-        kb_layout = "us";
-        follow_mouse = 1;
-        natural_scroll = 1;
-        sensitivity = 0;
-        numlock_by_default = true;
-      };
+			# Autostart (exec-once)
+			"exec-once" = [
+				"wl-clip-persist --type text --watch cliphist store"
+				"wl-clip-persist --type image --watch cliphist store"
+				"discord --no-sandbox --start-minimized"
+				"headsetcontrol -s128"
+				"pypr" # For scratchpads
+				"hyprctl dispatch workspace 1" # Move to workspace 1 on start
+			];
 
-      # General
-      general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-        resize_on_border = false;
-        allow_tearing = false;
-        layout = "dwindle";
-      };
+			# Input
+			input = {
+				kb_layout = "us";
+				follow_mouse = 0;
+				natural_scroll = 1;
+				sensitivity = 0;
+				numlock_by_default = true;
+			};
 
-      # Decoration
-      decoration = {
-        rounding = 10;
-        active_opacity = 1.0;
-        inactive_opacity = 1.0;
-        shadow = {
-          enabled = true;
-          range = 4;
-          render_power = 3;
-          color = "rgba(1a1a1aee)";
-        };
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-          vibrancy = 0.1696;
-        };
-      };
+			# General
+			general = {
+				gaps_in = 5;
+				gaps_out = 20;
+				border_size = 2;
+				"col.active_border" = "rgba(${palette.mauve.hex}ee) rgba(${palette.lavender.hex}ee) 45deg";
+				"col.inactive_border" = "rgba(${palette.surface0.hex}aa)";
+				resize_on_border = false;
+				allow_tearing = false;
+				layout = "dwindle";
+			};
 
-      # Animations
-      animations = {
-        enabled = "yes";
-        bezier = [
-          "easeOutQuint,0.23,1,0.32,1"
-          "easeInOutCubic,0.65,0.05,0.36,1"
-          "linear,0,0,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "quick,0.15,0,0.1,1"
-        ];
-        animation = [
-          "global, 1, 10, default"
-          "border, 1, 5.39, easeOutQuint"
-          "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "windowsOut, 1, 1.49, linear, popin 87%"
-          "fadeIn, 1, 1.73, almostLinear"
-          "fadeOut, 1, 1.46, almostLinear"
-          "fade, 1, 3.03, quick"
-          "layers, 1, 3.81, easeOutQuint"
-          "layersIn, 1, 4, easeOutQuint, fade"
-          "layersOut, 1, 1.5, linear, fade"
-          "fadeLayersIn, 1, 1.79, almostLinear"
-          "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 1.94, almostLinear, fade"
-          "workspacesIn, 1, 1.21, almostLinear, fade"
-          "workspacesOut, 1, 1.94, almostLinear, fade"
-        ];
-      };
+			# Decoration
+			decoration = {
+				rounding = 10;
+				active_opacity = 1.0;
+				inactive_opacity = 1.0;
+				shadow = {
+					enabled = true;
+					range = 4;
+					render_power = 3;
+					color = "rgba(${palette.base.hex}ee)";
+				};
+				blur = {
+					enabled = true;
+					size = 3;
+					passes = 1;
+					vibrancy = 0.1696;
+				};
+			};
 
-      # Layouts
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
-      master.new_status = "master";
+			# Animations
+			animations = {
+				enabled = "yes";
+				bezier = [
+					"easeOutQuint,0.23,1,0.32,1"
+					"easeInOutCubic,0.65,0.05,0.36,1"
+					"easeOutBack,0.34,1.56,0.64,1"
+					"easeOutElastic,0.05,0.7,0.1,1.05"
+					"smoothBounce,0.25,0.46,0.45,0.94"
+					"linear,0,0,1,1"
+					"almostLinear,0.5,0.5,0.75,1.0"
+					"quick,0.15,0,0.1,1"
+				];
+				animation = [
+					"global, 1, 10, default"
+					"border, 1, 6, easeOutQuint"
+					"windows, 1, 5.5, easeInOutCubic"
+					"windowsIn, 1, 5, easeOutBack, popin 75%"
+					"windowsOut, 1, 2, easeOutQuint, popin 90%"
+					"fadeIn, 1, 2.5, smoothBounce"
+					"fadeOut, 1, 2, easeInOutCubic"
+					"fade, 1, 4, easeOutQuint"
+					"layers, 1, 4.5, easeOutBack"
+					"layersIn, 1, 5, easeOutElastic, slide"
+					"layersOut, 1, 2.5, easeInOutCubic, slide"
+					"fadeLayersIn, 1, 3, easeOutBack"
+					"fadeLayersOut, 1, 2, easeInOutCubic"
+					"workspaces, 1, 3.5, easeOutBack, slide"
+					"workspacesIn, 1, 2.8, easeOutQuint, slide"
+					"workspacesOut, 1, 2.8, easeInOutCubic, slide"
+				];
+			};
 
-      # Misc
-      misc = {
-        force_default_wallpaper = -1;
-        disable_hyprland_logo = false;
-      };
+			# Layouts
+			dwindle = {
+				pseudotile = true;
+				preserve_split = true;
+			};
+			master.new_status = "master";
 
-      # Workspaces
-      workspace = "1, monitor:DP-2";
+			# Misc
+			misc = {
+				force_default_wallpaper = -1;
+				disable_hyprland_logo = false;
+			};
 
-      # Window Rules
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      ];
+			# Workspaces
+			workspace = "1, monitor:DP-2";
 
-      # Keybinds (vim-style direct bindings)
-      bind = [
-        # Applications
-        "${mainMod}, RETURN, exec, ${terminal}"
-        "${mainMod}, B, exec, ${browser}"
-        "${mainMod}, BRACKETRIGHT, exec, discord"
-        "${mainMod}, E, exec, ${fileManager}"
-        "${mainMod}, D, exec, ${menu}"
-        "${mainMod} SHIFT, S, exec, pypr toggle term" # Scratchpad
+			# Window Rules
+			windowrulev2 = [
+				"suppressevent maximize, class:.*"
+				"nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+			];
 
-        # Window operations
-        "${mainMod}, Q, killactive,"
-        "${mainMod}, F, fullscreen,"
-        "${mainMod}, V, togglefloating,"
-        "${mainMod}, S, togglesplit,"
+			# Keybinds (vim-style direct bindings)
+			bind = [
+				# Applications
+				"${mainMod}, RETURN, exec, ${terminal}"
+				"${mainMod}, B, exec, ${browser}"
+				"${mainMod}, BRACKETRIGHT, exec, discord"
+				"${mainMod}, E, exec, ${fileManager}"
+				"${mainMod}, D, exec, ${menu}"
+				"${mainMod} SHIFT, S, exec, pypr toggle term" # Scratchpad
 
-        # Window focus (vim-style)
-        "${mainMod}, H, movefocus, l"
-        "${mainMod}, J, movefocus, d"
-        "${mainMod}, K, movefocus, u"
-        "${mainMod}, L, movefocus, r"
+				# Window operations
+				"${mainMod}, Q, killactive,"
+				"${mainMod}, F, fullscreen,"
+				"${mainMod}, V, togglefloating,"
+				"${mainMod}, S, togglesplit,"
 
-        # Move windows within workspace
-        "${mainMod} SHIFT, H, movewindow, l"
-        "${mainMod} SHIFT, J, movewindow, d"
-        "${mainMod} SHIFT, K, movewindow, u"
-        "${mainMod} SHIFT, L, movewindow, r"
+				# Window focus (vim-style)
+				"${mainMod}, H, movefocus, l"
+				"${mainMod}, J, movefocus, d"
+				"${mainMod}, K, movefocus, u"
+				"${mainMod}, L, movefocus, r"
 
-        # Workspace switching
-        "${mainMod}, 1, workspace, 1"
-        "${mainMod}, 2, workspace, 2"
-        "${mainMod}, 3, workspace, 3"
-        "${mainMod}, 4, workspace, 4"
-        "${mainMod}, 5, workspace, 5"
-        "${mainMod}, 6, workspace, 6"
-        "${mainMod}, 7, workspace, 7"
-        "${mainMod}, 8, workspace, 8"
-        "${mainMod}, 9, workspace, 9"
-        "${mainMod}, 0, workspace, 10"
+				# Move windows within workspace
+				"${mainMod} SHIFT, H, movewindow, l"
+				"${mainMod} SHIFT, J, movewindow, d"
+				"${mainMod} SHIFT, K, movewindow, u"
+				"${mainMod} SHIFT, L, movewindow, r"
 
-        # Move window to workspace (and follow)
-        "${mainMod} CTRL, 1, movetoworkspace, 1"
-        "${mainMod} CTRL, 2, movetoworkspace, 2"
-        "${mainMod} CTRL, 3, movetoworkspace, 3"
-        "${mainMod} CTRL, 4, movetoworkspace, 4"
-        "${mainMod} CTRL, 5, movetoworkspace, 5"
-        "${mainMod} CTRL, 6, movetoworkspace, 6"
-        "${mainMod} CTRL, 7, movetoworkspace, 7"
-        "${mainMod} CTRL, 8, movetoworkspace, 8"
-        "${mainMod} CTRL, 9, movetoworkspace, 9"
-        "${mainMod} CTRL, 0, movetoworkspace, 10"
+				# Workspace switching
+				"${mainMod}, 1, workspace, 1"
+				"${mainMod}, 2, workspace, 2"
+				"${mainMod}, 3, workspace, 3"
+				"${mainMod}, 4, workspace, 4"
+				"${mainMod}, 5, workspace, 5"
+				"${mainMod}, 6, workspace, 6"
+				"${mainMod}, 7, workspace, 7"
+				"${mainMod}, 8, workspace, 8"
+				"${mainMod}, 9, workspace, 9"
+				"${mainMod}, 0, workspace, 10"
 
-        # Move window to workspace (don't follow)
-        "${mainMod} ALT, 1, movetoworkspacesilent, 1"
-        "${mainMod} ALT, 2, movetoworkspacesilent, 2"
-        "${mainMod} ALT, 3, movetoworkspacesilent, 3"
-        "${mainMod} ALT, 4, movetoworkspacesilent, 4"
-        "${mainMod} ALT, 5, movetoworkspacesilent, 5"
-        "${mainMod} ALT, 6, movetoworkspacesilent, 6"
-        "${mainMod} ALT, 7, movetoworkspacesilent, 7"
-        "${mainMod} ALT, 8, movetoworkspacesilent, 8"
-        "${mainMod} ALT, 9, movetoworkspacesilent, 9"
-        "${mainMod} ALT, 0, movetoworkspacesilent, 10"
+				# Move window to workspace (and follow)
+				"${mainMod} CTRL, 1, movetoworkspace, 1"
+				"${mainMod} CTRL, 2, movetoworkspace, 2"
+				"${mainMod} CTRL, 3, movetoworkspace, 3"
+				"${mainMod} CTRL, 4, movetoworkspace, 4"
+				"${mainMod} CTRL, 5, movetoworkspace, 5"
+				"${mainMod} CTRL, 6, movetoworkspace, 6"
+				"${mainMod} CTRL, 7, movetoworkspace, 7"
+				"${mainMod} CTRL, 8, movetoworkspace, 8"
+				"${mainMod} CTRL, 9, movetoworkspace, 9"
+				"${mainMod} CTRL, 0, movetoworkspace, 10"
 
-        # Monitor management
-        "${mainMod}, comma, focusmonitor, DP-1"
-        "${mainMod}, period, focusmonitor, DP-2"
-        "${mainMod} SHIFT, comma, movecurrentworkspacetomonitor, DP-1"
-        "${mainMod} SHIFT, period, movecurrentworkspacetomonitor, DP-2"
-        "${mainMod} ALT, comma, movewindow, mon:DP-1"
-        "${mainMod} ALT, period, movewindow, mon:DP-2"
+				# Move window to workspace (don't follow)
+				"${mainMod} ALT, 1, movetoworkspacesilent, 1"
+				"${mainMod} ALT, 2, movetoworkspacesilent, 2"
+				"${mainMod} ALT, 3, movetoworkspacesilent, 3"
+				"${mainMod} ALT, 4, movetoworkspacesilent, 4"
+				"${mainMod} ALT, 5, movetoworkspacesilent, 5"
+				"${mainMod} ALT, 6, movetoworkspacesilent, 6"
+				"${mainMod} ALT, 7, movetoworkspacesilent, 7"
+				"${mainMod} ALT, 8, movetoworkspacesilent, 8"
+				"${mainMod} ALT, 9, movetoworkspacesilent, 9"
+				"${mainMod} ALT, 0, movetoworkspacesilent, 10"
 
-        # Mouse workspace switching
-        "${mainMod}, mouse_down, workspace, e+1"
-        "${mainMod}, mouse_up, workspace, e-1"
+				# Monitor management
+				"${mainMod}, comma, focusmonitor, DP-1"
+				"${mainMod}, period, focusmonitor, DP-2"
+				"${mainMod} SHIFT, comma, movecurrentworkspacetomonitor, DP-1"
+				"${mainMod} SHIFT, period, movecurrentworkspacetomonitor, DP-2"
+				"${mainMod} ALT, comma, movewindow, mon:DP-1"
+				"${mainMod} ALT, period, movewindow, mon:DP-2"
 
-        # System
-        "${mainMod}, M, exec, uwsm stop"
+				# Mouse workspace switching
+				"${mainMod}, mouse_down, workspace, e+1"
+				"${mainMod}, mouse_up, workspace, e-1"
 
-        # Resize submap
-        "${mainMod} SHIFT, R, submap, resize"
-      ];
-      bindm = [
-        "${mainMod} SHIFT, mouse:272, movewindow"
-        "${mainMod} SHIFT, mouse:273, resizewindow"
-      ];
-      bindel = [
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ];
-      bindl = [
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-      ];
-    };
+				# System
+				"${mainMod}, M, exec, uwsm stop"
 
-    # Resize submap for fine window control
-    submaps.resize.settings = {
-      binde = [
-        # Vim-style resize bindings (smoother increments)
-        ", H, resizeactive, -10 0"
-        ", L, resizeactive, 10 0"
-        ", K, resizeactive, 0 -10"
-        ", J, resizeactive, 0 10"
+				# Resize submap
+				"${mainMod} SHIFT, R, submap, resize"
+			];
+			bindm = [
+				"${mainMod} SHIFT, mouse:272, movewindow"
+				"${mainMod} SHIFT, mouse:273, resizewindow"
+			];
+			bindel = [
+				",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+				",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+				",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+			];
+			bindl = [
+				", XF86AudioNext, exec, playerctl next"
+				", XF86AudioPause, exec, playerctl play-pause"
+				", XF86AudioPlay, exec, playerctl play-pause"
+				", XF86AudioPrev, exec, playerctl previous"
+			];
+		};
 
-        # Shift for bigger increments
-        "SHIFT, H, resizeactive, -50 0"
-        "SHIFT, L, resizeactive, 50 0"
-        "SHIFT, K, resizeactive, 0 -50"
-        "SHIFT, J, resizeactive, 0 50"
-      ];
-      bind = [
-        ", escape, submap, reset"
-        ", RETURN, submap, reset"
-        ", q, submap, reset"
-      ];
-    };
-  };
+		# Resize submap for fine window control
+		submaps.resize.settings = {
+			binde = [
+				# Vim-style resize bindings (smoother increments)
+				", H, resizeactive, -10 0"
+				", L, resizeactive, 10 0"
+				", K, resizeactive, 0 -10"
+				", J, resizeactive, 0 10"
 
-  # XDG portal configuration
-  home.preferXdgDirectories = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    configPackages = [pkgs.hyprland];
-  };
+				# Shift for bigger increments
+				"SHIFT, H, resizeactive, -50 0"
+				"SHIFT, L, resizeactive, 50 0"
+				"SHIFT, K, resizeactive, 0 -50"
+				"SHIFT, J, resizeactive, 0 50"
+			];
+			bind = [
+				", escape, submap, reset"
+				", RETURN, submap, reset"
+				", q, submap, reset"
+			];
+		};
+	};
 
-  # Services needed for the Hyprland environment
-  services = {
-    hyprpolkitagent.enable = true;
-    hyprpaper = {
-      enable = true;
-      settings = {
-        preload = ["${config.home.homeDirectory}/Pictures/wallpaper.png"];
-        wallpaper = [",${config.home.homeDirectory}/Pictures/wallpaper.png"];
-      };
-    };
-    hypridle = {
-      enable = true;
-    };
-  };
+	# XDG portal configuration
+	home.preferXdgDirectories = true;
+	xdg.portal = {
+		enable = true;
+		extraPortals = with pkgs; [
+			xdg-desktop-portal-gtk
+		];
+		configPackages = [pkgs.hyprland];
+	};
 
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true;
-  };
+	# Services needed for the Hyprland environment
+	services = {
+		hyprpolkitagent.enable = true;
+		hyprpaper = {
+			enable = true;
+			settings = {
+				preload = ["${config.home.homeDirectory}/Pictures/wallpaper.png"];
+				wallpaper = [",${config.home.homeDirectory}/Pictures/wallpaper.png"];
+			};
+		};
+		hypridle = {
+			enable = true;
+		};
+	};
 
-  # Declaratively manage the pyprland config
-  home.file.".config/hypr/pyprland.toml" = {
-    text = ''
-      [pyprland]
-      plugins = [ "scratchpads" ]
+	programs.waybar = {
+		enable = true;
+		systemd.enable = true;
+		settings = {
+			mainBar = {
+				layer = "top";
+				position = "top";
+				height = 35;
+				spacing = 4;
 
-      [scratchpads.term]
-      command = "kitty --class kitty-dropterm"
-      class = "kitty-dropterm"
-      animation = "fromBottom"
-      size = "75% 80%"
-      margin = 50
-    '';
-  };
+				modules-left = [
+					"hyprland/workspaces"
+					"hyprland/window"
+				];
+
+				modules-center = [
+					"clock"
+					"custom/notification"
+				];
+
+				modules-right = [
+					"tray"
+					"wireplumber"
+					"network"
+					"cpu"
+					"memory"
+				];
+
+				# Left modules
+				"hyprland/workspaces" = {
+					format = "{icon}";
+					format-icons = {
+						"1" = "󰲠";
+						"2" = "󰲢";
+						"3" = "󰲤";
+						"4" = "󰲦";
+						"5" = "󰲨";
+						"6" = "󰲪";
+						"7" = "󰲬";
+						"8" = "󰲮";
+						"9" = "󰲰";
+						"10" = "󰿬";
+						default = "";
+					};
+					on-click = "activate";
+					sort-by-number = true;
+				};
+
+				"hyprland/window" = {
+					format = "{title}";
+					max-length = 50;
+					separate-outputs = true;
+				};
+
+				# Center modules
+				clock = {
+					format = "{:%H:%M   %a %b %d}";
+					format-alt = "{:%Y-%m-%d %H:%M:%S}";
+					tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+				};
+
+				"custom/notification" = {
+					tooltip = false;
+					format = "{icon}";
+					format-icons = {
+						notification = "󰂚";
+						none = "󰂜";
+						dnd-notification = "󰂛";
+						dnd-none = "󰪑";
+						inhibited-notification = "󰂚";
+						inhibited-none = "󰂜";
+						dnd-inhibited-notification = "󰂛";
+						dnd-inhibited-none = "󰪑";
+					};
+					return-type = "json";
+					exec-if = "which swaync-client";
+					exec = "swaync-client -swb";
+					on-click = "swaync-client -t -sw";
+					on-click-right = "swaync-client -d -sw";
+					escape = true;
+				};
+
+				# Right modules
+				tray = {
+					icon-size = 18;
+					spacing = 10;
+				};
+
+				wireplumber = {
+					format = "{icon} {volume}%";
+					format-muted = "󰖁 {volume}%";
+					format-icons = {
+						headphone = "󰋋";
+						hands-free = "󱡒";
+						headset = "󰋎";
+						phone = "";
+						portable = "";
+						car = "";
+						default = ["󰕿" "󰖀" "󰕾"];
+					};
+					on-click = "pavucontrol";
+					scroll-step = 5;
+				};
+
+				network = {
+					format-wifi = "󰤨 {signalStrength}%";
+					format-ethernet = "󰈀 Connected";
+					format-linked = "󰈀 {ifname} (No IP)";
+					format-disconnected = "󰤭 Disconnected";
+					tooltip-format = "{ifname} via {gwaddr}";
+					tooltip-format-wifi = "{essid} ({signalStrength}%) 󰤨";
+				};
+
+				cpu = {
+					format = "󰘚 {usage}%";
+					tooltip = false;
+					interval = 2;
+				};
+
+				memory = {
+					format = "󰍛 {percentage}%";
+					tooltip-format = "RAM: {used:0.1f}G/{total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
+				};
+			};
+		};
+
+		style = ''
+			* {
+				font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free";
+				font-size: 13px;
+				min-height: 0;
+			}
+
+			window#waybar {
+				background: rgba(30, 30, 46, 0.95);
+				color: #${palette.text.hex};
+				border-bottom: 3px solid #${palette.mauve.hex};
+			}
+
+			/* Workspaces */
+			#workspaces {
+				background: rgba(69, 71, 90, 0.8);
+				margin: 5px;
+				padding: 0px 1px;
+				border-radius: 10px;
+				border: 2px solid #${palette.surface0.hex};
+			}
+
+			#workspaces button {
+				padding: 0px 5px;
+				margin: 0px 3px;
+				border-radius: 10px;
+				border: 0px;
+				color: #${palette.subtext1.hex};
+				background: transparent;
+				transition: all 0.3s ease;
+			}
+
+			#workspaces button.active {
+				color: #${palette.base.hex};
+				background: linear-gradient(45deg, #${palette.mauve.hex}, #${palette.lavender.hex});
+			}
+
+			#workspaces button:hover {
+				color: #${palette.text.hex};
+				background: rgba(116, 199, 236, 0.2);
+			}
+
+			/* Window title */
+			#window {
+				background: rgba(69, 71, 90, 0.8);
+				margin: 5px;
+				padding: 2px 15px;
+				border-radius: 10px;
+				border: 2px solid #${palette.surface0.hex};
+				color: #${palette.text.hex};
+			}
+
+			/* Center modules */
+			#clock,
+			#custom-notification {
+				background: rgba(203, 166, 247, 0.2);
+				margin: 5px;
+				padding: 2px 15px;
+				border-radius: 10px;
+				border: 2px solid #${palette.mauve.hex};
+				color: #${palette.text.hex};
+				font-weight: bold;
+			}
+
+			/* Right side modules */
+			#tray,
+			#wireplumber,
+			#network,
+			#cpu,
+			#memory {
+				background: rgba(69, 71, 90, 0.8);
+				margin: 5px;
+				padding: 2px 15px;
+				border-radius: 10px;
+				border: 2px solid #${palette.surface0.hex};
+				color: #${palette.text.hex};
+			}
+
+			#wireplumber {
+				color: #${palette.green.hex};
+			}
+
+			#network {
+				color: #${palette.blue.hex};
+			}
+
+			#cpu {
+				color: #${palette.peach.hex};
+			}
+
+			#memory {
+				color: #${palette.red.hex};
+			}
+
+			#tray > .passive {
+				-gtk-icon-effect: dim;
+			}
+
+			#tray > .needs-attention {
+				-gtk-icon-effect: highlight;
+				background-color: #${palette.red.hex};
+			}
+		'';
+	};
+
+	# Declaratively manage the pyprland config
+	home.file.".config/hypr/pyprland.toml" = {
+		text = ''
+			[pyprland]
+			plugins = [ "scratchpads" ]
+
+			[scratchpads.term]
+			command = "kitty --class kitty-dropterm"
+			class = "kitty-dropterm"
+			animation = "fromBottom"
+			size = "75% 80%"
+			margin = 50
+		'';
+	};
 }

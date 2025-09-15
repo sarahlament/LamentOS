@@ -15,6 +15,10 @@
 			url = "github:nix-community/nixvim/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		catppuccin = {
+			url = "github:catppuccin/nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = {
@@ -52,9 +56,11 @@
 								home.stateVersion = "${stateVersion}"; # DO NOT CHANGE THIS!
 								imports = [
 									inputs.nixvim.homeModules.nixvim
+									inputs.catppuccin.homeModules.catppuccin
 									./conf/home-modules/env.nix # env config: tools and such within the terminal
 									./conf/home-modules/shell.nix # shell config: zsh and terminal
 									./conf/home-modules/hypr.nix # hypr config: hyprland configuration
+									./conf/home-modules/swaync.nix # swaync config: notification daemon
 									./conf/home-modules/pkgs.nix # extra packages to install
 									./conf/home-modules/ai-cli.nix # let's try out gemini-cli
 									./conf/home-modules/nixvim.nix # and let's configure nixvim
