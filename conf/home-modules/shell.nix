@@ -8,20 +8,15 @@
 	programs = {
 		kitty = {
 			enable = true;
-			themeFile = "Catppuccin-Mocha";
+			# theme now handled by Stylix
 			shellIntegration.enableZshIntegration = true;
 			actionAliases = {
 				"launch_tab" = "launch --cwd=current --type=tab";
 				"launch_window" = "launch --cwd=current --type=os-window";
 			};
-			font = {
-				name = "JetBrainsMono Nerd Font";
-				size = 14;
-			};
 			settings = {
 				enable_audio_bell = false;
 				remember_window_size = false;
-				background_opacity = 0.8;
 				dynamic_background_opacity = true;
 				hide_window_decorations = true;
 				cursor_blink_interval = 0.5;
@@ -100,16 +95,13 @@
 			# let's do some extra things and add some extra aliases(things I've added but not yet put into home manager)
 			initContent =
 				lib.mkOrder 2000 ''
-					# Accept Zsh autosuggestion with Shift+Return
-					  bindkey '^[[13;2u' autosuggest-accept
+					if [[ -f ~/.config/zsh/secrets.zsh ]]; then
+					source ~/.config/zsh/secrets.zsh
+					fi
 
-					  if [[ -f ~/.config/zsh/secrets.zsh ]]; then
-					  source ~/.config/zsh/secrets.zsh
-					  fi
-
-					  if [[ $(tty) == *"pts"* ]]; then
-					    ff
-					  fi
+					if [[ $(tty) == *"pts"* ]]; then
+					  ff
+					fi
 				'';
 		};
 
@@ -204,7 +196,7 @@
 								type = "time";
 								style = "plain";
 								foreground = "p:lavender";
-								template = "{{ .CurrentDate | date .Format }} 󰅐";
+								template = "󰅐 {{ .CurrentDate | date .Format }}";
 								properties = {
 									time_format = "15:04";
 								};

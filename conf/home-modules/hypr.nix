@@ -9,26 +9,12 @@
 	terminal = "kitty";
 	browser = "flatpak run app.zen_browser.zen";
 	fileManager = "nautilus";
-	menu = "wofi --show drum";
+	menu = "nwg-drawer";
 in {
-	# Enable Catppuccin theming
-	catppuccin = {
-		enable = true;
-		flavor = "mocha";
-		hyprland.enable = true; # Enable catppuccin hyprland theming
-		waybar.enable = true; # Enable catppuccin waybar theming
-		swaync.enable = false; # We have our own swaync config
-	};
+	# Theming is now handled by Stylix
 
-	# let's have a nice catppuccin cursor
+	# GTK and cursor theming handled by Stylix
 	gtk.enable = true;
-	home.pointerCursor = {
-		enable = true;
-		gtk.enable = true;
-		hyprcursor.enable = true;
-		package = pkgs.catppuccin-cursors.mochaTeal;
-		name = "Catppuccin Mocha Teal";
-	};
 	# Use the modern, preferred module for Hyprland on unstable
 	wayland.windowManager.hyprland = {
 		enable = true;
@@ -48,13 +34,14 @@ in {
 				"discord --no-sandbox --start-minimized"
 				"headsetcontrol -s128"
 				"pypr" # For scratchpads
+				"nwg-panel" # Start the nwg-panel taskbar
 				"hyprctl dispatch workspace 1" # Move to workspace 1 on start
 			];
 
 			# Input
 			input = {
 				kb_layout = "us";
-				follow_mouse = 0;
+				follow_mouse = 1;
 				natural_scroll = 1;
 				sensitivity = 0;
 				numlock_by_default = true;
@@ -65,8 +52,6 @@ in {
 				gaps_in = 5;
 				gaps_out = 20;
 				border_size = 2;
-				"col.active_border" = "$mauve $lavender 45deg";
-				"col.inactive_border" = "$surface0";
 				resize_on_border = false;
 				allow_tearing = false;
 				layout = "dwindle";
@@ -81,7 +66,6 @@ in {
 					enabled = true;
 					range = 4;
 					render_power = 3;
-					color = "$base";
 				};
 				blur = {
 					enabled = true;
@@ -141,12 +125,6 @@ in {
 				preserve_split = true;
 			};
 			master.new_status = "master";
-
-			# Misc
-			misc = {
-				force_default_wallpaper = -1;
-				disable_hyprland_logo = false;
-			};
 
 			# Workspaces
 			workspace = "1, monitor:DP-2";
@@ -294,246 +272,13 @@ in {
 		hyprpolkitagent.enable = true;
 		hyprpaper = {
 			enable = true;
-			settings = {
-				preload = ["${config.home.homeDirectory}/Pictures/wallpaper.png"];
-				wallpaper = [",${config.home.homeDirectory}/Pictures/wallpaper.png"];
-			};
 		};
 		hypridle = {
 			enable = true;
 		};
 	};
 
-	programs.waybar = {
-		enable = true;
-		systemd.enable = true;
-		settings = {
-			mainBar = {
-				layer = "top";
-				position = "top";
-				height = 35;
-				spacing = 4;
-
-				modules-left = [
-					"hyprland/workspaces"
-					"hyprland/window"
-				];
-
-				modules-center = [
-					"clock"
-					"custom/notification"
-				];
-
-				modules-right = [
-					"tray"
-					"wireplumber"
-					"network"
-					"cpu"
-					"memory"
-				];
-
-				# Left modules
-				"hyprland/workspaces" = {
-					format = "{icon}";
-					format-icons = {
-						"1" = "󰲠";
-						"2" = "󰲢";
-						"3" = "󰲤";
-						"4" = "󰲦";
-						"5" = "󰲨";
-						"6" = "󰲪";
-						"7" = "󰲬";
-						"8" = "󰲮";
-						"9" = "󰲰";
-						"10" = "󰿬";
-						default = "";
-					};
-					on-click = "activate";
-					sort-by-number = true;
-				};
-
-				"hyprland/window" = {
-					format = "{title}";
-					max-length = 50;
-					separate-outputs = true;
-				};
-
-				# Center modules
-				clock = {
-					format = "{:%H:%M   %a %b %d}";
-					format-alt = "{:%Y-%m-%d %H:%M:%S}";
-					tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-				};
-
-				"custom/notification" = {
-					tooltip = false;
-					format = "{icon}";
-					format-icons = {
-						notification = "󰂚";
-						none = "󰂜";
-						dnd-notification = "󰂛";
-						dnd-none = "󰪑";
-						inhibited-notification = "󰂚";
-						inhibited-none = "󰂜";
-						dnd-inhibited-notification = "󰂛";
-						dnd-inhibited-none = "󰪑";
-					};
-					return-type = "json";
-					exec-if = "which swaync-client";
-					exec = "swaync-client -swb";
-					on-click = "swaync-client -t -sw";
-					on-click-right = "swaync-client -d -sw";
-					escape = true;
-				};
-
-				# Right modules
-				tray = {
-					icon-size = 18;
-					spacing = 10;
-				};
-
-				wireplumber = {
-					format = "{icon} {volume}%";
-					format-muted = "󰖁 {volume}%";
-					format-icons = {
-						headphone = "󰋋";
-						hands-free = "󱡒";
-						headset = "󰋎";
-						phone = "";
-						portable = "";
-						car = "";
-						default = ["󰕿" "󰖀" "󰕾"];
-					};
-					on-click = "pavucontrol";
-					scroll-step = 5;
-				};
-
-				network = {
-					format-wifi = "󰤨 {signalStrength}%";
-					format-ethernet = "󰈀 Connected";
-					format-linked = "󰈀 {ifname} (No IP)";
-					format-disconnected = "󰤭 Disconnected";
-					tooltip-format = "{ifname} via {gwaddr}";
-					tooltip-format-wifi = "{essid} ({signalStrength}%) 󰤨";
-				};
-
-				cpu = {
-					format = "󰘚 {usage}%";
-					tooltip = false;
-					interval = 2;
-				};
-
-				memory = {
-					format = "󰍛 {percentage}%";
-					tooltip-format = "RAM: {used:0.1f}G/{total:0.1f}G ({percentage}%)\nSwap: {swapUsed:0.1f}G/{swapTotal:0.1f}G";
-				};
-			};
-		};
-
-		style = ''
-			* {
-				font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free";
-				font-size: 13px;
-				min-height: 0;
-			}
-
-			window#waybar {
-				background: rgba(30, 30, 46, 0.95);
-				color: @text;
-				border-bottom: 3px solid @mauve;
-			}
-
-			/* Workspaces */
-			#workspaces {
-				background: rgba(69, 71, 90, 0.8);
-				margin: 5px;
-				padding: 0px 1px;
-				border-radius: 10px;
-				border: 2px solid @surface0;
-			}
-
-			#workspaces button {
-				padding: 0px 5px;
-				margin: 0px 3px;
-				border-radius: 10px;
-				border: 0px;
-				color: @subtext1;
-				background: transparent;
-				transition: all 0.3s ease;
-			}
-
-			#workspaces button.active {
-				color: @base;
-				background: linear-gradient(45deg, @mauve, @lavender);
-			}
-
-			#workspaces button:hover {
-				color: @text;
-				background: rgba(116, 199, 236, 0.2);
-			}
-
-			/* Window title */
-			#window {
-				background: rgba(69, 71, 90, 0.8);
-				margin: 5px;
-				padding: 2px 15px;
-				border-radius: 10px;
-				border: 2px solid @surface0;
-				color: @text;
-			}
-
-			/* Center modules */
-			#clock,
-			#custom-notification {
-				background: rgba(203, 166, 247, 0.2);
-				margin: 5px;
-				padding: 2px 15px;
-				border-radius: 10px;
-				border: 2px solid @mauve;
-				color: @text;
-				font-weight: bold;
-			}
-
-			/* Right side modules */
-			#tray,
-			#wireplumber,
-			#network,
-			#cpu,
-			#memory {
-				background: rgba(69, 71, 90, 0.8);
-				margin: 5px;
-				padding: 2px 15px;
-				border-radius: 10px;
-				border: 2px solid @surface0;
-				color: @text;
-			}
-
-			#wireplumber {
-				color: @green;
-			}
-
-			#network {
-				color: @blue;
-			}
-
-			#cpu {
-				color: @peach;
-			}
-
-			#memory {
-				color: @red;
-			}
-
-			#tray > .passive {
-				-gtk-icon-effect: dim;
-			}
-
-			#tray > .needs-attention {
-				-gtk-icon-effect: highlight;
-				background-color: @red;
-			}
-		'';
-	};
+	# waybar replaced by nwg-panel - configured via nwg-shell-config GUI
 
 	# Declaratively manage the pyprland config
 	home.file.".config/hypr/pyprland.toml" = {

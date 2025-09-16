@@ -101,39 +101,9 @@
 		#================================================================
 		# UI & Experience Plugins
 		#================================================================
-		# Catppuccin theme
-		colorschemes.catppuccin = {
-			enable = true;
-			settings = {
-				flavour = "macchiato";
-				transparent_background = true;
-				float = {
-					transparent = false;
-					solid = true;
-				};
-				integrations = {
-					gitsigns = {
-						enabled = true;
-						transparent = true;
-					};
-					which_key = true;
-					noice = true;
-					indent_blankline = {
-						enabled = true;
-						scope_color = "lavender";
-						colored_indent_levels = false;
-					};
-					dap = true;
-				};
-			};
-		};
-
 		plugins = {
 			# Lualine: A fast and customizable status line
-			lualine = {
-				enable = true;
-				settings.options.theme = "catppuccin";
-			};
+			lualine.enable = true;
 
 			# Which-key: Displays a popup of possible keybindings
 			which-key.enable = true;
@@ -142,7 +112,6 @@
 			noice.enable = true;
 
 			# Indent-blankline: Adds indentation guides
-			# needs extra config for catppuccin coloring
 			indent-blankline.enable = true;
 
 			# Bufferline: VS Code-style tabs
@@ -165,7 +134,7 @@
 					nil_ls.settings.formatting.command = ["alejandra"];
 					nil_ls.settings.nix.flake = {
 						autoArchive = true;
-						nixpkgsInputName = "nixpkgs-unstable";
+						nixpkgsInputName = "nixos-unstable";
 					};
 					taplo.enable = true; # TOML
 					jsonls.enable = true; # JSON

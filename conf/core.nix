@@ -13,9 +13,7 @@
 
 	hardware.graphics.enable = true; # graphics are wanted
 	services = {
-		xserver = {
-			enable = true; # needed for compatibility reasons even though wayland is used
-		};
+		xserver.enable = true; # needed for compatibility reasons even though wayland is used
 
 		displayManager = {
 			autoLogin = {
