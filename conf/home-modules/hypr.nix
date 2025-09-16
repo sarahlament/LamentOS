@@ -10,10 +10,6 @@
 	browser = "flatpak run app.zen_browser.zen";
 	fileManager = "nautilus";
 	menu = "wofi --show drum";
-
-	# Catppuccin sources (still needed for waybar palette references)
-	inherit (config.catppuccin) sources;
-	palette = (lib.importJSON "${sources.palette}/palette.json").mocha.colors;
 in {
 	# Enable Catppuccin theming
 	catppuccin = {
@@ -40,6 +36,8 @@ in {
 
 		# All settings are placed here
 		settings = {
+			ecosystem.no_update_news = true;
+
 			# Monitors
 			monitor = ",highres,auto,auto";
 
