@@ -95,6 +95,7 @@ in {
 			animations = {
 				enabled = "yes";
 				bezier = [
+					# Original curves
 					"easeOutQuint,0.23,1,0.32,1"
 					"easeInOutCubic,0.65,0.05,0.36,1"
 					"easeOutBack,0.34,1.56,0.64,1"
@@ -103,24 +104,34 @@ in {
 					"linear,0,0,1,1"
 					"almostLinear,0.5,0.5,0.75,1.0"
 					"quick,0.15,0,0.1,1"
+
+					# ML4W curves - borrowed from MyLinux4Work dotfiles
+					"overshot,0.05,0.9,0.1,1.1" # ML4W signature bounce
+					"md3_decel,0.05,0.7,0.1,1" # ML4W smooth deceleration
 				];
 				animation = [
 					"global, 1, 10, default"
 					"border, 1, 6, easeOutQuint"
 					"windows, 1, 5.5, easeInOutCubic"
-					"windowsIn, 1, 5, easeOutBack, popin 75%"
+
+					# ML4W inspired animations
+					"windowsIn, 1, 3, overshot, popin 60%" # ML4W standard bounce for new windows
+					"workspaces, 1, 7, overshot, slide" # ML4W workspace switching with bounce
+					"workspacesIn, 1, 3, overshot, slide" # ML4W workspace entrance
+					"workspacesOut, 1, 3, md3_decel, slide" # ML4W smooth workspace exit
+
+					# Keep smooth for exits and fades
 					"windowsOut, 1, 2, easeOutQuint, popin 90%"
-					"fadeIn, 1, 2.5, smoothBounce"
+					"fadeIn, 1, 2.5, md3_decel" # Smoother fade with ML4W curve
 					"fadeOut, 1, 2, easeInOutCubic"
-					"fade, 1, 4, easeOutQuint"
+					"fade, 1, 3, md3_decel" # ML4W smooth fade
+
+					# Layer animations with ML4W timing
 					"layers, 1, 4.5, easeOutBack"
-					"layersIn, 1, 5, easeOutElastic, slide"
-					"layersOut, 1, 2.5, easeInOutCubic, slide"
-					"fadeLayersIn, 1, 3, easeOutBack"
+					"layersIn, 1, 3, md3_decel, slide" # ML4W layer entrance
+					"layersOut, 1, 2, easeInOutCubic, slide"
+					"fadeLayersIn, 1, 2, md3_decel" # ML4W layer fade
 					"fadeLayersOut, 1, 2, easeInOutCubic"
-					"workspaces, 1, 3.5, easeOutBack, slide"
-					"workspacesIn, 1, 2.8, easeOutQuint, slide"
-					"workspacesOut, 1, 2.8, easeInOutCubic, slide"
 				];
 			};
 
