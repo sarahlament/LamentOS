@@ -5,7 +5,7 @@
 	hostname,
 	...
 }: {
-	nixpkgs.config.allowUnfree = true; # allow 'unfree' software
+	sysConf.nvidia.enable = true;
 	networking.networkmanager.enable = true; # network-manager just kinda works from my experience
 	networking.hostName = hostname;
 	networking.firewall.enable = true; # enable firewall for security
@@ -18,7 +18,7 @@
 		displayManager = {
 			autoLogin = {
 				enable = true; # auto login
-				user = "lament"; # as me
+				user = config.userConf.name; # as the default user
 			};
 			gdm = {
 				enable = true; # gdm is reported to work with hyprland, so let's use it since I won't have to configure it
@@ -35,8 +35,8 @@
 		fwupd.enable = true; # firmware update service
 	};
 
-	security.sudo.wheelNeedsPassword = false; # honestly, I'm tired of typing my password everytime
-	programs.ccache.enable = true; # let's use ccache to help with builds on the system itself
+	security.sudo.wheelNeedsPassword = false; # honestly, I'm tired of typing my password every time
 
+	programs.ccache.enable = true;
 	security.rtkit.enable = true; # let's use the realtime kit
 }

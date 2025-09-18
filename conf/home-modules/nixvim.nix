@@ -22,8 +22,8 @@
 			expandtab = false;
 			shiftwidth = 4;
 			number = true; # Show line numbers
-			relativenumber = false; # Show relative line numbers
-			scrolloff = 8; # Keep 8 lines of context around the cursor
+			relativenumber = true; # Show relative line numbers
+			scrolloff = 4;
 			mouse = "a"; # Enable mouse support
 		};
 
