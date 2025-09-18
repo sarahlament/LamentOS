@@ -7,7 +7,6 @@
 	userConf = {
 		name = "lament";
 		fullName = "Sarah Lament";
-		shell = pkgs.zsh;
 	};
 
 	services = {
@@ -26,17 +25,16 @@
 		xwayland.enable = true; # and let's use the xwayland backend for things that need it
 	};
 
+	programs.steam = {
+		enable = true;
+		extraPackages = with pkgs; [gamescope gamemode];
+	};
 	# Let's install some fonts
 	fonts.packages = with pkgs; [
 		font-awesome
 		noto-fonts-cjk-sans
-		noto-fonts-emoji
-		nerd-fonts.ubuntu
-		nerd-fonts.ubuntu-mono
-		nerd-fonts.fira-code
-		nerd-fonts.fira-mono
-		nerd-fonts.hack
-		nerd-fonts.noto
 		nerd-fonts.jetbrains-mono
+		inter
+		source-serif-pro
 	];
 }

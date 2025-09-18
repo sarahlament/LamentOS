@@ -1,22 +1,64 @@
 {
 	config,
-	pkgs,
 	lib,
+	pkgs,
 	...
 }: {
 	# default environment variables I want set at session start
 	home.sessionVariables = {
-		# nvidia-specific environment variables
-		LIBVA_DRIVER_NAME = "nvidia";
-		__GLX_VENDOR_LIBRARY_NAME = "nvidia";
-		ELECTRON_OZONE_PLATFORM_HINT = "auto";
-
 		# maybe if I set some extra things here they're just 'set' when I need them?
 		MAKEFLAGS = "-j16";
 		ZSH_COMPDUMP = "${config.home.homeDirectory}/.cache/.zcompdump-${pkgs.zsh.version}";
 	};
 
 	programs = {
+		vscode = {
+			enable = true;
+			package = pkgs.vscodium;
+
+			profiles.default = {
+				extensions = with pkgs.vscode-extensions; [
+					jnoortheen.nix-ide
+					catppuccin.catppuccin-vsc
+					catppuccin.catppuccin-vsc-icons
+
+					eamodio.gitlens
+					editorconfig.editorconfig
+					anthropic.claude-code
+				];
+
+				userSettings = {
+					"workbench.startupEditor" = "none";
+					"workbench.welcomePage.walkthroughs.openOnInstall" = false;
+					"extensions.ignoreRecommendations" = true;
+					"update.mode" = "none";
+					"extensions.autoUpdate" = false;
+					"extensions.autoCheckUpdates" = false;
+					"nix.enableLanguageServer" = true;
+					"nix.serverPath" = "${pkgs.nil}/bin/nil";
+					"nix.formatterPath" = "${pkgs.alejandra}/bin/alejandra";
+					"nix.serverSettings" = {
+						"nil" = {
+							"formatting" = {
+								"command" = ["${pkgs.alejandra}/bin/alejandra"];
+							};
+						};
+					};
+					"editor.formatOnSave" = true;
+					"editor.codeActionsOnSave" = {
+						"source.organizeImports" = "explicit";
+					};
+					"editor.bracketPairColorization.enabled" = true;
+					"editor.guides.bracketPairs" = "active";
+
+					"gitlens.currentLine.enabled" = false;
+					"gitlens.hovers.currentLine.over" = "line";
+				};
+			};
+		};
+
+		claude-code.enable = true;
+
 		git = {
 			enable = true;
 			userName = "Sarah Lament";

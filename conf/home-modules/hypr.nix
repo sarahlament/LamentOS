@@ -8,7 +8,7 @@
 	mainMod = "SUPER";
 	terminal = "kitty";
 	browser = "flatpak run app.zen_browser.zen";
-	fileManager = "nautilus";
+	fileManager = "dolphin";
 	menu = "nwg-drawer";
 in {
 	# Theming is now handled by Stylix
@@ -144,6 +144,8 @@ in {
 				"${mainMod}, E, exec, ${fileManager}"
 				"${mainMod}, D, exec, ${menu}"
 				"${mainMod} SHIFT, S, exec, pypr toggle term" # Scratchpad
+				"${mainMod} SHIFT, V, exec, codium"
+				"${mainMod} SHIFT, G, exec, steam"
 
 				# Window operations
 				"${mainMod}, Q, killactive,"
@@ -278,7 +280,10 @@ in {
 		};
 	};
 
-	# waybar replaced by nwg-panel - configured via nwg-shell-config GUI
+	programs.waybar = {
+		enable = true;
+		systemd.enable = true;
+	};
 
 	# Declaratively manage the pyprland config
 	home.file.".config/hypr/pyprland.toml" = {

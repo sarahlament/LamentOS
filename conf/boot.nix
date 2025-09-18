@@ -6,7 +6,6 @@
 	...
 }: {
 	# Let's set default modules and system type
-	imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 	boot.initrd.availableKernelModules = [
 		"nvme"
 		"xhci_pci"
@@ -16,19 +15,14 @@
 		"sd_mod"
 		"sr_mod"
 	];
-	boot.initrd.kernelModules = [
-		"dm-snapshot"
-		"cryptd"
-		"nvidia"
-	];
 	boot.kernelModules = ["kvm-amd"];
 	boot.kernelPackages = pkgs.linuxPackages_zen;
+	boot.initrd.systemd.enable = true;
 
 	# Add some default params to the kernel cmdline
 	boot.kernelParams = [
 		"quiet"
 		"systemd.show_status"
-		"nowatchdog"
 	];
 
 	# let's set our drives
@@ -50,7 +44,7 @@
 	hardware.enableRedistributableFirmware = true;
 	hardware.cpu.amd.updateMicrocode = true;
 
-	# Use lanzzaboote for secureboot
+	# Use lanzzaboote for secure boot
 	boot.loader.systemd-boot.enable = lib.mkForce false;
 	boot.lanzaboote = {
 		enable = true;
@@ -63,9 +57,10 @@
 	boot.blacklistedKernelModules = [
 		"pcspkr"
 		"nouveau"
+		"watchdog"
 	];
 
-	# Let's include sbctl for key managment and modprobed-db so I can whittle down the kernel modules I use
+	# Let's include sbctl for key management and modprobed-db so I can whittle down the kernel modules I use
 	environment.systemPackages = with pkgs; [
 		sbctl
 		modprobed-db
