@@ -9,10 +9,6 @@
 		defaultEditor = true;
 		vimAlias = true;
 
-		extraPackages = with pkgs; [
-			alejandra
-		];
-
 		#================================================================
 		# Base Editor Settings
 		#================================================================

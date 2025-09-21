@@ -12,6 +12,32 @@
 	};
 
 	programs = {
+		kitty = {
+			enable = true;
+			# theme now handled by Stylix
+			shellIntegration.enableZshIntegration = true;
+			actionAliases = {
+				"launch_tab" = "launch --cwd=current --type=tab";
+				"launch_window" = "launch --cwd=current --type=os-window";
+			};
+			settings = {
+				enable_audio_bell = false;
+				remember_window_size = false;
+				dynamic_background_opacity = true;
+				hide_window_decorations = true;
+				cursor_blink_interval = 0.5;
+				cursor_stop_blinking_after = 2;
+				scrollback_lines = 5000;
+				window_padding_width = 5;
+				cursor_trail = 5;
+				cursor_trail_decay = "0.2 0.6";
+				scrollback_indicator_opacity = 0.3;
+				mouse_hide_wait = 2;
+				show_hyperlink_targets = true;
+				underline_hyperlinks = "always";
+			};
+		};
+
 		vscode = {
 			enable = true;
 			package = pkgs.vscodium;
@@ -29,11 +55,15 @@
 
 				userSettings = {
 					"workbench.startupEditor" = "none";
+					"workbench.colorTheme" = lib.mkForce "Catppuccin Mocha";
 					"workbench.welcomePage.walkthroughs.openOnInstall" = false;
-					"extensions.ignoreRecommendations" = true;
+					"workbench.settings.editor" = "json";
+
 					"update.mode" = "none";
+					"extensions.ignoreRecommendations" = true;
 					"extensions.autoUpdate" = false;
 					"extensions.autoCheckUpdates" = false;
+
 					"nix.enableLanguageServer" = true;
 					"nix.serverPath" = "${pkgs.nil}/bin/nil";
 					"nix.formatterPath" = "${pkgs.alejandra}/bin/alejandra";
@@ -71,6 +101,8 @@
 			aliases = {
 				sreset = "reset HEAD~1 --soft";
 				hreset = "reset HEAD~1 --hard";
+				logg = "log --oneline --decorate --all --graph";
+				stat = "status --short --branch";
 			};
 		};
 

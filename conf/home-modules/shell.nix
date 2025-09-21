@@ -2,35 +2,9 @@
 	config,
 	pkgs,
 	lib,
-	unknown,
 	...
 }: {
 	programs = {
-		kitty = {
-			enable = true;
-			# theme now handled by Stylix
-			shellIntegration.enableZshIntegration = true;
-			actionAliases = {
-				"launch_tab" = "launch --cwd=current --type=tab";
-				"launch_window" = "launch --cwd=current --type=os-window";
-			};
-			settings = {
-				enable_audio_bell = false;
-				remember_window_size = false;
-				dynamic_background_opacity = true;
-				hide_window_decorations = true;
-				cursor_blink_interval = 0.5;
-				cursor_stop_blinking_after = 2;
-				scrollback_lines = 5000;
-				window_padding_width = 5;
-				cursor_trail = 5;
-				cursor_trail_decay = "0.2 0.6";
-				scrollback_indicator_opacity = 0.3;
-				mouse_hide_wait = 2;
-				show_hyperlink_targets = true;
-				underline_hyperlinks = "always";
-			};
-		};
 		zsh = {
 			enableCompletion = true;
 			autosuggestion.enable = true;
@@ -69,7 +43,7 @@
 				reboot = "systemctl reboot";
 
 				g = "git";
-				gs = "g status -s";
+				gs = "g stat";
 				gp = "g pull";
 				gput = "g push";
 				ga = "g add";
@@ -82,7 +56,7 @@
 				gd = "g diff";
 				gds = "gd --stat";
 				gdc = "gd --cached";
-				glog = "g log --oneline --decorate --all --graph";
+				glog = "g logg";
 				gamend = "gc --amend";
 				gcput = "gc && gput";
 
@@ -92,15 +66,11 @@
 				sys-clean-gens = "sudo nix-collect-garbage -d; sys-update";
 			};
 
-			# let's do some extra things and add some extra aliases(things I've added but not yet put into home manager)
+			# let's load some secrets we don't want shared as part of the repo
 			initContent =
 				lib.mkOrder 2000 ''
 					if [[ -f ~/.config/zsh/secrets.zsh ]]; then
-					source ~/.config/zsh/secrets.zsh
-					fi
-
-					if [[ $(tty) == *"pts"* ]]; then
-					  ff
+						source ~/.config/zsh/secrets.zsh
 					fi
 				'';
 		};
