@@ -6,8 +6,9 @@
 }: {
 	stylix = {
 		enable = true;
-		base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-		polarity = "dark";
+		#base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+		image = ../wallpaper.png;
+		colorGeneration.polarity = "dark";
 		cursor = {
 			name = "Catppuccin Mocha Dark";
 			package = pkgs.catppuccin-cursors.mochaDark;

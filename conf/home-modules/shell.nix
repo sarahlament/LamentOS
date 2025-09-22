@@ -152,6 +152,7 @@
 					{
 						type = "prompt";
 						alignment = "right";
+
 						segments = [
 							{
 								type = "sysinfo";

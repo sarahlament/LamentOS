@@ -2,7 +2,6 @@
 	config,
 	pkgs,
 	lib,
-	modulesPath,
 	...
 }: {
 	# Let's set default modules and system type
@@ -19,10 +18,13 @@
 	boot.kernelPackages = pkgs.linuxPackages_zen;
 	boot.initrd.systemd.enable = true;
 
+	# Plymouth boot splash screen
+	boot.plymouth.enable = true;
+
 	# Add some default params to the kernel cmdline
 	boot.kernelParams = [
 		"quiet"
-		"systemd.show_status"
+		"splash"
 	];
 
 	# let's set our drives

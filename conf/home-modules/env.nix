@@ -14,7 +14,7 @@
 	programs = {
 		kitty = {
 			enable = true;
-			# theme now handled by Stylix
+
 			shellIntegration.enableZshIntegration = true;
 			actionAliases = {
 				"launch_tab" = "launch --cwd=current --type=tab";
@@ -55,7 +55,6 @@
 
 				userSettings = {
 					"workbench.startupEditor" = "none";
-					"workbench.colorTheme" = lib.mkForce "Catppuccin Mocha";
 					"workbench.welcomePage.walkthroughs.openOnInstall" = false;
 					"workbench.settings.editor" = "json";
 
@@ -109,9 +108,8 @@
 		# ls, but fancy
 		eza = {
 			enable = true;
-			enableZshIntegration = true;
-			colors = "auto";
 			git = true;
+			colors = "auto";
 			icons = "auto";
 			extraOptions = [
 				"--group-directories-first"

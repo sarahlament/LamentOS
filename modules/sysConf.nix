@@ -47,6 +47,14 @@ with lib; {
 			(mkIf (config.sysConf.nvidia.enable == true) {
 					services.xserver.videoDrivers = ["nvidia"];
 					boot.initrd.kernelModules = ["nvidia"];
+					boot.blacklistedKernelModules = ["nouveau"];
+
+					boot.initrd.availableKernelModules = [
+						"nvidia"
+						"nvidia_modeset"
+						"nvidia_uvm"
+						"nvidia_drm"
+					];
 
 					hardware.nvidia = {
 						modesetting.enable = true;
