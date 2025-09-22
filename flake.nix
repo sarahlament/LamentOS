@@ -19,10 +19,6 @@
 			url = "github:nix-community/nixvim/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
-		catppuccin = {
-			url = "github:catppuccin/nix";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
 	};
 
 	outputs = {
@@ -43,7 +39,8 @@
 					./modules/userConf.nix # let's use our module to handle the base system
 					./modules/sysConf.nix # and our module to handle certain system variables
 
-					./conf/boot.nix # config related to boot: lanzaboote, mounts, kernel options
+					./conf/disks.nix # disks: since they will almost never change
+					./conf/boot.nix # boot: lanzaboote, initrd, kernel packages and params
 					./conf/core.nix # system-level config: graphics, network, display manager
 					./conf/user.nix # system-level user settings
 					./conf/sysStylix.nix # system-level theming
@@ -61,9 +58,8 @@
 									./conf/home-modules/env.nix # env config: tools and such within the terminal
 									./conf/home-modules/shell.nix # shell config: zsh and terminal
 									./conf/home-modules/hypr.nix # hypr config: hyprland configuration
-									./conf/home-modules/pkgs.nix # extra packages to install
-									./conf/home-modules/nixvim.nix # and let's configure nixvim
-									./conf/home-modules/homeStylix.nix # additional user-level theming
+									./conf/home-modules/nixvim.nix # nixvim: neovim, the nix way
+									./conf/home-modules/pkgs.nix # extra packages to install for the user
 								];
 							};
 						}

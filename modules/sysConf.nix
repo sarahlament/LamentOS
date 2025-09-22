@@ -22,7 +22,7 @@ with lib; {
 			mkOption {
 				type = types.bool;
 				default = true;
-				description = "Should we allow 'unfree' software";
+				description = "Should we allow 'unfree' software (and firmware)";
 			};
 		nvidia = {
 			enable = mkEnableOption "Should we handle nvidia graphics cards";
@@ -42,7 +42,12 @@ with lib; {
 				system.stateVersion = config.sysConf.stateVersion;
 				nixpkgs.hostPlatform = config.sysConf.systemType;
 				nixpkgs.config.allowUnfree = config.sysConf.allowUnfree;
+				hardware.enableRedistributableFirmware = config.sysConf.allowUnfree;
 				home-manager.users.${config.userConf.name}.home.stateVersion = config.sysConf.stateVersion;
+
+				# let's include microcode updates, only the one needed will actually be loaded
+				hardware.cpu.amd.updateMicrocode = true;
+				hardware.cpu.intel.updateMicrocode = true;
 			}
 			(mkIf (config.sysConf.nvidia.enable == true) {
 					services.xserver.videoDrivers = ["nvidia"];
