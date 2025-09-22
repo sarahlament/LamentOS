@@ -6,9 +6,8 @@
 }: {
 	stylix = {
 		enable = true;
-		#base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+		base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
 		image = ../wallpaper.png;
-		colorGeneration.polarity = "dark";
 		cursor = {
 			name = "Catppuccin Mocha Dark";
 			package = pkgs.catppuccin-cursors.mochaDark;
@@ -33,7 +32,7 @@
 		# Font sizes
 		fonts.sizes = {
 			applications = 12;
-			terminal = 12;
+			terminal = 14;
 			desktop = 10;
 			popups = 10;
 		};

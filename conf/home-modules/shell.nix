@@ -62,7 +62,7 @@
 
 				cat = "bat";
 
-				sys-update = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nix-conf/#LamentOS switch";
+				sys-update = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nix-conf/#LamentOS switch && sleep 3 && exec zsh";
 				sys-clean-gens = "sudo nix-collect-garbage -d; sys-update";
 			};
 
@@ -81,14 +81,14 @@
 			settings = {
 				"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
 				palette = {
-					blue = "#89B4FA";
-					closer = "p:os";
-					lavender = "#B4BEFE";
-					os = "#ACB0BE";
-					pink = "#F5C2E7";
-					yellow = "#F9E2AF";
-					red = "#F38BA8";
-					green = "#A6E3A1";
+					primary_blue = "#${config.lib.stylix.colors.base0D}";
+					closer = "p:secondary_text";
+					emphasized_text = "#${config.lib.stylix.colors.base06}";
+					secondary_text = "#${config.lib.stylix.colors.base04}";
+					accent_purple = "#${config.lib.stylix.colors.base0E}";
+					warning_yellow = "#${config.lib.stylix.colors.base0A}";
+					error_red = "#${config.lib.stylix.colors.base08}";
+					success_green = "#${config.lib.stylix.colors.base0B}";
 				};
 				upgrade = {
 					source = "cdn";
@@ -97,7 +97,7 @@
 					notice = false;
 				};
 				transient_prompt = {
-					foreground = "p:blue";
+					foreground = "p:primary_blue";
 					template = "❯ ";
 				};
 				blocks = [
@@ -107,13 +107,13 @@
 						segments = [
 							{
 								template = "{{.Icon}} ";
-								foreground = "p:os";
+								foreground = "p:secondary_text";
 								type = "os";
 								style = "plain";
 							}
 							{
 								template = "{{ .UserName }}@{{ .HostName }} ";
-								foreground = "p:blue";
+								foreground = "p:primary_blue";
 								type = "session";
 								style = "plain";
 							}
@@ -124,7 +124,7 @@
 									style = "full";
 								};
 								template = "{{ .Path }} ";
-								foreground = "p:pink";
+								foreground = "p:accent_purple";
 								type = "path";
 								style = "plain";
 							}
@@ -141,8 +141,8 @@
 									revert_icon = " ";
 									tag_icon = " ";
 								};
-								template = "{{.UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <p:red> {{ .Working.String }}</p:red>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <p:green> {{ .Staging.String }}</p:green>{{ end }} ";
-								foreground = "p:lavender";
+								template = "{{.UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <p:error_red> {{ .Working.String }}</p:error_red>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <p:success_green> {{ .Staging.String }}</p:success_green>{{ end }} ";
+								foreground = "p:emphasized_text";
 								type = "git";
 								style = "plain";
 							}
@@ -157,16 +157,16 @@
 							{
 								type = "sysinfo";
 								style = "plain";
-								foreground = "p:pink";
+								foreground = "p:accent_purple";
 								template = "󰘚 {{ round .PhysicalPercentUsed .Precision }}% ";
 								properties = {
-									precision = 2;
+									precision = 1;
 								};
 							}
 							{
 								type = "time";
 								style = "plain";
-								foreground = "p:lavender";
+								foreground = "p:emphasized_text";
 								template = "󰅐 {{ .CurrentDate | date .Format }}";
 								properties = {
 									time_format = "15:04";
@@ -180,7 +180,7 @@
 						segments = [
 							{
 								template = "❯ ";
-								foreground = "p:blue";
+								foreground = "p:primary_blue";
 								type = "text";
 								style = "plain";
 							}

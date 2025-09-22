@@ -39,10 +39,7 @@
 	boot.initrd.systemd.enable = true;
 
 	# Plymouth boot splash screen
-	boot.plymouth = {
-		enable = true;
-		theme = lib.mkForce "bgrt";
-	};
+	boot.plymouth.enable = true;
 
 	# Kernel configuration for boot process
 	boot.kernelPackages = pkgs.linuxPackages_zen;

@@ -12,11 +12,12 @@
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		stylix = {
-			url = "github:nix-community/stylix/pull/892/head";
+			#url = "github:nix-community/stylix/pull/892/head"; # let's use the PR for matugen theming
+			url = "github:make-42/stylix/matugen"; # I want to try the lastest for this PR, so let's use the master it's based on
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nixvim = {
-			url = "github:nix-community/nixvim/main";
+			url = "github:nix-community/nixvim/main"; # let's use the main branch
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 	};
@@ -60,6 +61,7 @@
 									./conf/home-modules/hypr.nix # hypr config: hyprland configuration
 									./conf/home-modules/nixvim.nix # nixvim: neovim, the nix way
 									./conf/home-modules/pkgs.nix # extra packages to install for the user
+									./conf/home-modules/usrStylix.nix # some user-level theming options
 								];
 							};
 						}
