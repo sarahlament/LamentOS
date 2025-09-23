@@ -25,10 +25,8 @@
 		xwayland.enable = true; # and let's use the xwayland backend for things that need it
 	};
 
-	programs.steam = {
-		enable = true;
-		extraPackages = with pkgs; [gamescope gamemode];
-	};
+	programs.steam.enable = true;
+
 	# Let's install some fonts
 	fonts.packages = with pkgs; [
 		font-awesome

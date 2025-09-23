@@ -12,6 +12,12 @@
 		hyprsysteminfo
 		hyprland-qt-support
 		pyprland
+		wofi
+
+		lsfg-vk
+		lsfg-vk-ui
+		gamescope
+		gamemode
 
 		discord
 		matugen

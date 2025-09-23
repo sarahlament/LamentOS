@@ -9,7 +9,7 @@
 	terminal = "kitty";
 	browser = "flatpak run app.zen_browser.zen";
 	fileManager = "dolphin";
-	menu = "nwg-drawer";
+	menu = "wofi";
 in {
 	# Theming is now handled by Stylix
 
@@ -142,7 +142,7 @@ in {
 				"${mainMod}, B, exec, ${browser}"
 				"${mainMod}, BRACKETRIGHT, exec, discord"
 				"${mainMod}, E, exec, ${fileManager}"
-				"${mainMod}, D, exec, ${menu}"
+				"${mainMod}, D, exec, ${menu} --show drun"
 				"${mainMod} SHIFT, S, exec, pypr toggle term" # Scratchpad
 				"${mainMod} SHIFT, V, exec, codium"
 				"${mainMod} SHIFT, G, exec, steam"
@@ -214,7 +214,7 @@ in {
 				"${mainMod}, mouse_up, workspace, e-1"
 
 				# System
-				"${mainMod}, M, exec, uwsm stop"
+				"${mainMod} SHIFT ALT, M, exec, systemctl poweroff"
 
 				# Resize submap
 				"${mainMod} SHIFT, R, submap, resize"
