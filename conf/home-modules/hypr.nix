@@ -11,10 +11,10 @@
 	fileManager = "dolphin";
 	menu = "wofi";
 in {
-	# Theming is now handled by Stylix
-
-	# GTK and cursor theming handled by Stylix
+	# Let's enable both GTK and QT at the system level so Stylix does its thing
 	gtk.enable = true;
+	qt.enable = true;
+
 	# Use the modern, preferred module for Hyprland on unstable
 	wayland.windowManager.hyprland = {
 		enable = true;

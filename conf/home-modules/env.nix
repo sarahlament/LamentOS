@@ -80,6 +80,8 @@
 					"editor.bracketPairColorization.enabled" = true;
 					"editor.guides.bracketPairs" = "active";
 
+					"explorer.confirmDragAndDrop" = false;
+
 					"gitlens.currentLine.enabled" = false;
 					"gitlens.hovers.currentLine.over" = "line";
 				};

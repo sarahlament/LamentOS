@@ -20,6 +20,10 @@
 			url = "github:nix-community/nixvim/main"; # let's use the main branch
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		aagl = {
+			url = "github:ezKEa/aagl-gtk-on-nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs = {
@@ -36,6 +40,7 @@
 					inputs.lanzaboote.nixosModules.lanzaboote # lanzaboote for secure boot
 					inputs.home-manager.nixosModules.home-manager # home manager for, well, home manager
 					inputs.stylix.nixosModules.stylix # let's try stylix
+					inputs.aagl.nixosModules.default # let's have our anime games as well
 
 					./modules/userConf.nix # let's use our module to handle the base system
 					./modules/sysConf.nix # and our module to handle certain system variables
@@ -45,9 +50,9 @@
 					./conf/core.nix # system-level config: graphics, network, display manager
 					./conf/user.nix # system-level user settings
 					./conf/sysStylix.nix # system-level theming
+					./conf/aagl.nix # our anime game launchers
 
-					(
-						{config, ...}: {
+					({config, ...}: {
 							nix.settings.experimental-features = [
 								"nix-command" # we need the 'nix' command for a few things
 								"flakes" # we definitely want flakes
@@ -64,8 +69,7 @@
 									./conf/home-modules/usrStylix.nix # some user-level theming options
 								];
 							};
-						}
-					)
+						})
 				];
 			};
 	};
