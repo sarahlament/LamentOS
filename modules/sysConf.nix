@@ -63,6 +63,7 @@ with lib; {
 					hardware.nvidia = {
 						modesetting.enable = true;
 						open = config.sysConf.nvidia.open;
+						nvidiaSettings = false;
 					};
 
 					home-manager.users.${config.userConf.name}.home.sessionVariables = {

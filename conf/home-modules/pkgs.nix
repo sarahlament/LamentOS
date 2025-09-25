@@ -8,6 +8,7 @@
 		curl
 		glib
 
+		xdg-utils
 		hyprcursor
 		hyprsysteminfo
 		hyprland-qt-support

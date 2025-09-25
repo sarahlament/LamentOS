@@ -13,7 +13,17 @@
 
 	hardware.graphics.enable = true; # graphics are wanted
 	services = {
+		dbus.enable = true;
 		xserver.enable = true; # needed for compatibility reasons even though wayland is used
+
+		tuned = {
+			enable = true;
+			ppdSupport = true; # This is default anyway
+			ppdSettings.main = {
+				default = "performance"; # Maps to "throughput-performance"
+				battery_detection = false;
+			};
+		};
 
 		displayManager = {
 			autoLogin = {

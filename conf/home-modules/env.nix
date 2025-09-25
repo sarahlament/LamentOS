@@ -84,6 +84,9 @@
 
 					"gitlens.currentLine.enabled" = false;
 					"gitlens.hovers.currentLine.over" = "line";
+					"problems.showErrors" = false;
+					"problems.showWarnings" = false;
+					"editor.validationDelay" = 9999999;
 				};
 			};
 		};

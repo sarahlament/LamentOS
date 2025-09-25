@@ -10,7 +10,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `nix flake update` - Update all flake inputs to latest versions
 - `nix flake check` - Validate flake configuration for syntax errors
 
-**Note**: Flake inputs are available at `~/.nix-inputs` for reference.
+**Note**: Flake input source code is directly available at `~/.nix-inputs/` with symlinks to:
+- `nixpkgs/` - NixOS packages and modules source
+- `home-manager/` - Home Manager modules and options
+- `stylix/` - System theming framework source
+- `nixvim/` - NixOS Neovim configuration source
+- `lanzaboote/` - Secure boot implementation source
+- `aagl/` - Anime game launcher support source
 
 ### Development and Testing
 - `nix develop` - Enter development shell if devShell is configured

@@ -12,4 +12,5 @@
 			signColumn = true;
 		};
 	};
+	home.pointerCursor.enable = true;
 }

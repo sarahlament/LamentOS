@@ -259,16 +259,6 @@ in {
 		};
 	};
 
-	# XDG portal configuration
-	home.preferXdgDirectories = true;
-	xdg.portal = {
-		enable = true;
-		extraPortals = with pkgs; [
-			xdg-desktop-portal-gtk
-		];
-		configPackages = [pkgs.hyprland];
-	};
-
 	# Services needed for the Hyprland environment
 	services = {
 		hyprpolkitagent.enable = true;
