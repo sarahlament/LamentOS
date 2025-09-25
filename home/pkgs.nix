@@ -29,6 +29,7 @@
 
 		kdePackages.dolphin
 		kdePackages.discover
+		kdePackages.gwenview
 		playerctl
 		pwvucontrol
 		headsetcontrol

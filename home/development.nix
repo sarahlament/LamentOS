@@ -5,6 +5,7 @@
 	...
 }: {
 	programs = {
+		# codium is actually pretty damn good
 		vscode = {
 			enable = true;
 			package = pkgs.vscodium;
@@ -53,11 +54,11 @@
 					"gitlens.hovers.currentLine.over" = "line";
 					"problems.showErrors" = false;
 					"problems.showWarnings" = false;
-					"editor.validationDelay" = 9999999;
 				};
 			};
 		};
 
+		# claude is my AI agent of choice
 		claude-code.enable = true;
 	};
 }
