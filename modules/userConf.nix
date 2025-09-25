@@ -53,9 +53,11 @@ with lib; {
 					shell = pkgs.${config.userConf.shell};
 				};
 				home-manager.users.${config.userConf.name} = {
-					imports = (import ../home) ++ [
-						inputs.nixvim.homeModules.nixvim
-					];
+					imports =
+						(import ../home)
+						++ [
+							inputs.nixvim.homeModules.nixvim
+						];
 
 					home.username = config.userConf.name;
 					home.homeDirectory = "/home/${config.userConf.name}";

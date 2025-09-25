@@ -49,10 +49,12 @@ with lib; {
 				hardware.cpu.intel.updateMicrocode = config.sysConf.allowUnfree;
 			}
 			(mkIf (config.sysConf.nvidia.enable == true) {
+					# because we are using out-of-kernel modules for graphics, we need to specify what we need
 					services.xserver.videoDrivers = ["nvidia"];
 					boot.initrd.kernelModules = ["nvidia"];
 					boot.blacklistedKernelModules = ["nouveau"];
 
+					# let's make sure the modules are availble at boot-time
 					boot.initrd.availableKernelModules = [
 						"nvidia"
 						"nvidia_modeset"
@@ -61,9 +63,9 @@ with lib; {
 					];
 
 					hardware.nvidia = {
-						modesetting.enable = true;
-						open = config.sysConf.nvidia.open;
-						nvidiaSettings = false;
+						modesetting.enable = true; # we kinda need this for the card to work correctly
+						open = config.sysConf.nvidia.open; # are we using the nvidia-open drivers?
+						nvidiaSettings = false; # we don't really need this yet
 					};
 
 					home-manager.users.${config.userConf.name}.home.sessionVariables = {

@@ -4,6 +4,7 @@
 	lib,
 	...
 }: {
+	# need an extra package? put them here!
 	home.packages = with pkgs; [
 		curl
 		glib

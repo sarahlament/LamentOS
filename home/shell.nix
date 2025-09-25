@@ -5,6 +5,7 @@
 	...
 }: {
 	programs = {
+		# our shell configuration
 		zsh = {
 			enableCompletion = true;
 			autosuggestion.enable = true;
@@ -80,6 +81,7 @@
 			enable = true;
 			settings = {
 				"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
+				# I've tried my best to grab from stylix correctly here,
 				palette = {
 					primary_blue = "#${config.lib.stylix.colors.base0D}";
 					closer = "p:secondary_text";

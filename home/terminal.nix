@@ -5,6 +5,7 @@
 	...
 }: {
 	programs = {
+		# our prefered terminal application
 		kitty = {
 			enable = true;
 
