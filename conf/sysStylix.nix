@@ -6,7 +6,6 @@
 }: {
 	stylix = {
 		enable = true;
-		base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
 		image = ../wallpaper.png;
 		cursor = {
 			name = "Catppuccin Mocha Dark";
