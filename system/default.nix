@@ -5,4 +5,5 @@
 	./user.nix       # System-level user settings
 	./sysStylix.nix  # System-level theming
 	./aagl.nix       # Anime game launchers
+	./nixconf.nix    # Nix-level configuration (experimental features, etc.)
 ]
