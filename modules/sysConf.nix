@@ -26,7 +26,6 @@ with lib; {
 			};
 		nvidia = {
 			enable = mkEnableOption "Should we handle nvidia graphics cards";
-
 			open =
 				mkOption {
 					type = types.bool;
@@ -46,8 +45,8 @@ with lib; {
 				home-manager.users.${config.userConf.name}.home.stateVersion = config.sysConf.stateVersion;
 
 				# let's include microcode updates, only the one needed will actually be loaded
-				hardware.cpu.amd.updateMicrocode = true;
-				hardware.cpu.intel.updateMicrocode = true;
+				hardware.cpu.amd.updateMicrocode = config.sysConf.allowUnfree;
+				hardware.cpu.intel.updateMicrocode = config.sysConf.allowUnfree;
 			}
 			(mkIf (config.sysConf.nvidia.enable == true) {
 					services.xserver.videoDrivers = ["nvidia"];

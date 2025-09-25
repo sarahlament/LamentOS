@@ -32,9 +32,9 @@ in {
 				"wl-clip-persist --type text --watch cliphist store"
 				"wl-clip-persist --type image --watch cliphist store"
 				"discord --no-sandbox --start-minimized"
-				"headsetcontrol -s128"
+				"sudo headsetcontrol -s128"
+				"steam -silent"
 				"pypr" # For scratchpads
-				"nwg-panel" # Start the nwg-panel taskbar
 				"hyprctl dispatch workspace 1" # Move to workspace 1 on start
 			];
 
@@ -294,7 +294,7 @@ in {
 			[scratchpads.term]
 			command = "kitty --class kitty-dropterm"
 			class = "kitty-dropterm"
-			animation = "fromBottom"
+			animation = "fromTop"
 			size = "75% 80%"
 			margin = 50
 		'';

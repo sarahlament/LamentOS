@@ -40,7 +40,6 @@ with lib; {
 			extraGroups = [
 				"wheel"
 				"systemd-journal"
-				"input"
 			];
 			shell = pkgs.${config.userConf.shell};
 		};
