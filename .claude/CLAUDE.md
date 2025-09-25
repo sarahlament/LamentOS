@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `sudo nixos-rebuild switch --flake .` - Apply current flake configuration to the system
 - `nixos-rebuild dry-run --flake .` - Preview changes without applying them
 - `nix flake update` - Update all flake inputs to latest versions
-- `nix flake check` - Validate flake configuration for syntax errors
+- `nix flake check --show-trace` - Validate flake configuration for syntax errors
 
 **Note**: Flake input source code is directly available at `~/.nix-inputs/` with symlinks to:
 - `nixpkgs/` - NixOS packages and modules source
@@ -27,31 +27,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a NixOS system configuration flake for "LamentOS" with the following structure:
 
 ### Core Configuration Files
-- `flake.nix` - Main flake definition with inputs (nixpkgs, home-manager, nixvim, stylix, lanzaboote)
-- `modules/userConf.nix` - Custom NixOS module for user configuration with options for name, fullName, and shell (supports zsh, bash, dash, fish)
+- `flake.nix` - Main flake definition with inputs and module imports
+- `modules/userConf.nix` - Custom NixOS module for user configuration with options for name, fullName, shell, and XDG settings
 - `modules/sysConf.nix` - System configuration module handling stateVersion, systemType, allowUnfree, and NVIDIA settings
-- `conf/core.nix` - System-level configuration (networking, display manager, SSH, graphics, auto-login)
-- `conf/user.nix` - User-specific configuration (audio via PipeWire, Hyprland, fonts)
-- `conf/boot.nix` - Boot configuration with secure boot via lanzaboote
-- `conf/disks.nix` - Disk configuration and partitioning
-- `conf/sysStylix.nix` - System-wide theming using Stylix (generates colors from wallpaper.png)
 
-### Home Manager Modules (in conf/home-modules/)
-- `hypr.nix` - Hyprland window manager configuration
-- `shell.nix` - Shell configuration (zsh with oh-my-posh prompt)
-- `nixvim.nix` - Neovim configuration via nixvim
-- `pkgs.nix` - User packages
-- `env.nix` - Environment and terminal tools
+### System Configuration (system/)
+- `system/default.nix` - Index file importing all system modules
+- `system/core.nix` - Core system configuration (networking, display manager, SSH, graphics, tuned)
+- `system/user.nix` - User-specific system settings (audio via PipeWire, Hyprland, fonts)
+- `system/boot.nix` - Boot configuration with secure boot via lanzaboote
+- `system/disks.nix` - Disk configuration and partitioning
+- `system/sysStylix.nix` - System-wide theming using Stylix (generates colors from wallpaper.png)
+- `system/aagl.nix` - Anime game launcher configuration
+
+### Home Manager Configuration (home/)
+- `home/default.nix` - Index file importing all home modules
+- `home/env.nix` - Environment variables (MAKEFLAGS, ZSH_COMPDUMP)
+- `home/terminal.nix` - Terminal and CLI tools (kitty, git, eza, btop, fastfetch, bat)
+- `home/development.nix` - Development environment (VSCodium, claude-code)
+- `home/shell.nix` - Shell configuration (zsh with oh-my-posh prompt)
+- `home/hypr.nix` - Hyprland window manager configuration with scratchpads
+- `home/nixvim.nix` - Neovim configuration via nixvim
+- `home/pkgs.nix` - User packages
+- `home/usrStylix.nix` - User-level theming options
 
 ### Key Architecture Details
-- Uses custom `userConf` and `sysConf` modules that dynamically configure users and system settings
-- Home Manager is integrated at the NixOS level via the flake, not standalone
-- System uses Hyprland as the window manager with GDM display manager
-- Stylix provides system-wide theming by generating colors from wallpaper.png
-- Configuration is split between system-level (NixOS) and user-level (Home Manager) concerns
-- The hostname is set to "LamentOS" and can be changed in flake.nix
-- State version is globally defined as "25.11" via the sysConf module
-- NVIDIA support is configurable through the sysConf.nvidia options
+- **Modular structure**: Uses `default.nix` files for clean imports - system modules via `./system` and home modules via `./home`
+- **Custom modules**: `userConf` and `sysConf` modules that dynamically configure users and system settings
+- **Home Manager integration**: Integrated at the NixOS level via the flake, not standalone
+- **Window manager**: Hyprland with GDM display manager, includes scratchpad configurations
+- **Theming**: Stylix provides system-wide theming by generating colors from wallpaper.png
+- **Performance tuning**: TuneD with latency-performance profile for optimal desktop performance
+- **Development environment**: Organized terminal tools (btop, git, eza) and development tools (VSCodium, claude-code) in separate modules
+- **Configuration scope**: Clear separation between system-level (NixOS) and user-level (Home Manager) concerns
+- **System identity**: Hostname "LamentOS", state version "25.11" via sysConf module
+- **Hardware support**: NVIDIA support configurable through sysConf.nvidia options
 
 ### Current User Configuration
 - Username: "lament" (configurable via userConf.name)

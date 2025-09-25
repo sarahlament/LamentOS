@@ -45,12 +45,7 @@
 					./modules/userConf.nix # let's use our module to handle the base system
 					./modules/sysConf.nix # and our module to handle certain system variables
 
-					./conf/disks.nix # disks: since they will almost never change
-					./conf/boot.nix # boot: lanzaboote, initrd, kernel packages and params
-					./conf/core.nix # system-level config: graphics, network, display manager
-					./conf/user.nix # system-level user settings
-					./conf/sysStylix.nix # system-level theming
-					./conf/aagl.nix # our anime game launchers
+				] ++ (import ./system) ++ [
 
 					({config, ...}: {
 							nix.settings.experimental-features = [
@@ -58,15 +53,8 @@
 								"flakes" # we definitely want flakes
 							];
 							home-manager.users.${config.userConf.name} = {
-								imports = [
+								imports = (import ./home) ++ [
 									inputs.nixvim.homeModules.nixvim # import nixvim things
-
-									./conf/home-modules/env.nix # env config: tools and such within the terminal
-									./conf/home-modules/shell.nix # shell config: zsh and terminal
-									./conf/home-modules/hypr.nix # hypr config: hyprland configuration
-									./conf/home-modules/nixvim.nix # nixvim: neovim, the nix way
-									./conf/home-modules/pkgs.nix # extra packages to install for the user
-									./conf/home-modules/usrStylix.nix # some user-level theming options
 								];
 							};
 						})

@@ -9,6 +9,7 @@
 	terminal = "kitty";
 	browser = "flatpak run app.zen_browser.zen";
 	fileManager = "dolphin";
+	taskman = "btop";
 	menu = "wofi";
 in {
 	# Let's enable both GTK and QT at the system level so Stylix does its thing
@@ -218,6 +219,9 @@ in {
 
 				# Resize submap
 				"${mainMod} SHIFT, R, submap, resize"
+
+				# Classic Windows keybind cuz I'm used to it
+				"CTRL SHIFT, escape, exec, pypr toggle taskman"
 			];
 			bindm = [
 				"${mainMod} SHIFT, mouse:272, movewindow"
@@ -286,6 +290,13 @@ in {
 			class = "kitty-dropterm"
 			animation = "fromTop"
 			size = "75% 80%"
+			margin = 50
+
+			[scratchpads.taskman]
+			command = "kitty --class kitty-htop ${taskman}"
+			class = "kitty-htop"
+			animation = "fromTop"
+			size = "80% 60%"
 			margin = 50
 		'';
 	};
