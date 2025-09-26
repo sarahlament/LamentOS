@@ -10,6 +10,11 @@
 	boot.lanzaboote = {
 		enable = true;
 		pkiBundle = "/var/lib/sbctl";
+		configurationLimit = 10;
+		settings = {
+			console-mode = "max";
+			timeout = 2;
+		};
 	};
 
 	# Let's set some modules we definitely want for boot
