@@ -4,7 +4,8 @@
 	./development.nix # Development environment
 	./shell.nix # Shell configuration
 	./hypr.nix # Hyprland configuration
+	./waybar.nix # Waybar configuration
 	./nixvim.nix # Neovim configuration
 	./pkgs.nix # User packages
-	./usrStylix.nix # User-level theming
+	./stylix.nix # User-level theming
 ]
