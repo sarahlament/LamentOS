@@ -34,8 +34,6 @@
 		pwvucontrol
 		headsetcontrol
 
-		arch-install-scripts
-
 		nil
 		alejandra
 	];

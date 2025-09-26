@@ -28,8 +28,7 @@ This is a NixOS system configuration flake for "LamentOS" with the following str
 
 ### Core Configuration Files
 - `flake.nix` - Main flake definition with inputs and module imports
-- `modules/userConf.nix` - Custom NixOS module for user configuration with options for name, fullName, shell, and XDG settings
-- `modules/sysConf.nix` - System configuration module handling stateVersion, systemType, allowUnfree, and NVIDIA settings
+- MODULES HAVE BEEN MOVED TO ~/.lamentos
 
 ### System Configuration (system/)
 - `system/default.nix` - Index file importing all system modules

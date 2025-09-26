@@ -337,6 +337,29 @@
         "type": "github"
       }
     },
+    "lamentos": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758871691,
+        "narHash": "sha256-Uy4RIDBKfqxo/anFlMNARbhzvq/kZfuGvdCINOrAHOI=",
+        "ref": "refs/heads/main",
+        "rev": "c840f5d94bc9e92bb2173c67729a031907ff4e64",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:///home/lament/.lamentos"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/lament/.lamentos"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -514,6 +537,7 @@
       "inputs": {
         "aagl": "aagl",
         "home-manager": "home-manager",
+        "lamentos": "lamentos",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",

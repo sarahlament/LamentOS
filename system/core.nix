@@ -5,7 +5,7 @@
 	hostname,
 	...
 }: {
-	sysConf.nvidia.enable = true;
+	lamentos.hardware.nvidia.enable = true;
 	networking.networkmanager.enable = true; # network-manager just kinda works from my experience
 	networking.hostName = hostname;
 	networking.firewall.enable = true; # enable firewall for security
@@ -28,7 +28,7 @@
 		displayManager = {
 			autoLogin = {
 				enable = true; # auto login
-				user = config.userConf.name; # as the default user
+				user = config.lamentos.user.name; # as the default user
 			};
 			gdm = {
 				enable = true; # gdm is reported to work with hyprland, so let's use it since I won't have to configure it

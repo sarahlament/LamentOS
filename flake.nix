@@ -24,6 +24,11 @@
 			url = "github:ezKEa/aagl-gtk-on-nix"; # an anime game laucnher, for games
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		lamentos = {
+			url = "git+file:///home/lament/.lamentos"; # here we have our system modules
+			inputs.nixpkgs.follows = "nixpkgs";
+			inputs.home-manager.follows = "home-manager";
+		};
 	};
 
 	outputs = {
@@ -43,8 +48,18 @@
 						inputs.stylix.nixosModules.stylix # stylix: quick and easy themning across the entire system
 						inputs.aagl.nixosModules.default # aagl: anime games launcher (yes, I play these)
 
-						./modules/sysConf.nix # sysConf: module to make some of the core system configuration easier and contained
-						./modules/userConf.nix # userConf: module to make the system user creation quicker and easier
+						inputs.lamentos.nixosModules.lamentos # LamentOS: custom modules (sysConf, userConf)
+
+						# Standalone home manager configuration module
+						({config, ...}: {
+								home-manager.users.${config.lamentos.user.name} = {
+									imports =
+										[
+											inputs.nixvim.homeModules.nixvim
+										]
+										++ (import ./home); # import the ./home directory, same way as ./system below
+								};
+							})
 					]
 					++ (import ./system); # let's import the ./system directory, with the modules defined in default.nix
 			};

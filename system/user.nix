@@ -4,7 +4,7 @@
 	pkgs,
 	...
 }: {
-	userConf = {
+	lamentos.user = {
 		name = "lament";
 		fullName = "Sarah Lament";
 	};
