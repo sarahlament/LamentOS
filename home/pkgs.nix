@@ -8,6 +8,7 @@
 	home.packages = with pkgs; [
 		curl
 		glib
+		jq
 
 		xdg-utils
 		hyprcursor

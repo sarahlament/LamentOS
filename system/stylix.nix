@@ -30,10 +30,10 @@
 
 		# Font sizes
 		fonts.sizes = {
-			applications = 12;
+			applications = 14;
 			terminal = 14;
-			desktop = 10;
-			popups = 10;
+			desktop = 12;
+			popups = 12;
 		};
 
 		# Set opacity for various elements
