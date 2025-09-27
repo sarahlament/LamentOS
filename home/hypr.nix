@@ -303,7 +303,6 @@ in {
 		};
 	};
 
-
 	# Declaratively manage the pyprland config
 	home.file.".config/hypr/pyprland.toml" = {
 		text = ''

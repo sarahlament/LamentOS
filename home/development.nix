@@ -37,7 +37,7 @@
 					"nix.serverSettings" = {
 						"nil" = {
 							"formatting" = {
-								"command" = ["${pkgs.alejandra}/bin/alejandra"];
+								"command" = ["${pkgs.alejandra}/bin/alejandra" "--experimental-config" "alejandra.toml"];
 							};
 						};
 					};

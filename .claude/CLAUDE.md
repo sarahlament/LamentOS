@@ -8,19 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `sudo nixos-rebuild switch --flake .` - Apply current flake configuration to the system
 - `nixos-rebuild dry-run --flake .` - Preview changes without applying them
 - `nix flake update` - Update all flake inputs to latest versions
-- `nix flake check --show-trace` - Validate flake configuration for syntax errors
-
-**Note**: Flake input source code is directly available at `~/.nix-inputs/` with symlinks to:
-- `nixpkgs/` - NixOS packages and modules source
-- `home-manager/` - Home Manager modules and options
-- `stylix/` - System theming framework source
-- `nixvim/` - NixOS Neovim configuration source
-- `lanzaboote/` - Secure boot implementation source
-- `aagl/` - Anime game launcher support source
-
-### Development and Testing
-- `nix develop` - Enter development shell if devShell is configured
-- `nix build .#nixosConfigurations.LamentOS.config.system.build.toplevel` - Build system configuration without applying
+- `nix flake check` - Validate flake configuration for syntax errors
 
 ## Architecture Overview
 

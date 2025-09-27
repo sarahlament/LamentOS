@@ -5,11 +5,13 @@
 	hostname,
 	...
 }: {
+	lamentos.system.stateVersion = "25.11";
 	lamentos.hardware.nvidia.enable = true;
+	lamentos.hardware.audio.enable = true;
+	lamentos.locale.timeZone = "America/Chicago";
 	networking.networkmanager.enable = true; # network-manager just kinda works from my experience
 	networking.hostName = hostname;
 	networking.firewall.enable = true; # enable firewall for security
-	time.timeZone = "America/Chicago"; # let's set our timezone
 
 	hardware.graphics.enable = true; # graphics are wanted
 	services = {

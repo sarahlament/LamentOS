@@ -4,28 +4,34 @@
 	inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # let's use nixos-unstable
 		lanzaboote = {
-			url = "github:nix-community/lanzaboote/v0.4.2"; # because this is for secure boot, let's keep it at a specific version
-			inputs.nixpkgs.follows = "nixpkgs"; # for every flake input, we want it to use the same nixpkgs as the system itself
+			# Lanzaboote is a secure boot implementation, requiring your own keys
+			url = "github:nix-community/lanzaboote/v0.4.2";
+			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		home-manager = {
-			url = "github:nix-community/home-manager/master"; # let's use the most recent commit
+			# Home Manager is a module that helps with creating various configurations
+			url = "github:nix-community/home-manager/master";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		stylix = {
-			#url = "github:nix-community/stylix/pull/892/head"; # let's use the PR for matugen theming
-			url = "github:make-42/stylix/matugen"; # I want to try the lastest for this PR, so let's use the master it's based on
+			# Stylix provides system-level theming
+			url = "github:nix-community/stylix/";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nixvim = {
-			url = "github:nix-community/nixvim/main"; # let's use the main branch
+			# NixVim is neovim and plugins done the nix way
+			url = "github:nix-community/nixvim/main";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		aagl = {
-			url = "github:ezKEa/aagl-gtk-on-nix"; # an anime game laucnher, for games
+			# Anime Games Launcher
+			url = "github:ezKEa/aagl-gtk-on-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		lamentos = {
-			url = "git+file:///home/lament/.lamentos"; # here we have our system modules
+			# These are my own system modules, which will be expanded upon
+			# When using it as a flake input yourselves, this will look different
+			url = "git+file:///home/lament/.lamentos";
 			inputs.nixpkgs.follows = "nixpkgs";
 			inputs.home-manager.follows = "home-manager";
 		};
@@ -36,19 +42,19 @@
 		nixpkgs,
 		...
 	} @ inputs: let
-		hostname = "LamentOS"; # let's define the hostname here so it's easier to change
+		hostname = "LamentOS";
 	in {
 		nixosConfigurations.${hostname} =
 			nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs hostname;}; # we want to see our inputs
+				specialArgs = {inherit inputs hostname;};
 				modules =
 					[
-						inputs.lanzaboote.nixosModules.lanzaboote # lanzaboote: secure boot
-						inputs.home-manager.nixosModules.home-manager # home manager: manage programs on the user level
-						inputs.stylix.nixosModules.stylix # stylix: quick and easy themning across the entire system
-						inputs.aagl.nixosModules.default # aagl: anime games launcher (yes, I play these)
+						inputs.lanzaboote.nixosModules.lanzaboote
+						inputs.home-manager.nixosModules.home-manager
+						inputs.stylix.nixosModules.stylix
+						inputs.aagl.nixosModules.default
 
-						inputs.lamentos.nixosModules.lamentos # LamentOS: custom modules (sysConf, userConf)
+						inputs.lamentos.nixosModules.lamentos
 
 						# Standalone home manager configuration module
 						({config, ...}: {
@@ -57,11 +63,11 @@
 										[
 											inputs.nixvim.homeModules.nixvim
 										]
-										++ (import ./home); # import the ./home directory, same way as ./system below
+										++ (import ./home);
 								};
 							})
 					]
-					++ (import ./system); # let's import the ./system directory, with the modules defined in default.nix
+					++ (import ./system);
 			};
 	};
 }

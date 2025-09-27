@@ -347,11 +347,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758871691,
-        "narHash": "sha256-Uy4RIDBKfqxo/anFlMNARbhzvq/kZfuGvdCINOrAHOI=",
+        "lastModified": 1758950982,
+        "narHash": "sha256-++oeeZVdvSzTc4UGSElpM7CACleW0ZjfVb5qeQ/FEkE=",
         "ref": "refs/heads/main",
-        "rev": "c840f5d94bc9e92bb2173c67729a031907ff4e64",
-        "revCount": 1,
+        "rev": "06945ce50f1956ffdc272b68aec879481e00532c",
+        "revCount": 3,
         "type": "git",
         "url": "file:///home/lament/.lamentos"
       },
@@ -604,16 +604,15 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1758574389,
-        "narHash": "sha256-lud26teDO8QouH8NS7raxb+cuVISWu2yvhvJ9zfEshI=",
-        "owner": "make-42",
+        "lastModified": 1758905463,
+        "narHash": "sha256-8ANQ3MxULwolfkJEdUYlL5usISAxtysWctqqeSiJ/OE=",
+        "owner": "nix-community",
         "repo": "stylix",
-        "rev": "9d9c4ca97df927e3d06f0485da1c233c4691a4b3",
+        "rev": "4aae0ebc2b0d37d4f90ace2c8bbadffadb2e2a97",
         "type": "github"
       },
       "original": {
-        "owner": "make-42",
-        "ref": "matugen",
+        "owner": "nix-community",
         "repo": "stylix",
         "type": "github"
       }

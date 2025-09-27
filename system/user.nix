@@ -11,12 +11,6 @@
 
 	services = {
 		flatpak.enable = true; # flatpak is useful for some things
-		pipewire = {
-			enable = true; # audio is wanted, I hope...
-			pulse.enable = true; # pulse backend for pipewire
-			alsa.enable = true; # alsa backend for pipewire
-			wireplumber.enable = true; # wireplumber session manager for pipewire
-		};
 	};
 
 	programs.hyprland = {
@@ -26,13 +20,4 @@
 	};
 
 	programs.steam.enable = true;
-
-	# Let's install some fonts
-	fonts.packages = with pkgs; [
-		font-awesome
-		noto-fonts-cjk-sans
-		nerd-fonts.jetbrains-mono
-		inter
-		source-serif-pro
-	];
 }

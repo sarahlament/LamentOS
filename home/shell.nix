@@ -18,7 +18,8 @@
 			syntaxHighlighting.enable = true;
 
 			dirHashes = {
-				nix = "${config.home.homeDirectory}/.nix-conf";
+				nixconf = "${config.home.homeDirectory}/.nix-conf";
+				modules = "${config.home.homeDirectory}/.lamentos";
 			};
 
 			setOptions = ["NO_AUTOPUSHD"];
