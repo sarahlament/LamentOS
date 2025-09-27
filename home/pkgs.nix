@@ -9,7 +9,6 @@
     curl
     glib
     jq
-    hyfetch
 
     xdg-utils
     hyprcursor

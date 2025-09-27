@@ -32,23 +32,6 @@
       };
     };
 
-    git = {
-      enable = true;
-      userName = "Sarah Lament";
-      userEmail = "4612427+sarahlament@users.noreply.github.com";
-      extraConfig = {
-        init.defaultBranch = "main";
-        fetch.prune = true;
-        pull.rebase = true;
-      };
-      aliases = {
-        sreset = "reset HEAD~1 --soft";
-        hreset = "reset HEAD~1 --hard";
-        logg = "log --oneline --decorate --all --graph";
-        stat = "status --short --branch";
-      };
-    };
-
     # ls, but fancy
     eza = {
       enable = true;

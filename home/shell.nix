@@ -51,6 +51,7 @@
         ga = "g add";
         "ga." = "ga .";
         gc = "g commit --verbose";
+        gchk = "g checkout";
         gcm = "gc -m";
         gca = "gc -a";
         gcam = "gca -m";
@@ -61,6 +62,7 @@
         glog = "g logg";
         gamend = "gc --amend";
         gcput = "gc && gput";
+        gmerge = "gchk main && g merge develop && gchk develop";
 
         cat = "bat";
 
