@@ -1,14 +1,12 @@
 {
-    "cSpell.words": [
-			"catppuccin",
-			"hypr",
-			"lanzaboote",
-			"NIXBOOT",
-			"nixos",
-			"nixpkgs",
-			"nixvim",
-			"nvme",
-			"pkgs",
-			"stylix"
-		]
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.claude": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"LICENSE": true,
+		"alejandra.toml": true
+	}
 }

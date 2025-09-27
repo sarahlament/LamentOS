@@ -96,6 +96,11 @@
 		# fancy system info parser thingy
 		fastfetch.enable = true;
 
+		direnv = {
+			enable = true;
+			silent = true;
+		};
+
 		command-not-found.enable = true; # yes, I know what I *want* to do
 		bat.enable = true; # better cat
 	};

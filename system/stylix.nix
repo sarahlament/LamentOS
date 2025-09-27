@@ -7,6 +7,7 @@
 	stylix = {
 		enable = true;
 		image = ../wallpaper.png;
+		base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 		cursor = {
 			name = "Catppuccin Mocha Dark";
 			package = pkgs.catppuccin-cursors.mochaDark;
