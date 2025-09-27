@@ -15,7 +15,10 @@
 		};
 		stylix = {
 			# Stylix provides system-level theming
-			url = "github:nix-community/stylix/";
+			# We are going to use a specific pull request, so I'm going to
+			# commend out the normal url and replace it with the dev tree
+			#url = "github:nix-community/stylix/";
+			url = "github:make-42/stylix/matugen";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 		nixvim = {

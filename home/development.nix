@@ -22,6 +22,7 @@
 				];
 
 				userSettings = {
+					"workbench.colorTheme" = lib.mkForce "Catppuccin Mocha";
 					"workbench.startupEditor" = "none";
 					"workbench.welcomePage.walkthroughs.openOnInstall" = false;
 					"workbench.settings.editor" = "json";
