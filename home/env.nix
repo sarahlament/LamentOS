@@ -1,12 +1,12 @@
 {
-	config,
-	lib,
-	pkgs,
-	...
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
-	# Default environment variables I want set at session start
-	home.sessionVariables = {
-		# Build configuration
-		MAKEFLAGS = "-j16";
-	};
+  # Default environment variables I want set at session start
+  home.sessionVariables = {
+    # Build configuration
+    MAKEFLAGS = "-j16";
+  };
 }

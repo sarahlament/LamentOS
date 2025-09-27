@@ -347,11 +347,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758952539,
-        "narHash": "sha256-4hDRkPqr717rcAbTmnL1x/vXHnIVOy31LubER6gIadk=",
+        "lastModified": 1759009960,
+        "narHash": "sha256-MVNihEUo4tTdJCmEKuR4dmFg2xDe6D2BfbVx9m43QPU=",
         "ref": "refs/heads/main",
-        "rev": "13372fb06a23371e65ebbf81e01409a97d133a80",
-        "revCount": 4,
+        "rev": "9c97137ecdc3e273daf5055967157310346291ca",
+        "revCount": 7,
         "type": "git",
         "url": "file:///home/lament/.lamentos"
       },

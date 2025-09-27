@@ -1,11 +1,11 @@
 {
-	conf,
-	lib,
-	pkgs,
-	...
+  conf,
+  lib,
+  pkgs,
+  ...
 }: {
-	programs = {
-		honkers-railway-launcher.enable = true;
-		sleepy-launcher.enable = true;
-	};
+  programs = {
+    honkers-railway-launcher.enable = true;
+    sleepy-launcher.enable = true;
+  };
 }

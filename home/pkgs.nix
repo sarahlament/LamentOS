@@ -1,41 +1,44 @@
 {
-	config,
-	pkgs,
-	lib,
-	...
+  config,
+  pkgs,
+  lib,
+  ...
 }: {
-	# need an extra package? put them here!
-	home.packages = with pkgs; [
-		curl
-		glib
-		jq
+  # need an extra package? put them here!
+  home.packages = with pkgs; [
+    curl
+    glib
+    jq
+    hyfetch
 
-		xdg-utils
-		hyprcursor
-		hyprsysteminfo
-		hyprland-qt-support
-		pyprland
-		wofi
+    xdg-utils
+    hyprcursor
+    hyprsysteminfo
+    hyprland-qt-support
+    pyprland
+    wofi
 
-		lsfg-vk
-		lsfg-vk-ui
-		gamescope
-		gamemode
+    lsfg-vk
+    lsfg-vk-ui
+    gamescope
+    gamemode
 
-		discord
-		matugen
+    discord
+    matugen
 
-		wl-clipboard
-		wl-clip-persist
+    wl-clipboard
+    wl-clip-persist
 
-		kdePackages.dolphin
-		kdePackages.discover
-		kdePackages.gwenview
-		playerctl
-		pwvucontrol
-		headsetcontrol
+    kdePackages.dolphin
+    kdePackages.discover
+    kdePackages.gwenview
+    gdu
+    playerctl
+    pwvucontrol
+    headsetcontrol
 
-		nil
-		alejandra
-	];
+    nil
+    alejandra
+    python313Packages.editorconfig
+  ];
 }
