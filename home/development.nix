@@ -13,15 +13,14 @@
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
           jnoortheen.nix-ide
-          catppuccin.catppuccin-vsc
-          catppuccin.catppuccin-vsc-icons
+          dracula-theme.theme-dracula
 
           eamodio.gitlens
           anthropic.claude-code
         ];
 
         userSettings = {
-          "workbench.colorTheme" = lib.mkForce "Catppuccin Mocha";
+          "workbench.colorTheme" = lib.mkForce "Dracula Theme";
           "workbench.startupEditor" = "none";
           "workbench.welcomePage.walkthroughs.openOnInstall" = false;
           "workbench.settings.editor" = "json";

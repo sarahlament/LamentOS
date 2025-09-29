@@ -13,7 +13,6 @@
         "history"
         "completion"
       ];
-      history.ignoreAllDups = true;
       history.append = true;
       syntaxHighlighting.enable = true;
 
@@ -44,30 +43,10 @@
         shutdown = "systemctl shutdown";
         reboot = "systemctl reboot";
 
-        g = "git";
-        gs = "g stat";
-        gp = "g pull";
-        gput = "g push";
-        ga = "g add";
-        "ga." = "ga .";
-        gc = "g commit --verbose";
-        gchk = "g checkout";
-        gcm = "gc -m";
-        gca = "gc -a";
-        gcam = "gca -m";
-        gcat = "gcam tmp";
-        gd = "g diff";
-        gds = "gd --stat";
-        gdc = "gd --cached";
-        glog = "g logg";
-        gamend = "gc --amend";
-        gcput = "gc && gput";
-        gmerge = "gchk main && g merge develop && gchk develop";
-
         cat = "bat";
 
-        sys-update = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nix-conf/#LamentOS switch && sleep 3 && exec zsh";
         sys-clean-gens = "sudo nix-collect-garbage -d; sys-update";
+        sys-update = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nix-conf/# switch && sleep 3 && exec zsh";
       };
 
       # let's load some secrets we don't want shared as part of the repo

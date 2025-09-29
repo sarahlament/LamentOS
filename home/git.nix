@@ -4,6 +4,28 @@
   pkgs,
   ...
 }: {
+  home.shellAliases = {
+    g = "git";
+    gs = "g stat";
+    gp = "g pull";
+    gput = "g push";
+    ga = "g add";
+    "ga." = "ga .";
+    gc = "g commit --verbose";
+    gchk = "g checkout";
+    gst = "g stash";
+    gcm = "gc -m";
+    gca = "gc -a";
+    gcam = "gca -m";
+    gcat = "gcam tmp";
+    gd = "g diff";
+    gds = "gd --stat";
+    gdc = "gd --cached";
+    glog = "g logg";
+    gamend = "gc --amend";
+    gcput = "gc && gput";
+  };
+
   programs = {
     git = {
       enable = true;

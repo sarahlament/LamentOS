@@ -286,17 +286,9 @@ in {
             on-resume = "brightnessctl -r";
           }
           {
-            timeout = 300; # 5 minutes - lock screen
-            on-timeout = "loginctl lock-session";
-          }
-          {
             timeout = 330; # 5.5 minutes - turn off display
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
-          }
-          {
-            timeout = 1800; # 30 minutes - suspend
-            on-timeout = "systemctl suspend";
           }
         ];
       };
