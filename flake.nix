@@ -2,7 +2,8 @@
   description = "LamentOS";
 
   inputs = {
-    # I'm totally fine using the unstable repo, but normally you would want a release, like below
+    # I'm totally fine using the unstable repo, but
+    # normally you would want a release, like below
     #nixpkgs.url = "github:nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -38,7 +39,6 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = {
@@ -61,16 +61,9 @@
           ./modules/sysConf.nix
           ./modules/userConf.nix
 
-          # Basic system configuration
-          ({config, ...}: {
-            nix.settings.experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-          })
-
           # Simple way to load all of my home-manager files.
           ({config, ...}: {
+            networking.hostName = "${hostname}";
             home-manager.users.${config.userConf.name} = {
               imports =
                 [

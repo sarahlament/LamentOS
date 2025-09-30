@@ -12,6 +12,4 @@
       signColumn = true;
     };
   };
-  # maybe I need this to make cursors work correctly??
-  home.pointerCursor.enable = true;
 }

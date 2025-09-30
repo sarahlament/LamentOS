@@ -7,10 +7,10 @@
   stylix = {
     enable = true;
     image = ../wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/horizon-terminal-dark.yaml";
     cursor = {
-      name = "Catppuccin Mocha Dark";
-      package = pkgs.catppuccin-cursors.mochaDark;
+      name = "Numix-Cursor-Light";
+      package = pkgs.numix-cursor-theme;
       size = 32;
     };
 
