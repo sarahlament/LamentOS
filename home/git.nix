@@ -18,7 +18,7 @@
     gd = "g diff";
     gds = "gd --stat";
     gdc = "gd --cached";
-    glog = "g prettylog";
+    glog = "PAGER=cat g prettylog -n15";
     gamend = "gc --amend";
   };
 
@@ -35,7 +35,7 @@
       aliases = {
         sreset = "reset HEAD~1 --soft";
         hreset = "reset HEAD~1 --hard";
-        prettylog = "log --oneline --decorate --all --graph";
+        prettylog = "log --oneline --decorate --graph";
         stat = "status --short --branch";
       };
     };

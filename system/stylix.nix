@@ -9,8 +9,8 @@
 
     # Set opacity for various elements
     opacity = {
-      applications = 0.8;
-      terminal = 0.75;
+      applications = 0.85;
+      terminal = 0.85;
       desktop = 0.5;
       popups = 0.95;
     };

@@ -157,60 +157,64 @@
       @define-color base0A ${base0A}; @define-color base0B ${base0B};
       @define-color base0C ${base0C}; @define-color base0D ${base0D};
       @define-color base0E ${base0E}; @define-color base0F ${base0F};
+      @define-color base10 ${base10}; @define-color base11 ${base11};
+      @define-color base12 ${base12}; @define-color base13 ${base13};
+      @define-color base14 ${base14}; @define-color base15 ${base15};
+      @define-color base16 ${base16}; @define-color base17 ${base17};
 
       * {
-      	border: none;
-      	border-radius: 0;
-      	font-family: "JetBrainsMono Nerd Font", monospace;
-      	font-size: 13px;
-      	min-height: 0;
+        border: none;
+        border-radius: 0;
+        font-family: "JetBrainsMono Nerd Font", monospace;
+        font-size: 13px;
+        min-height: 0;
       }
 
       window#waybar {
-      	background-color: alpha(@base00, 0.9);
-      	border-bottom: 3px solid alpha(@base03, 0.5);
-      	color: @base05;
-      	transition-property: background-color;
-      	transition-duration: .5s;
+        background-color: alpha(@base00, 0.9);
+        border-bottom: 3px solid alpha(@base17, 0.5);
+        color: @base05;
+        transition-property: background-color;
+        transition-duration: .5s;
       }
 
       window#waybar.hidden {
-      	opacity: 0.2;
+        opacity: 0.2;
       }
 
       button {
-      	box-shadow: inset 0 -3px transparent;
-      	border: none;
-      	border-radius: 0;
+        box-shadow: inset 0 -3px transparent;
+        border: none;
+        border-radius: 0;
       }
 
       button:hover {
-      	background: inherit;
-      	box-shadow: inset 0 -3px @base05;
+        background: inherit;
+        box-shadow: inset 0 -3px @base05;
       }
 
       #workspaces button {
-      	padding: 0 5px;
-      	background-color: transparent;
-      	color: @base05;
+        padding: 0 5px;
+        background-color: transparent;
+        color: @base05;
       }
 
       #workspaces button:hover {
-      	background: alpha(@base00, 0.2);
+        background: alpha(@base00, 0.2);
       }
 
       #workspaces button.focused {
-      	background-color: @base03;
-      	box-shadow: inset 0 -3px @base05;
+        background-color: @base14;
+        box-shadow: inset 0 -3px @base05;
       }
 
       #workspaces button.urgent {
-      	background-color: @base08;
+        background-color: @base11;
       }
 
       #mode {
-      	background-color: @base03;
-      	border-bottom: 3px solid @base05;
+        background-color: @base03;
+        border-bottom: 3px solid @base05;
       }
 
       #clock,
@@ -228,112 +232,107 @@
       #scratchpad,
       #mpd,
       #custom-power {
-      	padding: 0 10px;
-      	color: @base05;
+        padding: 0 10px;
+        color: @base05;
       }
 
       #window,
       #workspaces {
-      	margin: 0 4px;
+        margin: 0 4px;
       }
 
       .modules-left > widget:first-child > #workspaces {
-      	margin-left: 0;
+        margin-left: 0;
       }
 
       .modules-right > widget:last-child > #workspaces {
-      	margin-right: 0;
+        margin-right: 0;
       }
 
       #clock {
-      	background-color: @base03;
+        background-color: @base03;
       }
 
       label:focus {
-      	background-color: @base00;
+        background-color: @base00;
       }
 
       #cpu {
-      	background-color: alpha(@base0B, 0.4);
-      	color: @base05;
+        background-color: alpha(@base17, 0.4);
+        color: @base05;
       }
 
       #memory {
-      	background-color: alpha(@base0E, 0.4);
-      	color: @base05;
+        background-color: alpha(@base17, 0.4);
+        color: @base05;
       }
 
       #disk {
-      	background-color: alpha(@base09, 0.4);
-      	color: @base05;
-      }
-
-      #backlight {
-      	background-color: alpha(@base0C, 0.4);
-      	color: @base05;
+        background-color: alpha(@base17, 0.4);
+        color: @base05;
       }
 
       #network {
-      	background-color: alpha(@base0D, 0.4);
-      	color: @base05;
+        background-color: alpha(@base10, 0.4);
+        color: @base05;
       }
 
       #network.disconnected {
-      	background-color: alpha(@base08, 0.6);
-      	color: @base05;
+        background-color: alpha(@base12, 0.6);
+        color: @base05;
       }
 
       #wireplumber {
-      	background-color: alpha(@base0A, 0.4);
-      	color: @base05;
+        background-color: alpha(@base0A, 0.4);
+        color: @base05;
       }
 
       #wireplumber.muted {
-      	background-color: @base01;
-      	color: @base03;
+        background-color: @base01;
+        color: @base03;
       }
 
       #temperature {
-      	background-color: alpha(@base09, 0.4);
-      	color: @base05;
+        background-color: alpha(@base17, 0.4);
+        color: @base05;
       }
 
       #temperature.critical {
-      	background-color: alpha(@base08, 0.7);
-      	color: @base05;
+        background-color: alpha(@base12, 0.7);
+        color: @base05;
       }
 
       #tray {
-      	background-color: alpha(@base0D, 0.4);
-      	color: @base05;
+        background-color: alpha(@base0D, 0.4);
+        color: @base05;
       }
 
       #idle_inhibitor {
-      	background-color: @base01;
-      	color: @base05;
+        background-color: alpha(@base0F, 0.5);
+        color: @base05;
       }
 
       #idle_inhibitor.activated {
-      	background-color: alpha(@base0B, 0.5);
-      	color: @base05;
+        background-color: alpha(@base14, 0.5);
+        color: @base05;
       }
 
       #scratchpad {
-      	background-color: alpha(@base0B, 0.4);
-      	color: @base05;
+        background-color: alpha(@base13, 0.4);
+        color: @base05;
       }
 
       #scratchpad.empty {
-      	background-color: transparent;
+        background-color: transparent;
       }
 
       #custom-power {
-      	background-color: @base08;
-      	color: @base00;
+        background-color: @base08;
+        color: @base00;
       }
 
       #custom-power:hover {
-      	background-color: alpha(@base08, 0.8);
+        background-color: alpha(@base08, 0.8);
       }
     '';
   };
@@ -348,30 +347,30 @@
 
       # Show menu with wofi
       chosen=$(echo -e "$options" | wofi --dmenu \
-      	--prompt "Power Menu" \
-      	--width 300 \
-      	--height 250 \
-      	--cache-file /dev/null \
-      	--hide-scroll \
-      	--no-actions)
+        --prompt "Power Menu" \
+        --width 300 \
+        --height 250 \
+        --cache-file /dev/null \
+        --hide-scroll \
+        --no-actions)
 
       # Execute chosen action
       case $chosen in
-      	"󰐥 Power Off")
-      		systemctl poweroff
-      		;;
-      	"󰜉 Restart")
-      		systemctl reboot
-      		;;
-      	"󰋊 Hibernate")
-      		systemctl hibernate
-      		;;
-      	"󰍃 Logout")
-      		hyprctl dispatch exit
-      		;;
-      	"󰌾 Lock")
-      		loginctl lock-session
-      		;;
+        "󰐥 Power Off")
+          systemctl poweroff
+          ;;
+        "󰜉 Restart")
+          systemctl reboot
+          ;;
+        "󰋊 Hibernate")
+          systemctl hibernate
+          ;;
+        "󰍃 Logout")
+          hyprctl dispatch exit
+          ;;
+        "󰌾 Lock")
+          loginctl lock-session
+          ;;
       esac
     '';
     executable = true;
