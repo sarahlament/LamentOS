@@ -2,10 +2,12 @@
   description = "LamentOS";
 
   inputs = {
-    # I'm totally fine using the unstable repo, but
-    # normally you would want a release, like below
+    # I'm totally fine using the unstable repo, but normally you would want a release, like below
     #nixpkgs.url = "github:nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # This allows us to have up-to-date claude-code instead of the late updates provided by nixpkgs
+    claude-code.url = "github:sadjow/claude-code-nix";
 
     # Lanzaboote is a secure boot implementation, requiring your own keys
     lanzaboote = {
@@ -20,10 +22,9 @@
     };
 
     # Stylix provides system-level theming
-    # We are going to use a specific pull request, so I'm going to
-    # comment out the normal url and replace it with the dev tree
-    #url = "github:nix-community/stylix/";
+    # We are going to use a specific pull request, so I'm going to comment out the normal url and replace it with the dev tree
     stylix = {
+      #url = "github:nix-community/stylix/";
       url = "github:make-42/stylix/matugen";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -38,6 +39,16 @@
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Custom LamentOS module systemn: a desktop experience on Nix that JustWorks
+    lamentos = {
+      url = "git+file:///home/lament/.lamentos";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        stylix.follows = "stylix";
+      };
     };
   };
 
@@ -57,14 +68,17 @@
           inputs.aagl.nixosModules.default
 
           inputs.home-manager.nixosModules.home-manager
+          inputs.lamentos.nixosModules.lamentos
 
-          ./modules/sysConf.nix
-          ./modules/userConf.nix
-
-          # Simple way to load all of my home-manager files.
           ({config, ...}: {
-            networking.hostName = "${hostname}";
-            home-manager.users.${config.userConf.name} = {
+            lamentos.system.identity = {
+              hostName = "${hostname}";
+            };
+            lamentos.user.lament.fullName = "Sarah Lament";
+
+            lamentos.graphics.nvidia.enable = true;
+
+            home-manager.users.lament = {
               imports =
                 [
                   inputs.nixvim.homeModules.nixvim

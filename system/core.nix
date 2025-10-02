@@ -4,7 +4,6 @@
   lib,
   ...
 }: {
-  sysConf.nvidia.enable = true;
   hardware.graphics.enable = true; # graphics are wanted
   services = {
     dbus.enable = true;
@@ -22,7 +21,7 @@
     displayManager = {
       autoLogin = {
         enable = true; # auto login
-        user = config.userConf.name; # as the default user
+        user = "lament"; # as the default user
       };
       gdm = {
         enable = true; # gdm is reported to work with hyprland, so let's use it since I won't have to configure it

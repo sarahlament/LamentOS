@@ -9,6 +9,7 @@
     curl
     glib
     jq
+    nodejs
 
     xdg-utils
     hyprcursor
