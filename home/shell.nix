@@ -38,7 +38,6 @@
 
       # My main shell variables
       shellAliases = {
-        c = "clear";
         ff = "hyfetch";
         shutdown = "systemctl shutdown";
         reboot = "systemctl reboot";

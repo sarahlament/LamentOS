@@ -95,11 +95,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1759285846,
-        "narHash": "sha256-+vm2LR3c38rjy+nZMtmxjJEsItH5coIqa1mHjSnIB8M=",
+        "lastModified": 1759435307,
+        "narHash": "sha256-2gJNbsQeVoWmJLfw39LcZv8BONNpH6TQIN/VvG61YvE=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "b9319f237678d50c5d90e9e9769bfc228eff175d",
+        "rev": "d17e648ef0f75efa3381b4a391d3ce8c7902d2a3",
         "type": "github"
       },
       "original": {
@@ -200,11 +200,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756770412,
-        "narHash": "sha256-+uWLQZccFHwqpGqr2Yt5VsW/PbeJVTn9Dk6SHWhNRPw=",
+        "lastModified": 1759362264,
+        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "4524271976b625a4a605beefd893f270620fd751",
+        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
         "type": "github"
       },
       "original": {
@@ -387,10 +387,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1759396355,
-        "narHash": "sha256-yd/Z/l5w21cTXG3DLmbiW/a52WOqLfEi1QaFfs9BwJ0=",
+        "lastModified": 1759437777,
+        "narHash": "sha256-h8mcOmo4f0VxdmTC0Wne2Q4lS/ZnH+zbRvN+EN7sQlE=",
         "ref": "refs/heads/develop",
-        "rev": "02ac998a2797b6f8609ece918af5f63f77def79c",
+        "rev": "0bad89aed9d06703272930b236d88824ec705994",
         "revCount": 3,
         "type": "git",
         "url": "file:///home/lament/.lamentos"
@@ -460,11 +460,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1759070547,
-        "narHash": "sha256-JVZl8NaVRYb0+381nl7LvPE+A774/dRpif01FKLrYFQ=",
+        "lastModified": 1759417375,
+        "narHash": "sha256-O7eHcgkQXJNygY6AypkF9tFhsoDQjpNEojw3eFs73Ow=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "647e5c14cbd5067f44ac86b74f014962df460840",
+        "rev": "dc704e6102e76aad573f63b74c742cd96f8f1e6c",
         "type": "github"
       },
       "original": {
@@ -500,11 +500,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1759363470,
-        "narHash": "sha256-qazFCflj7aEqI9YRB+qxKeHHrLMRZnKQB0m/AKn9IKg=",
+        "lastModified": 1759435426,
+        "narHash": "sha256-bAx1T95WTH7gemIzmmUfiZJ+qS8r74XdRBdhU391KXs=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "5c4a10093d5367af740c04f2bbe3bab7310d9ad0",
+        "rev": "dca0aa2defa89b02ed17d45e955af73be17e0178",
         "type": "github"
       },
       "original": {

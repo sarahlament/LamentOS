@@ -15,15 +15,11 @@
     gchk = "g checkout";
     gst = "g stash";
     gcm = "gc -m";
-    gca = "gc -a";
-    gcam = "gca -m";
-    gcat = "gcam tmp";
     gd = "g diff";
     gds = "gd --stat";
     gdc = "gd --cached";
-    glog = "g logg";
+    glog = "g prettylog";
     gamend = "gc --amend";
-    gcput = "gc && gput";
   };
 
   programs = {
@@ -39,7 +35,7 @@
       aliases = {
         sreset = "reset HEAD~1 --soft";
         hreset = "reset HEAD~1 --hard";
-        logg = "log --oneline --decorate --all --graph";
+        prettylog = "log --oneline --decorate --all --graph";
         stat = "status --short --branch";
       };
     };
