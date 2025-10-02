@@ -36,7 +36,6 @@
     eza = {
       enable = true;
       git = true;
-      theme = "catppuccin";
       colors = "auto";
       icons = "auto";
       extraOptions = [
