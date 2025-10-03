@@ -47,7 +47,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
-        stylix.follows = "stylix";
+        #stylix.follows = "stylix";
       };
     };
   };

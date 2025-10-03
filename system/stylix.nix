@@ -14,5 +14,8 @@
       desktop = 0.5;
       popups = 0.95;
     };
+
+    # Disable Qt theming - KDE Plasma 6 handles Qt apps natively
+    targets.qt.enable = false;
   };
 }

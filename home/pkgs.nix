@@ -12,11 +12,11 @@
     nodejs
 
     xdg-utils
-    hyprcursor
-    hyprsysteminfo
-    hyprland-qt-support
-    pyprland
-    wofi
+    # hyprcursor
+    # hyprsysteminfo
+    # hyprland-qt-support
+    # pyprland
+    # wofi
 
     lsfg-vk
     lsfg-vk-ui

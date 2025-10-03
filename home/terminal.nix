@@ -16,9 +16,7 @@
       };
       settings = {
         enable_audio_bell = false;
-        remember_window_size = false;
         dynamic_background_opacity = true;
-        hide_window_decorations = true;
         cursor_blink_interval = 0.5;
         cursor_stop_blinking_after = 2;
         scrollback_lines = 5000;
