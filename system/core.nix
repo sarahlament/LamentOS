@@ -53,4 +53,10 @@
 
   programs.ccache.enable = true;
   security.rtkit.enable = true; # let's use the realtime kit
+
+  virtualisation.virtualbox = {
+    host.enable = true;
+    host.enableExtensionPack = true;
+  };
+  users.extraGroups.vboxusers.members = ["lament"];
 }
