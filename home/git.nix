@@ -20,6 +20,7 @@
     gdc = "gd --cached";
     glog = "PAGER=cat g prettylog -n15";
     gamend = "gc --amend";
+    gcfl = "ga flake.lock && gcm \"updated flake.lock\"";
   };
 
   programs = {

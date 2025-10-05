@@ -7,7 +7,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # This allows us to have up-to-date claude-code instead of the late updates provided by nixpkgs
-    claude-code.url = "github:sadjow/claude-code-nix";
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Lanzaboote is a secure boot implementation, requiring your own keys
     lanzaboote = {
@@ -22,10 +25,10 @@
     };
 
     # Stylix provides system-level theming
-    # We are going to use a specific pull request, so I'm going to comment out the normal url and replace it with the dev tree
+    # We are no longer using the new matugen color pallette generator, so let's revert to main
     stylix = {
-      #url = "github:nix-community/stylix/";
-      url = "github:make-42/stylix/matugen";
+      #url = "github:make-42/stylix/matugen";
+      url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -75,8 +78,10 @@
               hostName = "${hostname}";
             };
             lamentos.user.lament.fullName = "Sarah Lament";
+            lamentos.users.sudoNoPassword = true;
 
             lamentos.graphics.nvidia.enable = true;
+            lamentos.desktop.plasma6.enable = true;
 
             home-manager.users.lament = {
               imports =
