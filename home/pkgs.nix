@@ -12,11 +12,6 @@
     nodejs
 
     xdg-utils
-    # hyprcursor
-    # hyprsysteminfo
-    # hyprland-qt-support
-    # pyprland
-    # wofi
 
     lsfg-vk
     lsfg-vk-ui
@@ -29,9 +24,6 @@
     wl-clipboard
     wl-clip-persist
 
-    kdePackages.dolphin
-    kdePackages.discover
-    kdePackages.gwenview
     gdu
     playerctl
     pwvucontrol
@@ -39,6 +31,5 @@
 
     nil
     alejandra
-    python313Packages.editorconfig
   ];
 }

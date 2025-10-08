@@ -27,7 +27,6 @@
     # Stylix provides system-level theming
     # We are no longer using the new matugen color pallette generator, so let's revert to main
     stylix = {
-      #url = "github:make-42/stylix/matugen";
       url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -50,7 +49,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
-        #stylix.follows = "stylix";
+        stylix.follows = "stylix";
       };
     };
   };
@@ -82,6 +81,8 @@
 
             lamentos.graphics.nvidia.enable = true;
             lamentos.desktop.plasma6.enable = true;
+
+            lamentos.shell.modernTools.useRustSudo = true;
 
             home-manager.users.lament = {
               imports =
