@@ -9,17 +9,13 @@
     curl
     glib
     jq
-    nodejs
 
     xdg-utils
 
     lsfg-vk
     lsfg-vk-ui
-    gamescope
-    gamemode
 
     discord
-    matugen
 
     wl-clipboard
     wl-clip-persist
@@ -31,5 +27,8 @@
 
     nil
     alejandra
+
+    mangohud
+    piper
   ];
 }

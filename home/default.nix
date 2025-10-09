@@ -5,8 +5,6 @@
   ./git.nix # Git and GitHub CLI configuration
   ./shell.nix # Shell configuration
   ./hyfetch.nix # {hy,fast}fetch config
-  # ./hypr.nix # Hyprland configuration
-  # ./waybar.nix # Waybar configuration
   ./nixvim.nix # Neovim configuration
   ./pkgs.nix # User packages
   ./stylix.nix # User-level theming

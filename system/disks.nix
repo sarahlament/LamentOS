@@ -8,6 +8,10 @@
     device = "/dev/worksys/sys";
     fsType = "ext4";
   };
+  fileSystems."/gamedir" = {
+    device = "/dev/disk/by-label/GAMEDIR";
+    fsType = "ext4";
+  };
   fileSystems."/efi" = {
     device = "/dev/disk/by-label/NIXBOOT";
     fsType = "vfat";
@@ -16,5 +20,10 @@
       "dmask=0077"
     ];
   };
-  swapDevices = [{device = "/dev/worksys/swap";}];
+  swapDevices = [
+    {
+      device = "/dev/worksys/swap";
+      options = ["discard"];
+    }
+  ];
 }

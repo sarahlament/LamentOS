@@ -2,15 +2,8 @@
   description = "LamentOS";
 
   inputs = {
-    # I'm totally fine using the unstable repo, but normally you would want a release, like below
-    #nixpkgs.url = "github:nixpkgs/nixos-25.05";
+    # Let's use nixos-unstable; I'm comfortable with not using a 'release' branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    # This allows us to have up-to-date claude-code instead of the late updates provided by nixpkgs
-    claude-code = {
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Lanzaboote is a secure boot implementation, requiring your own keys
     lanzaboote = {
@@ -25,7 +18,6 @@
     };
 
     # Stylix provides system-level theming
-    # We are no longer using the new matugen color pallette generator, so let's revert to main
     stylix = {
       url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +35,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Custom LamentOS module systemn: a desktop experience on Nix that JustWorks
+    # This allows us to have up-to-date claude-code instead of the late updates provided by nixpkgs
+    # Note: this is an overlay, not a module
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Custom LamentOS module systemn: a desktop experience on Nix that 'JustWorks':tm:
     lamentos = {
       url = "git+file:///home/lament/.lamentos";
       inputs = {
@@ -66,23 +65,28 @@
       modules =
         [
           inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.stylix.nixosModules.stylix
-          inputs.aagl.nixosModules.default
-
-          inputs.home-manager.nixosModules.home-manager
           inputs.lamentos.nixosModules.lamentos
+          inputs.aagl.nixosModules.default
 
           ({config, ...}: {
             lamentos.system.identity = {
               hostName = "${hostname}";
+              stateVersion = "25.11";
             };
-            lamentos.user.lament.fullName = "Sarah Lament";
+            lamentos.user.lament = {
+              fullName = "Sarah Lament";
+              isAdmin = true;
+            };
             lamentos.users.sudoNoPassword = true;
 
-            lamentos.graphics.nvidia.enable = true;
-            lamentos.desktop.plasma6.enable = true;
+            lamentos.graphics.vendor = "nvidia";
+            lamentos.desktop.kde.enable = true;
 
             lamentos.shell.modernTools.useRustSudo = true;
+            users.users.lament.extraGroups = [
+              "gamemode"
+              "plugdev"
+            ];
 
             home-manager.users.lament = {
               imports =

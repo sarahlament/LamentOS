@@ -38,6 +38,7 @@
   environment.systemPackages = with pkgs; [
     sbctl # Secure boot key management
     modprobed-db # Track kernel module usage for optimization
+    pciutils
   ];
 
   # let's use systemd instead of busybox for init
