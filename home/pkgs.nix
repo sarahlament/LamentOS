@@ -30,5 +30,8 @@
 
     mangohud
     piper
+
+    nodejs
+    uv
   ];
 }

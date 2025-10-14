@@ -86,6 +86,7 @@
             users.users.lament.extraGroups = [
               "gamemode"
               "plugdev"
+              "docker"
             ];
 
             home-manager.users.lament = {
