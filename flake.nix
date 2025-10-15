@@ -5,6 +5,12 @@
     # Let's use nixos-unstable; I'm comfortable with not using a 'release' branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # sops-nix is an advanced tool to store encrypted secrets along with my configuration safely
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Lanzaboote is a secure boot implementation, requiring your own keys
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
@@ -64,6 +70,7 @@
       specialArgs = {inherit inputs;};
       modules =
         [
+          inputs.sops-nix.nixosModules.sops
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.lamentos.nixosModules.lamentos
           inputs.aagl.nixosModules.default
@@ -76,6 +83,7 @@
             lamentos.user.lament = {
               fullName = "Sarah Lament";
               isAdmin = true;
+              hashedPasswordFile = config.sops.secrets.hashedPassword.path;
             };
             lamentos.users.sudoNoPassword = true;
 
@@ -89,6 +97,7 @@
               "docker"
             ];
 
+            home-manager.backupFileExtension = "hm-backup";
             home-manager.users.lament = {
               imports =
                 [

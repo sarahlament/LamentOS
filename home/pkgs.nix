@@ -33,5 +33,6 @@
 
     nodejs
     uv
+    python3
   ];
 }

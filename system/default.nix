@@ -6,4 +6,5 @@
   ./stylix.nix # System-level theming
   ./aagl.nix # Anime game launchers
   ./nixconf.nix # Nix-level configuration (experimental features, etc.)
+  ./sops.nix # sops-nix information
 ]
