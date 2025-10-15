@@ -9,30 +9,27 @@
     curl
     glib
     jq
+    nil
+    alejandra
+    nodejs
+    uv
+    python3
 
     xdg-utils
+    wl-clipboard
+    wl-clip-persist
 
     lsfg-vk
     lsfg-vk-ui
+    r2modman
+    mangohud
+    piper
 
     discord
-
-    wl-clipboard
-    wl-clip-persist
 
     gdu
     playerctl
     pwvucontrol
     headsetcontrol
-
-    nil
-    alejandra
-
-    mangohud
-    piper
-
-    nodejs
-    uv
-    python3
   ];
 }
