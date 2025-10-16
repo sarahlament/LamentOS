@@ -6,7 +6,6 @@
 }: {
   # Default environment variables I want set at session start
   home.sessionVariables = {
-    # Build configuration
     MAKEFLAGS = "-j16";
   };
 }

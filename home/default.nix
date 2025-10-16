@@ -8,4 +8,5 @@
   ./nixvim.nix # Neovim configuration
   ./pkgs.nix # User packages
   ./stylix.nix # User-level theming
+  ./gpg.nix # GPG for keys and shit
 ]

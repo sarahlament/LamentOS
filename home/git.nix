@@ -27,7 +27,7 @@
     git = {
       enable = true;
       userName = "Sarah Lament";
-      userEmail = "4612427+sarahlament@users.noreply.github.com";
+      userEmail = "sarah@lament.gay";
       extraConfig = {
         init.defaultBranch = "main";
         fetch.prune = true;

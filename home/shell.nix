@@ -40,6 +40,13 @@
         sys-update = "sudo nixos-rebuild --flake ${config.home.homeDirectory}/.nix-conf/# switch";
         sys-clean-gens = "sudo nix-collect-garbage -d; sys-update";
       };
+
+      envExtra = ''
+        unset SSH_AGENT_PID
+        if [[ -z "$SSH_CONNECTION" || -z "$SSH_AUTH_SOCK" ]]; then
+          export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+        fi
+      '';
     };
   };
 }
