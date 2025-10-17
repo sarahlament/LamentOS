@@ -3,13 +3,14 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   # need an extra package? put them here!
   home.packages = with pkgs; [
     curl
     glib
     jq
-    nil
+    nixd
     alejandra
     nodejs
     uv

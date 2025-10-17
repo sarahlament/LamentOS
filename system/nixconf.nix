@@ -22,6 +22,7 @@
     ];
     extra-sandbox-paths = [config.programs.ccache.cacheDir];
   };
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
   nixpkgs.overlays = [inputs.claude-code.overlays.default];
 }

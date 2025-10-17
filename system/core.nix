@@ -34,5 +34,6 @@
     "nvidia-x11"
     "linux_zen"
   ];
+  programs.nix-ld.enable = true;
   security.rtkit.enable = true; # let's use the realtime kit
 }

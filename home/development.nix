@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs = {
     # codium is actually pretty damn good
     vscode = {
@@ -29,12 +30,12 @@
           "extensions.autoCheckUpdates" = false;
 
           "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "${pkgs.nil}/bin/nil";
+          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
           "nix.formatterPath" = "${pkgs.alejandra}/bin/alejandra";
           "nix.serverSettings" = {
-            "nil" = {
+            "nixd" = {
               "formatting" = {
-                "command" = ["${pkgs.alejandra}/bin/alejandra"];
+                "command" = [ "${pkgs.alejandra}/bin/alejandra" ];
               };
             };
           };
@@ -51,8 +52,6 @@
 
           "gitlens.currentLine.enabled" = false;
           "gitlens.hovers.currentLine.over" = "line";
-          "problems.showErrors" = false;
-          "problems.showWarnings" = false;
         };
       };
     };
