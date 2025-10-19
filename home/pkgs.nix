@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   # need an extra package? put them here!
   home.packages = with pkgs; [
     curl
@@ -15,6 +14,9 @@
     nodejs
     uv
     python3
+    unrar
+
+    dotnet-sdk_9
 
     xdg-utils
     wl-clipboard
@@ -27,6 +29,7 @@
     piper
 
     discord
+    ryubing
 
     gdu
     playerctl

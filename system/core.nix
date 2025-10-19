@@ -29,6 +29,8 @@
     fwupd.enable = true; # firmware update service
   };
 
+  hardware.bluetooth.enable = true;
+
   programs.ccache.enable = true;
   programs.ccache.packageNames = [
     "nvidia-x11"

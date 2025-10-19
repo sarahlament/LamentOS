@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-{
+}: {
   programs = {
     # codium is actually pretty damn good
     vscode = {
@@ -35,7 +34,7 @@
           "nix.serverSettings" = {
             "nixd" = {
               "formatting" = {
-                "command" = [ "${pkgs.alejandra}/bin/alejandra" ];
+                "command" = ["${pkgs.alejandra}/bin/alejandra"];
               };
             };
           };
