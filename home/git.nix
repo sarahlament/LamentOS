@@ -26,18 +26,18 @@
   programs = {
     git = {
       enable = true;
-      userName = "Sarah Lament";
-      userEmail = "sarah@lament.gay";
-      extraConfig = {
+      settings = {
+        user.name = "Sarah Lament";
+        user.email = "sarah@lament.gay";
         init.defaultBranch = "main";
         fetch.prune = true;
         pull.rebase = true;
-      };
-      aliases = {
-        sreset = "reset HEAD~1 --soft";
-        hreset = "reset HEAD~1 --hard";
-        prettylog = "log --oneline --decorate --graph";
-        stat = "status --short --branch";
+        alias = {
+          sreset = "reset HEAD~1 --soft";
+          hreset = "reset HEAD~1 --hard";
+          prettylog = "log --oneline --decorate --graph";
+          stat = "status --short --branch";
+        };
       };
     };
 
